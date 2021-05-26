@@ -1,0 +1,85 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <center>
+        <div class="dropZone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);"><center>Drop your Journey Save.bin here</center></div>
+        <div class="resultZone" id="resultZone">.</div>
+        <div class="disclaimer">Tested on Chrome, Firefox.</div>
+    </center>
+</body>
+
+<style>
+    .dropZone {
+        width: 95%;
+        height: 25em;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border: 6px solid #1C6EA4;
+        border-radius: 18px;
+
+        margin-bottom: 2em;
+    }
+</style>
+
+<script type="text/javascript">
+    // Moz wiki https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
+    function dropHandler(ev) {
+        fileReader = new FileReader();
+        fileReader.onload = (callbackEvent) => callback(callbackEvent);
+
+        console.log('File(s) dropped');
+
+        // Prevent default behavior (Prevent file from being opened)
+        ev.preventDefault();
+
+        if (ev.dataTransfer.items) {
+            // Use DataTransferItemList interface to access the file(s)
+            // If dropped items aren't files, reject them
+            if (ev.dataTransfer.items[0].kind === 'file') {
+                let file = ev.dataTransfer.items[0].getAsFile();
+                fileReader.readAsArrayBuffer(file)
+            }
+        } else {
+            // Use DataTransfer interface to access the file(s)
+            fileReader.readAsArrayBuffer(ev.dataTransfer.files[0])
+        }
+    }
+
+    function callback(callbackEvent)
+    {
+        let arrayBuffer = callbackEvent.target.result;
+        let baseOffset = 6568;// hex 19A8 thanks Journey wiki
+
+        let resultArray = [];
+        for(let i = 0; i < 8; i++) // Let's read those 8 players entries
+        {   
+            let tempNameBuffer = new Uint8Array(fileReader.result, 6568+32*i, 24);
+            let name = [...tempNameBuffer].map(charCode => String.fromCharCode(charCode)).join("");
+            console.log(name);
+            let tempSteamIdBuffer = new DataView(fileReader.result, 6568+32*i+24, 4);
+            let steamIdV3int32 = tempSteamIdBuffer.getInt32(0, true);
+            let steamIdV3 = `[U:1:${steamIdV3int32}]`;
+            let safeHtmlSteamIdV3 = encodeURIComponent(steamIdV3);
+            let steamLink = "https://steamcommunity.com/profiles/" + safeHtmlSteamIdV3;
+            console.log(steamLink, steamIdV3);
+
+            resultArray.push(`name : ${name}, steamId: ${steamIdV3}, link : <a href='${steamLink}'>${steamLink}</a>`);
+            document.getElementById("resultZone").innerHTML = resultArray.join("<br>");
+        }
+    }
+
+    function dragOverHandler(ev) {
+        console.log('File(s) in drop zone');
+        // Prevent default behavior (Prevent file from being opened)
+        ev.preventDefault();
+    }
+</script>
+
+</html>
