@@ -54,24 +54,28 @@
 
     function callback(callbackEvent)
     {
-        let arrayBuffer = callbackEvent.target.result;
-        let baseOffset = 6568;// hex 19A8 thanks Journey wiki
+        const arrayBuffer = callbackEvent.target.result;
+        const baseOffset = 0x19a8;// hex 19A8 thanks Journey wiki
 
-        let resultArray = [];
         for(let i = 0; i < 8; i++) // Let's read those 8 players entries
-        {   
-            let tempNameBuffer = new Uint8Array(fileReader.result, 6568+32*i, 24);
-            let name = [...tempNameBuffer].map(charCode => String.fromCharCode(charCode)).join("");
+        {
+            const tempNameBuffer = new Uint8Array(fileReader.result, baseOffset+32*i, 24);
+            const nameBuffer = tempNameBuffer.subarray(0, tempNameBuffer.indexOf(0x00));
+            const name = new TextDecoder().decode(nameBuffer);
             console.log(name);
-            let tempSteamIdBuffer = new DataView(fileReader.result, 6568+32*i+24, 4);
-            let steamIdV3int32 = tempSteamIdBuffer.getInt32(0, true);
-            let steamIdV3 = `[U:1:${steamIdV3int32}]`;
-            let safeHtmlSteamIdV3 = encodeURIComponent(steamIdV3);
-            let steamLink = "https://steamcommunity.com/profiles/" + safeHtmlSteamIdV3;
+            const tempSteamIdBuffer = new DataView(fileReader.result, baseOffset+32*i+24, 4);
+            const steamIdV3int32 = tempSteamIdBuffer.getInt32(0, true);
+            const steamIdV3 = `[U:1:${steamIdV3int32}]`;
+            const safeHtmlSteamIdV3 = encodeURIComponent(steamIdV3);
+            const steamLink = "https://steamcommunity.com/profiles/" + safeHtmlSteamIdV3;
+            const p = document.createElement("p");
+            p.innerText = `name : ${name}, steamId: ${steamIdV3}, link :`;
+            const link = document.createElement("a");
+            link.href = steamLink;
+            link.innerText = steamLink;
+            p.appendChild(link);
             console.log(steamLink, steamIdV3);
-
-            resultArray.push(`name : ${name}, steamId: ${steamIdV3}, link : <a href='${steamLink}'>${steamLink}</a>`);
-            document.getElementById("resultZone").innerHTML = resultArray.join("<br>");
+            document.getElementById("resultZone").appendChild(p);
         }
     }
 
