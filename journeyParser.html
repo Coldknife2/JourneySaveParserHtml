@@ -2,33 +2,78 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <video autoplay muted loop class="backgroundVideo">
+        <source src="./title.webm" type="video/webm">
+    </video>
     <center>
-        <div class="dropZone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);"><center>Drop your Journey Save.bin here</center></div>
-        <div class="resultZone" id="resultZone">.</div>
-        <div class="disclaimer">Tested on Chrome, Firefox.</div>
+        <div id="dropZoneVisibilityToggler">
+            <div class="dropZone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);"><center>Drop your Journey Save.bin here</center></div>
+        </div>
+        <div hidden id="resultZone" class="resultZone">
+        </div>
+        <div class="disclaimer">Tested on Chrome, Firefox. 1080p</div>
     </center>
 </body>
 
 <style>
+    body {
+        color: white;
+        font-family: 'Pattaya', sans-serif;
+    }
+
+    .playerDisplay {
+        display:inline-block;
+        margin: 2em;
+    }
+
+    .resultZone {
+        text-shadow: -2px 0px 20px rgba(173,162,126,0.8);
+
+        font-family: 'Patrick Hand', cursive;
+        font-size: 2em;
+
+        margin-bottom: 10px;
+        margin-top: 9%;
+        max-width: 90%;
+    }
+
     .dropZone {
         width: 95%;
-        height: 25em;
+        height: 33%;
 
         display: flex;
         justify-content: center;
         align-items: center;
 
-        border: 6px solid #1C6EA4;
-        border-radius: 18px;
+        border: 4px dashed #FFFFFF;
+        border-radius: 5px;
 
-        margin-bottom: 2em;
+        margin-bottom: 10px;
+        margin-top: 18%;
+
+        font-size: 3em;
+    }
+
+    .backgroundVideo {
+        z-index: -1;
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
     }
 </style>
 
 <script type="text/javascript">
+    const dropZoneVisibilityToggler = document.getElementById("dropZoneVisibilityToggler"); // display: flex & hidden does not works well together
+    const resultZone = document.getElementById("resultZone"); 
+
     // Moz wiki https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
     function dropHandler(ev) {
         fileReader = new FileReader();
@@ -57,6 +102,10 @@
         const arrayBuffer = callbackEvent.target.result;
         const baseOffset = 0x19a8;// hex 19A8 thanks Journey wiki
 
+        const p = document.createElement("p");
+        p.innerText = "Companions Met Along The Way";
+        document.getElementById("resultZone").appendChild(p);
+
         for(let i = 0; i < 8; i++) // Let's read those 8 players entries
         {
             const tempNameBuffer = new Uint8Array(fileReader.result, baseOffset+32*i, 24);
@@ -68,15 +117,22 @@
             const steamIdV3 = `[U:1:${steamIdV3int32}]`;
             const safeHtmlSteamIdV3 = encodeURIComponent(steamIdV3);
             const steamLink = "https://steamcommunity.com/profiles/" + safeHtmlSteamIdV3;
-            const p = document.createElement("p");
-            p.innerText = `name : ${name}, steamId: ${steamIdV3}, link :`;
+            const div = document.createElement("div");
+            div.innerText = `${name}, `;
+            div.className = "playerDisplay";
             const link = document.createElement("a");
             link.href = steamLink;
-            link.innerText = steamLink;
-            p.appendChild(link);
+            link.innerText = "Steam profile";
+            div.appendChild(link);
             console.log(steamLink, steamIdV3);
-            document.getElementById("resultZone").appendChild(p);
+            if(steamIdV3int32 != 0)
+            {
+                document.getElementById("resultZone").appendChild(div);
+            }
         }
+
+        dropZoneVisibilityToggler.hidden = true;
+        resultZone.hidden = false;
     }
 
     function dragOverHandler(ev) {
