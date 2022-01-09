@@ -67,12 +67,20 @@
         bottom: 0;
         min-width: 100%;
         min-height: 100%;
+
+    }
+
+    img {
+        margin: 10px;
+        width: 40px;
+        display: block;
+        float: left;
     }
 </style>
 
 <script type="text/javascript">
     const dropZoneVisibilityToggler = document.getElementById("dropZoneVisibilityToggler"); // display: flex & hidden does not works well together
-    const resultZone = document.getElementById("resultZone"); 
+    const resultZone = document.getElementById("resultZone");
 
     // Moz wiki https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
     function dropHandler(ev) {
@@ -101,6 +109,7 @@
     {
         const arrayBuffer = callbackEvent.target.result;
         const baseOffset = 0x19a8;// hex 19A8 thanks Journey wiki
+        const symbolOffset = 0x1200;
 
         const p = document.createElement("p");
         p.innerText = "Companions Met Along The Way";
@@ -117,7 +126,11 @@
             const steamIdV3 = `[U:1:${steamIdV3int32}]`;
             const safeHtmlSteamIdV3 = encodeURIComponent(steamIdV3);
             const steamLink = "https://steamcommunity.com/profiles/" + safeHtmlSteamIdV3;
+            const tempSymbolBuffer = new DataView(fileReader.result, symbolOffset+60*i, 4);
+            const symbolBuffer = tempSymbolBuffer.getInt32(0, true);
+            const symbol = `images/${symbolBuffer}.png`
             const div = document.createElement("div");
+            const img = new Image();
             div.innerText = `${name}, `;
             div.className = "playerDisplay";
             const link = document.createElement("a");
@@ -129,6 +142,8 @@
             {
                 document.getElementById("resultZone").appendChild(div);
             }
+            div.appendChild(img);
+            img.src = symbol;
         }
 
         dropZoneVisibilityToggler.hidden = true;
