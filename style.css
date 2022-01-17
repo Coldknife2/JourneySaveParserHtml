@@ -1,0 +1,65 @@
+body {
+    color: white;
+    font-family: 'Pattaya', sans-serif;
+}
+
+.playerDisplay {
+    display: inline-block;
+    margin: 10px;
+}
+
+.cmatw {
+    text-shadow: -2px 0px 20px rgba(173, 162, 126, 0.8);
+}
+
+.resultZone {
+    text-shadow: -2px 0px 6px rgba(173, 162, 126, 0.8);
+
+    font-family: 'Patrick Hand', cursive;
+    font-size: 2em;
+
+    margin-bottom: 10px;
+    margin-top: 13%; /* good balance between 1080p and 1440p I think? */
+    max-width: 90%;
+}
+
+.dropZone {
+    width: 95%;
+    height: 33%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 4px dashed #FFFFFF;
+    border-radius: 5px;
+
+    margin-bottom: 10px;
+    margin-top: 18%;
+
+    font-size: 3em; /* change to scalable unit like vw */
+}
+
+.backgroundVideo {
+    z-index: -1;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+
+}
+
+.symbol {
+    width: 40px;
+}
+
+.container {
+    display: flex;
+}
+
+.resultTable {
+    border: 0px;
+    border-spacing: 20px 10px;
+    font-size: 1vw;
+}
