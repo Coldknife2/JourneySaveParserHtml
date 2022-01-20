@@ -51,11 +51,12 @@ function callback(callbackEvent) {
         const symbolBuffer = readFromFile(fileReader.result, symbolOffset+60*i, 4);
         const symbol = `images/${symbolBuffer}.svg`;
 
-        const container = document.createElement("div");
+        const container = document.createElement("a");
         container.className = "container";
+        container.href = steamLink;
+        container.target = "_blank";
 
-        const div = document.createElement("a");
-        div.href = steamLink;
+        const div = document.createElement("div");
         div.innerText = name;
         div.className = "playerDisplay";
 
@@ -100,3 +101,5 @@ function dragOverHandler(ev) {
     // Prevent default behavior (Prevent file from being opened)
     ev.preventDefault();
 }
+
+document.body.style.backgroundImage = `url(./images/cmatw_${Math.random() > 0.5 ? "sunny" : "dark"}.png)`;
