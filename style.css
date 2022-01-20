@@ -1,6 +1,15 @@
 body {
     color: white;
     font-family: 'Pattaya', sans-serif;
+    background: url(./images/cmatw_dark.png) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+td {
+    margin-right: 1em;
 }
 
 .playerDisplay {
@@ -9,18 +18,18 @@ body {
 }
 
 .cmatw {
-    text-shadow: -2px 0px 20px rgba(173, 162, 126, 0.8);
+    /* text-shadow: -2px 0px 20px rgba(173, 162, 126, 0.8); */
 }
 
 .resultZone {
-    text-shadow: -2px 0px 6px rgba(173, 162, 126, 0.8);
-
-    font-family: 'Patrick Hand', cursive;
-    font-size: 2em;
+    font-family: 'Patrick Hand SC', cursive;
+    /*font-family: 'Vollkorn SC', serif;*/
+    font-size: 5vh;
 
     margin-bottom: 10px;
-    margin-top: 13%; /* good balance between 1080p and 1440p I think? */
+    margin-top: 6vh;
     max-width: 90%;
+    margin-left: 18%;
 }
 
 .dropZone {
@@ -45,21 +54,30 @@ body {
     position: fixed;
     right: 0;
     bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-
+    width:100%;
+    max-height:100%;
 }
 
 .symbol {
-    width: 40px;
+    width: 1em;
+    margin-right: 0.5em;
 }
 
 .container {
     display: flex;
+    margin-right: 11vw;
+    color: white;
+    text-decoration: unset;
+}
+
+.container:hover {
+    text-shadow: -2px 0px 20px rgb(173 162 126 / 80%);
+    background-color: #eff2f51f;
+    border-radius: 7px;
+    text-decoration: underline;
 }
 
 .resultTable {
     border: 0px;
-    border-spacing: 20px 10px;
-    font-size: 1vw;
+    font-size: 5vh;
 }
