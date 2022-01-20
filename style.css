@@ -8,7 +8,7 @@ td {
 }
 
 html { 
-    background: url(./images/cmatw_sunny.png) no-repeat center center fixed; 
+    background: url(./images/cmatw_dark.png) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -26,11 +26,12 @@ html {
 }
 
 .cmatw {
-    text-shadow: -2px 0px 20px rgba(173, 162, 126, 0.8);
+    /* text-shadow: -2px 0px 20px rgba(173, 162, 126, 0.8); */
 }
 
 .resultZone {
-    font-family: 'Patrick Hand', cursive;
+    font-family: 'Patrick Hand SC', cursive;
+    /*font-family: 'Vollkorn SC', serif;*/
     font-size: 5vh;
 
     margin-bottom: 10px;
