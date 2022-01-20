@@ -54,14 +54,10 @@ function callback(callbackEvent) {
         const container = document.createElement("div");
         container.className = "container";
 
-        const div = document.createElement("div");
-        div.innerText = `${name}, `;
+        const div = document.createElement("a");
+        div.href = steamLink;
+        div.innerText = name;
         div.className = "playerDisplay";
-
-        const link = document.createElement("a");
-        link.href = steamLink;
-        link.innerText = "Steam profile";
-        div.appendChild(link);
 
         const img = new Image();
         img.className = "symbol";
