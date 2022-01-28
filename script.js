@@ -25,6 +25,11 @@ function dropHandler(ev) {
     }
 }
 
+function dragOverHandler(ev) {
+    // Prevent default behavior (Prevent file from being opened)
+    ev.preventDefault();
+}
+
 function callback(callbackEvent) {
     
     const arrayBuffer = callbackEvent.target.result;
@@ -94,12 +99,6 @@ function createTable() { // could just be hardcoded in html
 
 function readFromFile(file, offset, size) {
     return new DataView(file, offset, size).getInt32(0, true);
-}
-
-function dragOverHandler(ev) {
-    console.log('File(s) in drop zone');
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
 }
 
 function determineTimePercentage() {
