@@ -65,7 +65,7 @@ function callback(callbackEvent) {
         div.innerText = name;
         div.className = "playerDisplay";
 
-        const img = new Image();
+        const img = document.createElement("img");
         img.className = "symbol";
         img.src = symbol;
 
