@@ -25,6 +25,11 @@ function dropHandler(ev) {
     }
 }
 
+function dragOverHandler(ev) {
+    // Prevent default behavior (Prevent file from being opened)
+    ev.preventDefault();
+}
+
 function callback(callbackEvent) {
     
     const arrayBuffer = callbackEvent.target.result;
@@ -60,7 +65,7 @@ function callback(callbackEvent) {
         div.innerText = name;
         div.className = "playerDisplay";
 
-        const img = new Image();
+        const img = document.createElement("img");
         img.className = "symbol";
         img.src = symbol;
 
@@ -96,10 +101,12 @@ function readFromFile(file, offset, size) {
     return new DataView(file, offset, size).getInt32(0, true);
 }
 
-function dragOverHandler(ev) {
-    console.log('File(s) in drop zone');
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
+function determineTimePercentage() {
+    return 1 - trig(new Date().getHours());
 }
 
-document.body.style.backgroundImage = `url(./images/cmatw_${Math.random() > 0.5 ? "sunny" : "dark"}.png)`;
+function trig(x) {
+    return -0.00694444*x**2+0.1666666*x;
+}
+
+document.body.style.backgroundImage = `url(./images/cmatw_${Math.random() > determineTimePercentage() ? "sunny" : "dark"}.png)`;
