@@ -101,13 +101,3 @@ function createTable() { // could just be hardcoded in html
 function readFromFile(file, offset, size) {
     return new DataView(file, offset, size).getInt32(0, true);
 }
-
-function determineTimePercentage() {
-    return 1 - trig(new Date().getHours());
-}
-
-function trig(x) {
-    return -0.00694444*x**2+0.1666666*x;
-}
-
-document.body.style.backgroundImage = `url(./images/cmatw_${Math.random() > determineTimePercentage() ? "sunny" : "dark"}.png)`;
