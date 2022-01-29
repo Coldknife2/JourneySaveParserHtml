@@ -1,6 +1,7 @@
 
 const dropZoneVisibilityToggler = document.getElementById("dropZoneVisibilityToggler"); // display: flex & hidden does not works well together
 const resultZone = document.getElementById("resultZone");
+let fileReader;
 
 // Moz wiki https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
 function dropHandler(ev) {
@@ -16,7 +17,7 @@ function dropHandler(ev) {
         // Use DataTransferItemList interface to access the file(s)
         // If dropped items aren't files, reject them
         if (ev.dataTransfer.items[0].kind === 'file') {
-            let file = ev.dataTransfer.items[0].getAsFile();
+            const file = ev.dataTransfer.items[0].getAsFile();
             fileReader.readAsArrayBuffer(file);
         }
     } else {
@@ -33,7 +34,7 @@ function dragOverHandler(ev) {
 function callback(callbackEvent) {
     
     const arrayBuffer = callbackEvent.target.result;
-    const baseOffset = 0x19a8;// hex 19A8 thanks Journey wiki  
+    const baseOffset = 0x19a8; // hex 19A8 thanks Journey wiki  
     const symbolOffset = 0x1200;
 
     const p = document.createElement("p");
@@ -73,7 +74,7 @@ function callback(callbackEvent) {
         container.appendChild(div);
 
         if (steamIdV3int32 != 0) {
-            td = document.createElement("td");
+            const td = document.createElement("td");
             td.appendChild(container);
             document.getElementById("row"+i%4).appendChild(td);
         }
@@ -90,7 +91,7 @@ function createTable() { // could just be hardcoded in html
     const table = document.createElement("table");
     table.className = "resultTable";
     for (let i = 0; i < 4; i++) { 
-        row = document.createElement("tr");
+        const row = document.createElement("tr");
         row.id = "row"+i;
         table.appendChild(row);
     }
