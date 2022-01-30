@@ -18,7 +18,7 @@ td {
 }
 
 .cmatw {
-    /* text-shadow: -2px 0px 20px rgba(173, 162, 126, 0.8); */
+    padding-left: 10px;
 }
 
 .resultZone {
@@ -59,6 +59,7 @@ td {
 }
 
 .symbol {
+    padding-left: 10px;
     width: 1em;
     margin-right: 0.5em;
 }
