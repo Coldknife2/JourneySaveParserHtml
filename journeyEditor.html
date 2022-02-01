@@ -6,16 +6,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap" rel="stylesheet">
     <link href="editStyle.css" rel="stylesheet" > <!-- make another style.css with elements that only apply to here -->
+    <link href="navbarStyle.css" rel="stylesheet">
 </head>
 
 <body onunload="unload()" onload="load()">
-    <a hidden href="journeyParser.html" onclick="preserveData()">JourneyParser</a> <!-- proof of concept for cookie preservation-->
-    <div onclick="preserveData()">SAVE</div>
+    <div class="navbarContainer navbarOffsetRetracted" id="navbarContainer">
+        <div class=flex-container>
+            <a class="flex-item" href="journeyEditor.html">JourneyEditor</a>
+            <a class="flex-item" href="journeyParser.html" onclick="preserve()">JourneyParser</a>
+            <a class="flex-item" href="about.html" onclick="preserve()">About</a>
+        </div>
+        <center><img class="dropSymbol" src="images/arrow1L.svg" id="dropSymbol" onclick="toggleNavbar()"></center>
+    </div>
+
     <center>
         <div id="dropZoneVisibilityToggler">
             <div class="dropZone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);"><center>Drop your Journey Save.bin here</center></div>
         </div>
     </center>
+
     <div hidden class="editZone" id="editZone">
 
         <div hidden id="overview">
@@ -82,16 +91,12 @@
         <div hidden id="scarfSelect">
             <table>
                 <tr>
-                    <td></td>
                     <td><div id="scarfValue"></div></td>
-                    <td></td>
                 </tr>
                 <tr>
-                    <td></td>
                     <td><div class="slidecontainer">
                         <input type="range" min="0" max="30" value="0" class="slider" id="scarfSlider">
                     </div></td>
-                    <td></td>
                 </tr>
             </table>
             <!-- https://www.w3schools.com/howto/howto_js_rangeslider.asp use that, make color red / white and make the img a symbol -->
@@ -120,5 +125,6 @@
 
 </body>
 <script src="editorScript.js" type="text/javascript"></script>
+<script src="navbarScript.js" type="text/javascript"></script>
 <!-- <script src="backgroundScript.js" type="text/javascript"></script> -->
 </html>
