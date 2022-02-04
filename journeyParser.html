@@ -9,12 +9,12 @@
     <link href="navbarStyle.css" rel="stylesheet">
 </head>
 
-<body>
+<body onunload="unload()" onload="load()">
     <div class="navbarContainer navbarOffsetRetracted" id="navbarContainer">
         <div class=flex-container>
-            <a class="flex-item" href="journeyEditor.html" onclick="preserve()">JourneyEditor</a>
+            <a class="flex-item" href="journeyEditor.html" onclick="preserveData()">JourneyEditor</a>
             <a class="flex-item" href="journeyParser.html">JourneyParser</a>
-            <a class="flex-item" href="about.html" onclick="preserve()">About</a>
+            <a class="flex-item" href="about.html" onclick="preserveData()">About</a>
         </div>
         <center><img class="dropSymbol" src="images/arrow1L.svg" id="dropSymbol" onclick="toggleNavbar()"></center>
     </div>
