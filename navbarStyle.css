@@ -23,10 +23,9 @@
 .flex-item, .flex-item a, .flex-item a:visited{
     font-family: 'Patrick Hand SC', cursive;
     font-size: 3vh;
-    flex-grow: 1;
     color: #FFFFFF;
     text-decoration: none;
-    flex-basis: 33%;
+    flex-basis: 100%;
 }
 
 .flex-container {
