@@ -8,33 +8,6 @@ html {
     /* https://stackoverflow.com/a/4407335 */
   }
 
-body {
-    color: white;
-    font-family: 'Pattaya', sans-serif;
-    background: url(./../images/cmatw_dark.png) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-.dropZone {
-    width: 95%;
-    height: 33%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border: 4px dashed #FFFFFF;
-    border-radius: 5px;
-
-    margin-bottom: 10px;
-    margin-top: 18%;
-
-    font-size: 3em; /* change to scalable unit like vw */
-}
-
 .editZone {
     margin: 0;
     position: absolute;
@@ -43,7 +16,6 @@ body {
     transform: translate(-50%, -50%);
     font-family: 'Patrick Hand SC', cursive;
     font-size: 5vh;
-
 }
 
 .editTable {
@@ -51,19 +23,11 @@ body {
     font-size: 5vh;
 }
 
-.hov:hover {
-    text-shadow: -2px 0px 20px rgb(173 162 126 / 80%);
-    border-radius: 7px;
-    text-decoration: underline;
-    background-color: #eff2f51f;
-}
-
 #editZone td {
     width: 4vw;
     text-align: center;
     padding: 2vh;
 }
-
 
 .title {
     font-size: 7vh;
