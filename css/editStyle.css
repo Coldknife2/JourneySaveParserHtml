@@ -11,7 +11,7 @@ html {
 body {
     color: white;
     font-family: 'Pattaya', sans-serif;
-    background: url(./images/cmatw_dark.png) no-repeat center center fixed; 
+    background: url(./../images/cmatw_dark.png) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

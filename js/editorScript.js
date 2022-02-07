@@ -132,7 +132,7 @@ function robeChanger(task) {
     robeData = readData(offsets.robe);
     let color = robeData > 3 ? "white" : "red";
     let tier = robeData > 3 ? robeData-2 : robeData+1;
-    robe.robe.src = `images/${color}${tier}.png`;
+    robe.robe.src = `./../images/robes/${color}${tier}.png`;
 }
 
 function scarfChanger(task) {
@@ -156,7 +156,7 @@ function symbolChanger(task) {
     let symbolData = readData(offsets.symbol);
     switch (task) {
         case "init":
-            changeArrow("symbol")
+            changeArrow("symbol");
             changeVisibility([overview, symbolSelect, backButton]);
             break;
         case "increment":
@@ -170,7 +170,7 @@ function symbolChanger(task) {
             break;
     }
     symbolData = readData(offsets.symbol);
-    symbol.symbol.src = `images/${symbolData}.svg`;
+    symbol.symbol.src = `./../images/symbols/${symbolData}.svg`;
     symbol.value.innerText = `Symbol ${symbolData}`;
 }
 
@@ -192,7 +192,7 @@ function levelChanger(task) {
             break;
     }
     levelData = readData(offsets.level);
-    level.level.src = `images/${levelData}.svg`; // make level screenshots?
+    level.level.src = `./../images/levles/${levelData}.svg`; // make level screenshots?
     level.value.innerText = levelData;
 }
 
@@ -214,8 +214,8 @@ function changeArrow(prefix) {
     const left = document.getElementById(`${prefix}L`);
     const right = document.getElementById(`${prefix}R`);
     const integer = Math.floor(Math.random() * 4 + 1);
-    left.src = `images/arrow${integer}L.svg`;
-    right.src = `images/arrow${integer}R.svg`;
+    left.src = `./../images/arrows/arrow${integer}L.svg`;
+    right.src = `./../images/arrows/arrow${integer}R.svg`;
 }
 
 // https://stackoverflow.com/a/30832210

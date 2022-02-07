@@ -3,6 +3,7 @@
     display: flex;
     transform: rotate(270deg);
     transition: transform 0.3s;
+    
 }
 
 .navbarContainer {
