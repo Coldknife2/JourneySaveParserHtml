@@ -74,3 +74,12 @@ body {
     padding: 2vh;
     width: 8vw;
 }
+
+.arrow:hover {
+    transform: scale(1.15);
+    transition: transform 0.2s;
+}
+
+.arrow {
+    transition: transform 0.2s;
+}
