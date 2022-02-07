@@ -86,7 +86,7 @@ function displayCompanions() {
         const symbol = `./../images/symbols/${symbolBuffer}.svg`;
 
         const container = document.createElement("a");
-        container.className = "container";
+        container.className = "container hov";
         container.href = steamLink;
         container.target = "_blank";
 
