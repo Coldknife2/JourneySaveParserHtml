@@ -20,8 +20,7 @@ const offsets = {
 };
 
 const robe = {
-    color: document.getElementById("robeColor"),
-    tier: document.getElementById("robeTier")
+    robe: document.getElementById("robeImage"),
 };
 
 const symbol = {
@@ -79,9 +78,13 @@ function deleteStorage() {
     localStorage.removeItem("save");
 }
 
-function readData(offset) {
+function readData(offset, until) {
     if (saveFile) {
-        return saveFile[offset];
+        if (typeof(until) === 'undefined') {
+            return saveFile[offset];
+        } else {
+            return saveFile.slice(offset, offset+until);
+        }
     }
 }
 
@@ -114,11 +117,11 @@ function robeChanger(task) {
             changeVisibility([overview, robeSelect, backButton]);
             break;
         case "increment":
-            newTier = robeData > 3 ? clamp(robeData+1, 4, 6) : clamp(robeData+1, 0, 3);
+            newTier = robeData > 3 ? clamp(clamp(robeData+1, 4, 7) % 7, 4, 6) : clamp(robeData+1, 0, 4) % 4;
             writeData(offsets.robe, newTier);
             break;
         case "decrement":
-            newTier = robeData > 3 ? clamp(robeData-1, 4, 6) : clamp(robeData-1, 0, 3);
+            newTier = robeData > 3 ? robeData-1 < 4 ? 6 : clamp(robeData-1, 4, 6) : robeData-1 < 0 ? 3 : clamp(robeData-1, 0, 3);
             writeData(offsets.robe, newTier);
             break;
         case "changeColor":
@@ -127,8 +130,9 @@ function robeChanger(task) {
             break;
     }
     robeData = readData(offsets.robe);
-    robe.color.innerText = robeData > 3 ? "White" : "Red";
-    robe.tier.innerText = robeData > 3 ? robeData-2 : robeData+1;
+    let color = robeData > 3 ? "white" : "red";
+    let tier = robeData > 3 ? robeData-2 : robeData+1;
+    robe.robe.src = `images/${color}${tier}.png`;
 }
 
 function scarfChanger(task) {
@@ -240,7 +244,9 @@ function unload() {
     if (!preserve) {
         deleteStorage();
     } else {
-        setStorage(saveFile);
+        if (saveFile) {
+            setStorage(saveFile);
+        }
     }
 }
 

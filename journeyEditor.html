@@ -13,8 +13,8 @@
     <div class="navbarContainer navbarOffsetRetracted" id="navbarContainer">
         <div class=flex-container>
             <a class="flex-item" href="journeyEditor.html">JourneyEditor</a>
-            <a class="flex-item" href="journeyParser.html" onclick="preserve()">JourneyParser</a>
-            <a class="flex-item" href="about.html" onclick="preserve()">About</a>
+            <a class="flex-item" href="journeyParser.html" onclick="preserveData()">JourneyParser</a>
+            <a class="flex-item" href="about.html" onclick="preserveData()">About</a>
         </div>
         <center><img class="dropSymbol" src="images/arrow1L.svg" id="dropSymbol" onclick="toggleNavbar()"></center>
     </div>
@@ -70,14 +70,8 @@
         <div hidden id="robeSelect">
             <table class="editTable">
                 <tr>
-                    <td></td>
-                    <td><div id="robeTier"></div></td>
-                    <td><div id="robeColor"></div></td>
-                    <!-- this is debug; remove when replacing with image-->
-                </tr>
-                <tr>
                     <td><img onclick="robeChanger('decrement')" src="images/arrow1L.svg" id="robeL">
-                    <td><!-- Insert images of robe here --></td>
+                    <td><img id="robeImage"></td>
                     <td><img onclick="robeChanger('increment')" src="images/arrow1L.svg" id="robeR">
                 </tr>
                 <tr>
