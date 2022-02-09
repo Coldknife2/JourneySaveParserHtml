@@ -83,7 +83,7 @@ function displayCompanions() {
         const steamLink = "https://steamcommunity.com/profiles/" + safeHtmlSteamIdV3;
 
         const symbolBuffer = readData(symbolOffset+60*i);
-        const symbol = `./../images/symbols/${symbolBuffer}.svg`;
+        const symbol = `./images/symbols/${symbolBuffer}.svg`;
 
         const container = document.createElement("a");
         container.className = "container hov";
