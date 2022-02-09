@@ -34,7 +34,6 @@
                     <tr>
                         <td></td>
                         <td class="hov"><div onclick="levelChanger('init')">Level Select</div></td>
-                        <td></td>
                     </tr>
                     <tr>
                         <td class="hov"><div onclick="robeChanger('init')">Robe Select</div></td>
@@ -44,7 +43,6 @@
                     <tr>
                         <td></td>
                         <td class="hov"><div onclick="symbolChanger('init')">Symbol Select</div></td>
-                        <td></td>
                     </tr>
                 </table>
             </center>
@@ -56,11 +54,10 @@
                 <tr>
                     <td></td>
                     <td><div id="levelValue"></div></td>
-                    <td><!-- Insert screenshots instead of level  --></td>
                 </tr>
                 <tr>
                     <td><img onclick="levelChanger('decrement')" src="./images/arrows/arrow1L.svg" id="levelL" class="arrow"></td>
-                    <td><img class="symbol" id="level"></td>
+                    <td><img class="levelImage" id="level"></td>
                     <td><img onclick="levelChanger('increment')" src="./images/arrows/arrow1L.svg" id="levelR" class="arrow"></td>
                 </tr>
             </table>
@@ -77,7 +74,6 @@
                 <tr>
                     <td></td>
                     <td class="hov"><div onclick="robeChanger('changeColor')">Toggle Color</div></td>
-                    <td></td>
                 </tr>
             </table>
         </div>
@@ -101,7 +97,6 @@
                 <tr>
                     <td></td>
                     <td><div id ="symbolValue"></div></td>
-                    <td></td>
                 </tr>
                 <tr>
                     <td><img onclick="symbolChanger('decrement')" src="./images/arrows/arrow1L.svg" id="symbolL" class="arrow"></td>
@@ -120,5 +115,5 @@
 </body>
 <script src="./js/editorScript.js" type="text/javascript"></script>
 <script src="./js/navbarScript.js" type="text/javascript"></script>
-<!-- <script src="backgroundScript.js" type="text/javascript"></script> -->
+<script src="./js/backgroundScript.js" type="text/javascript"></script>
 </html>

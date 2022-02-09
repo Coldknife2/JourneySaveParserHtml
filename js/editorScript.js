@@ -35,7 +35,8 @@ const scarf = {
 
 const level = {
     level: document.getElementById("level"),
-    value: document.getElementById("levelValue")
+    value: document.getElementById("levelValue"),
+    name: ["Chapter Select", "Broken Bridge", "Pink Desert", "Sunken City", "Underground", "Tower", "Snow", "Paradise", "Credits", "Level Bryan", "Level Matt", "Level Chris"]
 }
 
 // Moz wiki https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
@@ -192,8 +193,8 @@ function levelChanger(task) {
             break;
     }
     levelData = readData(offsets.level);
-    level.level.src = `./../images/levles/${levelData}.svg`; // make level screenshots?
-    level.value.innerText = levelData;
+    level.level.src = `./../images/levels/${levelData}.png`;
+    level.value.innerText = `${levelData} - ${level.name[levelData]}`;
 }
 
 function back() {

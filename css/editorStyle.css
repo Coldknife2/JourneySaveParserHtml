@@ -45,5 +45,11 @@ html {
 }
 
 .arrow {
+    width: 4vw;
     transition: transform 0.2s;
+}
+
+.levelImage {
+    width: 30vw;
+    border: 4px dashed #FFFFFF;
 }
