@@ -1,0 +1,72 @@
+html {
+    /* -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+    /* https://stackoverflow.com/a/4407335 */
+  }
+
+.editZone {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Patrick Hand SC', cursive;
+    font-size: 5vh;
+}
+
+.editTable {
+    border: 0px;
+}
+
+#editZone td {
+    font-size: 5vh;
+    width: 4vw;
+    text-align: center;
+    padding: 2vh;
+}
+
+.img {
+    padding: 2vh;
+    width: 8vw;
+}
+
+.arrow:hover {
+    transform: scale(1.15);
+    transition: transform 0.2s;
+}
+
+.arrow {
+    width: 4vw;
+    transition: transform 0.2s;
+}
+
+.levelImage {
+    width: 30vw;
+    border: 4px dashed #FFFFFF;
+}
+  
+.slider {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 15vw;
+    height: 5vh;
+    background: linear-gradient(to right, #d1160d 0%, #ffe7a4 100%);
+    background-size: 15vw 1.5vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 2vw;
+    height: 2vw;
+    background: url("./../images/symbols/0.svg");
+}
+  

@@ -5,10 +5,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap" rel="stylesheet">
-    <link href="style.css" rel="stylesheet" >
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/parserStyle.css" rel="stylesheet">
 </head>
 
-<body>
+<body onunload="unload()" onload="load()">
+    <div class="navbarContainer navbarOffsetRetracted" id="navbarContainer">
+        <div class=flex-container>
+            <a class="flex-item" href="./journeyEditor.html" onclick="preserveData()">JourneyEditor</a>
+            <a class="flex-item" href="./journeyParser.html">JourneyParser</a>
+            <a class="flex-item" href="./about.html" onclick="preserveData()">About</a>
+        </div>
+        <center><img class="dropSymbol" src="./images/arrows/arrow1L.svg" id="dropSymbol" onclick="toggleNavbar()"></center>
+    </div>
+
     <center>
         <div id="dropZoneVisibilityToggler">
             <div class="dropZone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);"><center>Drop your Journey Save.bin here</center></div>
@@ -16,5 +26,7 @@
     </center>
     <div hidden id="resultZone" class="resultZone"></div>
 </body>
-<script src="script.js"></script>
+<script src="./js/parserScript.js" type="text/javascript"></script>
+<script src="./js/navbarScript.js" type="text/javascript"></script>
+<script src="./js/backgroundScript.js" type="text/javascript"></script>
 </html>

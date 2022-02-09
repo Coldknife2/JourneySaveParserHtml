@@ -1,0 +1,50 @@
+td {
+    margin-right: 1em;
+}
+
+.playerDisplay {
+    display: inline-block;
+    margin: 10px;
+}
+
+.cmatw {
+    padding-left: 10px;
+}
+
+.resultZone {
+    font-family: 'Patrick Hand SC', cursive;
+    /*font-family: 'Vollkorn SC', serif;*/
+    font-size: 5vh;
+
+    margin-bottom: 10px;
+    margin-top: 6vh;
+    max-width: 90%;
+    margin-left: 18%;
+}
+
+.backgroundVideo {
+    z-index: -1;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width:100%;
+    max-height:100%;
+}
+
+.symbol {
+    padding-left: 10px;
+    width: 1em;
+    margin-right: 0.5em;
+}
+
+.container {
+    display: flex;
+    margin-right: 11vw;
+    color: white;
+    text-decoration: unset;
+}
+
+.resultTable {
+    border: 0px;
+    font-size: 5vh;
+}
