@@ -1,7 +1,8 @@
 
 const dropZoneVisibilityToggler = document.getElementById("dropZoneVisibilityToggler"); // display: flex & hidden does not works well together
 const resultZone = document.getElementById("resultZone");
-let saveFile = null;
+let saveFile32 = null;
+let saveFile8 = null;
 let preserve = false;
 let fileReader;
 
@@ -33,31 +34,33 @@ function dragOverHandler(ev) {
     ev.preventDefault();
 }
 
-function setStorage(data) {
-    localStorage.setItem("save", data);
+function setStorage(type, data) {
+    localStorage.setItem(`save${type}`, data);
 }
 
-function getStorage() {
-    return Uint8Array.from(localStorage.getItem("save").split(","));
+function getStorage(type) {
+    return type === "uint8" ? Uint8Array.from(localStorage.getItem("saveuint8").split(",")): Uint32Array.from(localStorage.getItem("saveuint32").split(","));
 }
 
-function deleteStorage() {
-    localStorage.removeItem("save");
+function deleteStorage(type) {
+    localStorage.removeItem(`save${type}`);
 }
 
-function readData(offset, until) {
-    if (saveFile) {
-        if (typeof(until) === 'undefined') {
-            return saveFile[offset];
+function readData(type, offset, until) {
+    let save = type === "uint8" ? saveFile8 : saveFile32;
+    let ofs = type === "uint8" ? offset : offset/4;
+    if (save) {
+        if (typeof(until) === "undefined") {
+            return save[ofs];
         } else {
-            return saveFile.slice(offset, offset+until);
+            return save.slice(ofs, ofs+until);
         }
     }
 }
 
 function callback(callbackEvent) {
-    saveFile = new Uint8Array(callbackEvent.target.result);
-    setStorage(saveFile);
+    saveFile8 = new Uint8Array(callbackEvent.target.result);
+    saveFile32 = new Uint32Array(callbackEvent.target.result);
     displayCompanions();
 }
 
@@ -73,16 +76,16 @@ function displayCompanions() {
     createTable();
 
     for (let i = 0; i < 8; i++) { // Let's read those 8 players entries
-        const tempNameBuffer = readData(baseOffset+32*i, 24);
+        const tempNameBuffer = readData("uint8", baseOffset+32*i, 24);
         const nameBuffer = tempNameBuffer.subarray(0, tempNameBuffer.indexOf(0x00));
         const name = new TextDecoder().decode(nameBuffer);
 
-        const steamIdV3int32 = readData(baseOffset+32*i+24);
+        const steamIdV3int32 = readData("uint32", baseOffset+32*i+24);
         const steamIdV3 = `[U:1:${steamIdV3int32}]`;
         const safeHtmlSteamIdV3 = encodeURIComponent(steamIdV3);
         const steamLink = "https://steamcommunity.com/profiles/" + safeHtmlSteamIdV3;
 
-        const symbolBuffer = readData(symbolOffset+60*i);
+        const symbolBuffer = readData("uint8", symbolOffset+60*i);
         const symbol = `./images/symbols/${symbolBuffer}.svg`;
 
         const container = document.createElement("a");
@@ -139,19 +142,34 @@ function preserveData() {
     preserve = true;
 }
 
+function load() {
+    if (localStorage.getItem("saveuint8") && localStorage.getItem("saveuint32")) {
+        saveFile8 = getStorage("uint8");
+        saveFile32 = getStorage("uint32");
+        setupCall();
+    }
+}
+
 function unload() {
     if (!preserve) {
-        deleteStorage();
+        deleteStorage("uint8");
+        deleteStorage("uint32");
     } else {
-        if (saveFile) {
-            setStorage(saveFile);
+        if (saveFile8 && saveFile32) {
+            setStorage("uint8", saveFile8);
+            setStorage("uint32", saveFile32);
         }
     }
 }
 
-function load() {
-    if (localStorage.getItem("save")) {
-        saveFile = getStorage();
-        displayCompanions();
+function setupCall() {
+    displayCompanions();
+}
+
+function debugAsHex(arr) {
+    let res = [];
+    for (let i = 0; i < arr.length; i++) {
+        res.push(arr[i].toString(16));
     }
+    console.log(res);
 }
