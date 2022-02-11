@@ -10,7 +10,7 @@ body {
 
 .dropZone {
     width: 95%;
-    height: 33%;
+    height: 33vh;
 
     display: flex;
     justify-content: center;

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html ondrop="dragOverHandler(event);" ondragover="dragOverHandler(event);">
 
 <head>
@@ -28,25 +29,22 @@
     <div hidden class="editZone" id="editZone">
 
         <div hidden id="overview">
-            <center>
-                <table class="editTable">
-                    <tr>
-                        <td></td>
-                        <td class="hov"><div onclick="levelChanger('init')">Level Select</div></td>
-                    </tr>
-                    <tr>
-                        <td class="hov"><div onclick="robeChanger('init')">Robe Select</div></td>
-                        <td></td>
-                        <td class="hov"><div onclick="scarfChanger('init')">Scarf Length Select</div></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td class="hov"><div onclick="symbolChanger('init')">Symbol Select</div></td>
-                    </tr>
-                </table>
-            </center>
+            <table class="editTable">
+                <tr>
+                    <td></td>
+                    <td class="hov"><div onclick="levelChanger('init')">Level Select</div></td>
+                </tr>
+                <tr>
+                    <td class="hov"><div onclick="robeChanger('init')">Robe Select</div></td>
+                    <td></td>
+                    <td class="hov"><div onclick="scarfChanger('init')">Scarf Length Select</div></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="hov"><div onclick="symbolChanger('init')">Symbol Select</div></td>
+                </tr>
+            </table>
         </div>
-
 
         <div hidden id="levelSelect">
             <table class="editTable">
