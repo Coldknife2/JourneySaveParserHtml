@@ -1,5 +1,10 @@
 
 const dropZoneVisibilityToggler = document.getElementById("dropZoneVisibilityToggler"); // display: flex & hidden does not works well together
+let saveFile32 = null;
+let saveFile8 = null;
+let preserve = false;
+let fileReader;
+
 const editZone = document.getElementById("editZone");
 const overview = document.getElementById("overview");
 const levelSelect = document.getElementById("levelSelect");
@@ -7,11 +12,7 @@ const robeSelect = document.getElementById("robeSelect");
 const scarfSelect = document.getElementById("scarfSelect");
 const symbolSelect = document.getElementById("symbolSelect");
 const backButton = document.getElementById("backButton");
-let saveFile32 = null;
-let saveFile8 = null;
 let visible = null;
-let preserve = false;
-let fileReader;
 
 const offsets = {
     robe: 0x08,
@@ -40,76 +41,12 @@ const level = {
     name: ["Chapter Select", "Broken Bridge", "Pink Desert", "Sunken City", "Underground", "Tower", "Snow", "Paradise", "Credits", "Level Bryan", "Level Matt", "Level Chris"]
 }
 
-// Moz wiki https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
-function dropHandler(ev) {
-    fileReader = new FileReader();
-    fileReader.onload = (callbackEvent) => callback(callbackEvent);
-
-    console.log('File(s) dropped');
-
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
-
-    if (ev.dataTransfer.items) {
-        // Use DataTransferItemList interface to access the file(s)
-        // If dropped items aren't files, reject them
-        if (ev.dataTransfer.items[0].kind === 'file') {
-            let file = ev.dataTransfer.items[0].getAsFile();
-            fileReader.readAsArrayBuffer(file);
-        }
-    } else {
-        // Use DataTransfer interface to access the file(s)
-        fileReader.readAsArrayBuffer(ev.dataTransfer.files[0]);
-    }
-}
-
-function dragOverHandler(ev) {
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
-}
-
-function setStorage(type, data) {
-    localStorage.setItem(`save${type}`, data);
-}
-
-function getStorage(type) {
-    return type ==="uint8" ? Uint8Array.from(localStorage.getItem("saveuint8").split(",")): Uint32Array.from(localStorage.getItem("saveuint32").split(","));
-}
-
-function deleteStorage(type) {
-    localStorage.removeItem(`save${type}`);
-}
-
-function readData(type, offset, until) {
-    let save = type === "uint8" ? saveFile8 : saveFile32;
-    let ofs = type === "uint8" ? offset : offset/4;
-    if (save) {
-        if (typeof(until) === "undefined") {
-            return save[ofs];
-        } else {
-            return save.slice(ofs, ofs+until);
-        }
-    }
-}
-
-function writeData(type, offset, data) {
-    let save = type === "uint8" ? saveFile8 : saveFile32;
-    let ofs = type === "uint8" ? offset : offset/4;
-    if (save) {
-        save[ofs] = data;
-    }
-}
-
 // https://stackoverflow.com/a/11410079
 function clamp(num, min, max) {
     return num <= min ? min : num >= max ? max : num;
 }
 
-function callback(callbackEvent) {
-    saveFile8 = new Uint8Array(callbackEvent.target.result);
-    saveFile32 = new Uint32Array(callbackEvent.target.result);
-    setStorage("uint8", saveFile8);
-    setStorage("uint32", saveFile32);
+function setupCall() {
     changeVisibility([dropZoneVisibilityToggler, overview, editZone]);
 }
 
@@ -122,7 +59,7 @@ function robeChanger(task) {
     switch (task) {
         case "init":
             changeArrow("robe")
-            changeVisibility([overview, robeSelect, backButton]);
+            changeVisibility([backButton, overview, robeSelect]);
             break;
         case "increment":
             newTier = robeData > 3 ? clamp(clamp(robeData+1, 4, 7) % 7, 4, 6) : clamp(robeData+1, 0, 4) % 4;
@@ -147,7 +84,7 @@ function scarfChanger(task) {
     let scarfData = readData("uint8", offsets.scarf);
     switch (task) {
         case "init":
-            changeVisibility([overview, scarfSelect, backButton]);
+            changeVisibility([backButton, overview, scarfSelect]);
             scarf.value.innerText = scarfData;
             scarf.slider.value = scarfData;
             break;
@@ -165,7 +102,7 @@ function symbolChanger(task) {
     switch (task) {
         case "init":
             changeArrow("symbol");
-            changeVisibility([overview, symbolSelect, backButton]);
+            changeVisibility([backButton, overview, symbolSelect]);
             break;
         case "increment":
             symbolData += 1;
@@ -187,7 +124,7 @@ function levelChanger(task) {
     switch (task) {
         case "init":
             changeArrow("level")
-            changeVisibility([overview, levelSelect, backButton]);
+            changeVisibility([backButton, overview, levelSelect]);
             break;
         case "increment":
             levelData += 1;
@@ -208,22 +145,20 @@ function back() {
     changeVisibility([backButton, overview, visible]);
 }
 
-function changeVisibility(elements) {
-    for (let i = 0; i < elements.length; i++) {
-        elements[i].hidden = !elements[i].hidden;
-        if (!elements[i].hidden && elements[i] !== backButton) {
-            visible = elements[i];
-        }
-        console.log(`Toggled ${elements[i].id} to hidden=${elements[i].hidden}`);
-    }
-}
-
 function changeArrow(prefix) {
     const left = document.getElementById(`${prefix}L`);
     const right = document.getElementById(`${prefix}R`);
     const integer = Math.floor(Math.random() * 4 + 1);
     left.src = `./images/arrows/arrow${integer}L.svg`;
     right.src = `./images/arrows/arrow${integer}R.svg`;
+}
+
+function writeData(type, offset, data) {
+    let save = type === "uint8" ? saveFile8 : saveFile32;
+    let ofs = type === "uint8" ? offset : offset/4;
+    if (save) {
+        save[ofs] = data;
+    }
 }
 
 // https://stackoverflow.com/a/30832210
@@ -246,6 +181,42 @@ function download() {
             window.URL.revokeObjectURL(url);  
         }, 0); 
     }
+}
+
+// Moz wiki https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
+function dropHandler(ev) {
+    fileReader = new FileReader();
+    fileReader.onload = (callbackEvent) => callback(callbackEvent);
+
+    console.log('File(s) dropped');
+
+    // Prevent default behavior (Prevent file from being opened)
+    ev.preventDefault();
+
+    if (ev.dataTransfer.items) {
+        // Use DataTransferItemList interface to access the file(s)
+        // If dropped items aren't files, reject them
+        if (ev.dataTransfer.items[0].kind === 'file') {
+            const file = ev.dataTransfer.items[0].getAsFile();
+            fileReader.readAsArrayBuffer(file);
+        }
+    } else {
+        // Use DataTransfer interface to access the file(s)
+        fileReader.readAsArrayBuffer(ev.dataTransfer.files[0]);
+    }
+}
+
+function dragOverHandler(ev) {
+    // Prevent default behavior (Prevent file from being opened)
+    ev.preventDefault();
+}
+
+function callback(callbackEvent) {
+    saveFile8 = new Uint8Array(callbackEvent.target.result);
+    saveFile32 = new Uint32Array(callbackEvent.target.result);
+    setStorage("uint8", saveFile8);
+    setStorage("uint32", saveFile32);
+    setupCall();
 }
 
 function preserveData() {
@@ -272,8 +243,38 @@ function unload() {
     }
 }
 
-function setupCall() {
-    changeVisibility([dropZoneVisibilityToggler, overview, editZone]);
+function setStorage(type, data) {
+    localStorage.setItem(`save${type}`, data);
+}
+
+function getStorage(type) {
+    return type === "uint8" ? Uint8Array.from(localStorage.getItem("saveuint8").split(",")): Uint32Array.from(localStorage.getItem("saveuint32").split(","));
+}
+
+function deleteStorage(type) {
+    localStorage.removeItem(`save${type}`);
+}
+
+function readData(type, offset, until) {
+    let save = type === "uint8" ? saveFile8 : saveFile32;
+    let ofs = type === "uint8" ? offset : offset/4;
+    if (save) {
+        if (typeof(until) === "undefined") {
+            return save[ofs];
+        } else {
+            return save.slice(ofs, ofs+until);
+        }
+    }
+}
+
+function changeVisibility(elements) {
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].hidden = !elements[i].hidden;
+        if (!elements[i].hidden && typeof(visible) !== 'undefined') {
+            visible = elements[i];
+        }
+        console.log(`Toggled ${elements[i].id} to hidden=${elements[i].hidden}`);
+    }
 }
 
 function debugAsHex(arr) {

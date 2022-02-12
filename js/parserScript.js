@@ -1,66 +1,13 @@
 
 const dropZoneVisibilityToggler = document.getElementById("dropZoneVisibilityToggler"); // display: flex & hidden does not works well together
-const resultZone = document.getElementById("resultZone");
 let saveFile32 = null;
 let saveFile8 = null;
 let preserve = false;
 let fileReader;
 
-// Moz wiki https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
-function dropHandler(ev) {
-    fileReader = new FileReader();
-    fileReader.onload = (callbackEvent) => callback(callbackEvent);
+const resultZone = document.getElementById("resultZone");
 
-    console.log('File(s) dropped');
-
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
-
-    if (ev.dataTransfer.items) {
-        // Use DataTransferItemList interface to access the file(s)
-        // If dropped items aren't files, reject them
-        if (ev.dataTransfer.items[0].kind === 'file') {
-            const file = ev.dataTransfer.items[0].getAsFile();
-            fileReader.readAsArrayBuffer(file);
-        }
-    } else {
-        // Use DataTransfer interface to access the file(s)
-        fileReader.readAsArrayBuffer(ev.dataTransfer.files[0]);
-    }
-}
-
-function dragOverHandler(ev) {
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
-}
-
-function setStorage(type, data) {
-    localStorage.setItem(`save${type}`, data);
-}
-
-function getStorage(type) {
-    return type === "uint8" ? Uint8Array.from(localStorage.getItem("saveuint8").split(",")): Uint32Array.from(localStorage.getItem("saveuint32").split(","));
-}
-
-function deleteStorage(type) {
-    localStorage.removeItem(`save${type}`);
-}
-
-function readData(type, offset, until) {
-    let save = type === "uint8" ? saveFile8 : saveFile32;
-    let ofs = type === "uint8" ? offset : offset/4;
-    if (save) {
-        if (typeof(until) === "undefined") {
-            return save[ofs];
-        } else {
-            return save.slice(ofs, ofs+until);
-        }
-    }
-}
-
-function callback(callbackEvent) {
-    saveFile8 = new Uint8Array(callbackEvent.target.result);
-    saveFile32 = new Uint32Array(callbackEvent.target.result);
+function setupCall() {
     displayCompanions();
 }
 
@@ -115,9 +62,7 @@ function displayCompanions() {
         console.log(steamLink, steamIdV3);
         console.log(symbol);
     }
-
     changeVisibility([dropZoneVisibilityToggler, resultZone]);
-
 }
 
 function createTable() { // could just be hardcoded in html
@@ -131,11 +76,40 @@ function createTable() { // could just be hardcoded in html
     document.getElementById("resultZone").appendChild(table);
 }
 
-function changeVisibility(elements) {
-    for (let i = 0; i < elements.length; i++) {
-        elements[i].hidden = !elements[i].hidden;
-        console.log(`Toggled ${elements[i].id} to hidden=${elements[i].hidden}`);
+// Moz wiki https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
+function dropHandler(ev) {
+    fileReader = new FileReader();
+    fileReader.onload = (callbackEvent) => callback(callbackEvent);
+
+    console.log('File(s) dropped');
+
+    // Prevent default behavior (Prevent file from being opened)
+    ev.preventDefault();
+
+    if (ev.dataTransfer.items) {
+        // Use DataTransferItemList interface to access the file(s)
+        // If dropped items aren't files, reject them
+        if (ev.dataTransfer.items[0].kind === 'file') {
+            const file = ev.dataTransfer.items[0].getAsFile();
+            fileReader.readAsArrayBuffer(file);
+        }
+    } else {
+        // Use DataTransfer interface to access the file(s)
+        fileReader.readAsArrayBuffer(ev.dataTransfer.files[0]);
     }
+}
+
+function dragOverHandler(ev) {
+    // Prevent default behavior (Prevent file from being opened)
+    ev.preventDefault();
+}
+
+function callback(callbackEvent) {
+    saveFile8 = new Uint8Array(callbackEvent.target.result);
+    saveFile32 = new Uint32Array(callbackEvent.target.result);
+    setStorage("uint8", saveFile8);
+    setStorage("uint32", saveFile32);
+    setupCall();
 }
 
 function preserveData() {
@@ -162,8 +136,38 @@ function unload() {
     }
 }
 
-function setupCall() {
-    displayCompanions();
+function setStorage(type, data) {
+    localStorage.setItem(`save${type}`, data);
+}
+
+function getStorage(type) {
+    return type === "uint8" ? Uint8Array.from(localStorage.getItem("saveuint8").split(",")): Uint32Array.from(localStorage.getItem("saveuint32").split(","));
+}
+
+function deleteStorage(type) {
+    localStorage.removeItem(`save${type}`);
+}
+
+function readData(type, offset, until) {
+    let save = type === "uint8" ? saveFile8 : saveFile32;
+    let ofs = type === "uint8" ? offset : offset/4;
+    if (save) {
+        if (typeof(until) === "undefined") {
+            return save[ofs];
+        } else {
+            return save.slice(ofs, ofs+until);
+        }
+    }
+}
+
+function changeVisibility(elements) {
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].hidden = !elements[i].hidden;
+        if (!elements[i].hidden && typeof(visible) !== 'undefined') {
+            visible = elements[i];
+        }
+        console.log(`Toggled ${elements[i].id} to hidden=${elements[i].hidden}`);
+    }
 }
 
 function debugAsHex(arr) {
