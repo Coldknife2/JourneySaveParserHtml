@@ -58,9 +58,18 @@ function displayCompanions() {
         } else { 
             break; 
         }
-        console.log(name);
-        console.log(steamLink, steamIdV3);
-        console.log(symbol);
+        console.log(`
+iteration: ${i}
+baseOffset: ${baseOffset+32*i}
+idOffset: ${baseOffset+32*i+24}
+symbolOffset: ${symbolOffset+60*i}
+
+name: ${name}
+steamLink: ${steamLink}
+steamID3: ${steamIdV3}
+symbol: ${symbol}
+
+`)
     }
     changeVisibility([dropZoneVisibilityToggler, resultZone]);
 }
