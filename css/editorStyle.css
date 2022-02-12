@@ -52,10 +52,10 @@ html {
 .slider {
     appearance: none;
     -webkit-appearance: none;
-    width: 15vw;
+    width: 20vw;
     height: 5vh;
-    background: linear-gradient(to right, #d1160d 0%, #ffe7a4 100%);
-    background-size: 15vw 1.5vh;
+    background: linear-gradient(to right, #d1160d 10%, #ffe7a4 90%);
+    background-size: 20vw 1.5vh;
     background-position: center;
     background-repeat: no-repeat;
     overflow: hidden;
