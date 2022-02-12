@@ -70,3 +70,13 @@ html {
     background: url("./../images/symbols/0.svg");
 }
   
+.editor-flex-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.editor-flex-item {
+    text-align: center;
+    flex-basis: 100%;
+    max-width: 11vw;
+}
