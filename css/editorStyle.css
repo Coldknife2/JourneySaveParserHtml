@@ -14,7 +14,6 @@ html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Patrick Hand SC', cursive;
     font-size: 5vh;
 }
 
@@ -27,6 +26,10 @@ html {
     width: 4vw;
     text-align: center;
     padding: 2vh;
+}
+
+div#symbolValue {
+    min-width: 15vw;
 }
 
 .img {
@@ -78,5 +81,7 @@ html {
 .editor-flex-item {
     text-align: center;
     flex-basis: 100%;
-    max-width: 11vw;
+    max-width: 15vw;
+    padding: 0px 10px;
+    margin-top: 5vh;;
 }
