@@ -1,14 +1,26 @@
-td {
-    margin-right: 1em;
+.td-buffer {
+    width: 3.5vw;
+}
+
+.td-buffer img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 6.5vh;
 }
 
 .playerDisplay {
     display: inline-block;
     margin: 10px;
+    width: 29vw;
+    font-size: 4vh;
 }
 
 .cmatw {
-    padding-left: 10px;
+    text-align: left;
+    font-weight: normal;
+    padding: 0 0 6vh 10px;
+    font-size: 4vh;
 }
 
 .resultZone {
@@ -17,22 +29,22 @@ td {
     font-size: 5vh;
 
     margin-bottom: 10px;
-    margin-top: 6vh;
+    margin-top: 15vh;
     max-width: 90%;
-    margin-left: 18%;
+    margin-left: 16%;
 }
 
 .symbol {
     padding-left: 10px;
-    width: 1em;
+    width: 4.5vh;
     margin-right: 0.5em;
 }
 
 .container {
     display: flex;
-    margin-right: 11vw;
     color: white;
     text-decoration: unset;
+    margin-bottom: 1vh;
 }
 
 .resultTable {

@@ -14,13 +14,20 @@ function setupCall() {
 function displayCompanions() {
     const baseOffset = 0x19a8; // hex 19A8 thanks Journey wiki  
     const symbolOffset = 0x1200;
-
-    const p = document.createElement("p");
-    p.innerText = "Companions Met Along The Way";
-    p.className = "cmatw"; // seperate because of text-shadow attribute
-    document.getElementById("resultZone").appendChild(p);
+    const companionOffset = 0x1588;
 
     createTable();
+
+    const cmatwBuffer = document.createElement("th")
+    document.getElementById("row0").appendChild(cmatwBuffer);
+
+    const cmatw = document.createElement("th");
+    cmatw.innerText = "Companions Met Along The Way";
+    cmatw.classList = "cmatw";
+    cmatw.colSpan = "5"
+    document.getElementById("row0").appendChild(cmatw);
+
+    const companionNumber = readData("uint8", companionOffset);
 
     for (let i = 0; i < 8; i++) { // Let's read those 8 players entries
         const tempNameBuffer = readData("uint8", baseOffset+32*i, 24);
@@ -50,11 +57,22 @@ function displayCompanions() {
 
         container.appendChild(img);
         container.appendChild(div);
-
+        
         if (steamIdV3int32 != 0) {
+            const tdBuffer = document.createElement("td");
+            tdBuffer.className = "td-buffer";
+            
+            if (i < companionNumber) {
+                const companionIndicator = document.createElement("img");
+                companionIndicator.src = "./images/diamond.svg";
+                tdBuffer.append(companionIndicator);
+            }
+
             const td = document.createElement("td");
             td.appendChild(container);
-            document.getElementById("row"+i%4).appendChild(td);
+
+            document.getElementById("row"+(i%4+1)).appendChild(tdBuffer);
+            document.getElementById("row"+(i%4+1)).appendChild(td);
         } else { 
             break; 
         }
@@ -77,7 +95,7 @@ symbol: ${symbol}
 function createTable() { // could just be hardcoded in html
     const table = document.createElement("table");
     table.className = "resultTable";
-    for (let i = 0; i < 4; i++) { 
+    for (let i = 0; i < 5; i++) { 
         const row = document.createElement("tr");
         row.id = "row"+i;
         table.appendChild(row);
