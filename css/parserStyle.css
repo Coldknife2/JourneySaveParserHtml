@@ -22,15 +22,6 @@ td {
     margin-left: 18%;
 }
 
-.backgroundVideo {
-    z-index: -1;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    width:100%;
-    max-height:100%;
-}
-
 .symbol {
     padding-left: 10px;
     width: 1em;
