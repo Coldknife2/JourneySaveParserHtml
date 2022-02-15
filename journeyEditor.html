@@ -1,10 +1,8 @@
+<!DOCTYPE html>
 <html ondrop="dragOverHandler(event);" ondragover="dragOverHandler(event);">
 
 <head>
     <meta charset="utf-8">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
     <link href="./css/editorStyle.css" rel="stylesheet">
 </head>
@@ -28,25 +26,22 @@
     <div hidden class="editZone" id="editZone">
 
         <div hidden id="overview">
-            <center>
-                <table class="editTable">
-                    <tr>
-                        <td></td>
-                        <td class="hov"><div onclick="levelChanger('init')">Level Select</div></td>
-                    </tr>
-                    <tr>
-                        <td class="hov"><div onclick="robeChanger('init')">Robe Select</div></td>
-                        <td></td>
-                        <td class="hov"><div onclick="scarfChanger('init')">Scarf Length Select</div></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td class="hov"><div onclick="symbolChanger('init')">Symbol Select</div></td>
-                    </tr>
-                </table>
-            </center>
+            <table class="editTable">
+                <tr>
+                    <td></td>
+                    <td class="hov"><div onclick="levelChanger('init')">Level Select</div></td>
+                </tr>
+                <tr>
+                    <td class="hov"><div onclick="robeChanger('init')">Robe Select</div></td>
+                    <td></td>
+                    <td class="hov"><div onclick="scarfChanger('init')">Scarf Length Select</div></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="hov"><div onclick="symbolChanger('init')">Symbol Select</div></td>
+                </tr>
+            </table>
         </div>
-
 
         <div hidden id="levelSelect">
             <table class="editTable">
@@ -104,9 +99,9 @@
             </table>
         </div>
 
-        <div>
-            <div hidden id="backButton" onclick="back()" class="hov">Back</div>
-            <div onclick="download()" class="hov">Download</div>
+        <div class="editor-flex-container">
+            <div hidden id="backButton" onclick="back()" class="editor-flex-item hov">Back</div>
+            <div onclick="download()" class="editor-flex-item hov">Download</div>
         </div>
     </div>
 

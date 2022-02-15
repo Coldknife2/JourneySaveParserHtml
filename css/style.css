@@ -1,6 +1,11 @@
+@font-face {
+    font-family: Eyeglass Condensed Bold;
+    src: url(./fonts/EyeglassCondensedBold.ttf);
+}
+
 body {
     color: white;
-    font-family: 'Pattaya', sans-serif;
+    font-family: 'Eyeglass Condensed Bold', sans-serif;
     background: url(./../images/cmatw_dark.png) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -10,7 +15,7 @@ body {
 
 .dropZone {
     width: 95%;
-    height: 33%;
+    height: 33vh;
 
     display: flex;
     justify-content: center;
@@ -55,7 +60,6 @@ body {
 }
 
 .flex-item, .flex-item a, .flex-item a:visited{
-    font-family: 'Patrick Hand SC', cursive;
     font-size: 3vh;
     color: #FFFFFF;
     text-decoration: none;

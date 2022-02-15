@@ -14,7 +14,6 @@ html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Patrick Hand SC', cursive;
     font-size: 5vh;
 }
 
@@ -27,6 +26,10 @@ html {
     width: 4vw;
     text-align: center;
     padding: 2vh;
+}
+
+div#symbolValue {
+    min-width: 15vw;
 }
 
 .img {
@@ -52,10 +55,10 @@ html {
 .slider {
     appearance: none;
     -webkit-appearance: none;
-    width: 15vw;
+    width: 20vw;
     height: 5vh;
-    background: linear-gradient(to right, #d1160d 0%, #ffe7a4 100%);
-    background-size: 15vw 1.5vh;
+    background: linear-gradient(to right, #d1160d 10%, #ffe7a4 90%);
+    background-size: 20vw 1.5vh;
     background-position: center;
     background-repeat: no-repeat;
     overflow: hidden;
@@ -70,3 +73,15 @@ html {
     background: url("./../images/symbols/0.svg");
 }
   
+.editor-flex-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.editor-flex-item {
+    text-align: center;
+    flex-basis: 100%;
+    max-width: 15vw;
+    padding: 0px 10px;
+    margin-top: 5vh;;
+}

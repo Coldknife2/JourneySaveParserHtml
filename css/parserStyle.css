@@ -1,50 +1,47 @@
-td {
-    margin-right: 1em;
+.td-buffer {
+    width: 3.5vw;
+}
+
+.td-buffer img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 6.5vh;
 }
 
 .playerDisplay {
     display: inline-block;
     margin: 10px;
+    width: 29vw;
 }
 
 .cmatw {
-    padding-left: 10px;
+    text-align: left;
+    font-weight: normal;
+    padding: 0 0 6vh 10px;
 }
 
 .resultZone {
-    font-family: 'Patrick Hand SC', cursive;
-    /*font-family: 'Vollkorn SC', serif;*/
-    font-size: 5vh;
-
     margin-bottom: 10px;
-    margin-top: 6vh;
+    margin-top: 15vh;
     max-width: 90%;
-    margin-left: 18%;
-}
-
-.backgroundVideo {
-    z-index: -1;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    width:100%;
-    max-height:100%;
+    margin-left: 16%;
 }
 
 .symbol {
     padding-left: 10px;
-    width: 1em;
+    width: 4.5vh;
     margin-right: 0.5em;
 }
 
 .container {
     display: flex;
-    margin-right: 11vw;
     color: white;
     text-decoration: unset;
+    margin-bottom: 1vh;
 }
 
 .resultTable {
     border: 0px;
-    font-size: 5vh;
+    font-size: 4vh;
 }

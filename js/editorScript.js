@@ -1,5 +1,10 @@
 
 const dropZoneVisibilityToggler = document.getElementById("dropZoneVisibilityToggler"); // display: flex & hidden does not works well together
+let saveFile32 = null;
+let saveFile8 = null;
+let preserve = false;
+let fileReader;
+
 const editZone = document.getElementById("editZone");
 const overview = document.getElementById("overview");
 const levelSelect = document.getElementById("levelSelect");
@@ -7,10 +12,7 @@ const robeSelect = document.getElementById("robeSelect");
 const scarfSelect = document.getElementById("scarfSelect");
 const symbolSelect = document.getElementById("symbolSelect");
 const backButton = document.getElementById("backButton");
-let saveFile = null;
 let visible = null;
-let preserve = false;
-let fileReader;
 
 const offsets = {
     robe: 0x08,
@@ -39,70 +41,12 @@ const level = {
     name: ["Chapter Select", "Broken Bridge", "Pink Desert", "Sunken City", "Underground", "Tower", "Snow", "Paradise", "Credits", "Level Bryan", "Level Matt", "Level Chris"]
 }
 
-// Moz wiki https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
-function dropHandler(ev) {
-    fileReader = new FileReader();
-    fileReader.onload = (callbackEvent) => callback(callbackEvent);
-
-    console.log('File(s) dropped');
-
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
-
-    if (ev.dataTransfer.items) {
-        // Use DataTransferItemList interface to access the file(s)
-        // If dropped items aren't files, reject them
-        if (ev.dataTransfer.items[0].kind === 'file') {
-            let file = ev.dataTransfer.items[0].getAsFile();
-            fileReader.readAsArrayBuffer(file);
-        }
-    } else {
-        // Use DataTransfer interface to access the file(s)
-        fileReader.readAsArrayBuffer(ev.dataTransfer.files[0]);
-    }
-}
-
-function dragOverHandler(ev) {
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
-}
-
-function setStorage(data) {
-    localStorage.setItem("save", data);
-}
-
-function getStorage() {
-    return Uint8Array.from(localStorage.getItem("save").split(","));
-}
-
-function deleteStorage() {
-    localStorage.removeItem("save");
-}
-
-function readData(offset, until) {
-    if (saveFile) {
-        if (typeof(until) === 'undefined') {
-            return saveFile[offset];
-        } else {
-            return saveFile.slice(offset, offset+until);
-        }
-    }
-}
-
-function writeData(offset, data) {
-    if (saveFile) {
-        saveFile[offset] = data;
-    }
-}
-
 // https://stackoverflow.com/a/11410079
 function clamp(num, min, max) {
     return num <= min ? min : num >= max ? max : num;
 }
 
-function callback(callbackEvent) {
-    saveFile = new Uint8Array(callbackEvent.target.result);
-    setStorage(saveFile);
+function setupCall() {
     changeVisibility([dropZoneVisibilityToggler, overview, editZone]);
 }
 
@@ -110,43 +54,43 @@ function robeChanger(task) {
     // make a safeguard if the save doesnt't have all glyphs unlocked
     // figure out how the games stores glyphs in the first place
     // also alert the user that his save will be modified a lot and he might get the transcendence trophy
-    let robeData = readData(offsets.robe);
+    let robeData = readData("uint8", offsets.robe);
     let newTier, newColor;
     switch (task) {
         case "init":
             changeArrow("robe")
-            changeVisibility([overview, robeSelect, backButton]);
+            changeVisibility([backButton, overview, robeSelect]);
             break;
         case "increment":
             newTier = robeData > 3 ? clamp(clamp(robeData+1, 4, 7) % 7, 4, 6) : clamp(robeData+1, 0, 4) % 4;
-            writeData(offsets.robe, newTier);
+            writeData("uint8", offsets.robe, newTier);
             break;
         case "decrement":
             newTier = robeData > 3 ? robeData-1 < 4 ? 6 : clamp(robeData-1, 4, 6) : robeData-1 < 0 ? 3 : clamp(robeData-1, 0, 3);
-            writeData(offsets.robe, newTier);
+            writeData("uint8", offsets.robe, newTier);
             break;
         case "changeColor":
             newColor = robeData ? robeData > 3 ? robeData-3 : robeData+3 : 4;
-            writeData(offsets.robe, newColor);
+            writeData("uint8", offsets.robe, newColor);
             break;
     }
-    robeData = readData(offsets.robe);
+    robeData = readData("uint8", offsets.robe);
     let color = robeData > 3 ? "white" : "red";
     let tier = robeData > 3 ? robeData-2 : robeData+1;
     robe.robe.src = `./images/robes/${color}${tier}.png`;
 }
 
 function scarfChanger(task) {
-    let scarfData = readData(offsets.scarf);
+    let scarfData = readData("uint8", offsets.scarf);
     switch (task) {
         case "init":
-            changeVisibility([overview, scarfSelect, backButton]);
+            changeVisibility([backButton, overview, scarfSelect]);
             scarf.value.innerText = scarfData;
             scarf.slider.value = scarfData;
             break;
         case "valueChange":
             scarf.value.innerText = scarf.slider.value;
-            writeData(offsets.scarf, scarf.slider.value);
+            writeData("uint8", offsets.scarf, scarf.slider.value);
             break;
     }
 }
@@ -154,61 +98,51 @@ function scarfChanger(task) {
 scarf.slider.oninput = function() {scarfChanger("valueChange");};
 
 function symbolChanger(task) {
-    let symbolData = readData(offsets.symbol);
+    let symbolData = readData("uint8", offsets.symbol);
     switch (task) {
         case "init":
             changeArrow("symbol");
-            changeVisibility([overview, symbolSelect, backButton]);
+            changeVisibility([backButton, overview, symbolSelect]);
             break;
         case "increment":
             symbolData += 1;
             symbolData %= 21; // positive wrap-around
-            writeData(offsets.symbol, symbolData);
+            writeData("uint8", offsets.symbol, symbolData);
             break;
         case "decrement":
             symbolData = symbolData-1 < 0 ? 20 : symbolData-1; // negative wrap-around
-            writeData(offsets.symbol, symbolData);
+            writeData("uint8", offsets.symbol, symbolData);
             break;
     }
-    symbolData = readData(offsets.symbol);
+    symbolData = readData("uint8", offsets.symbol);
     symbol.symbol.src = `./images/symbols/${symbolData}.svg`;
     symbol.value.innerText = `Symbol ${symbolData}`;
 }
 
 function levelChanger(task) {
-    let levelData = readData(offsets.level);
+    let levelData = readData("uint8", offsets.level);
     switch (task) {
         case "init":
             changeArrow("level")
-            changeVisibility([overview, levelSelect, backButton]);
+            changeVisibility([backButton, overview, levelSelect]);
             break;
         case "increment":
             levelData += 1;
             levelData %= 12;
-            writeData(offsets.level, levelData);
+            writeData("uint8", offsets.level, levelData);
             break;
         case "decrement":
             levelData = levelData-1 < 0 ? 11 : levelData-1;
-            writeData(offsets.level, levelData);
+            writeData("uint8", offsets.level, levelData);
             break;
     }
-    levelData = readData(offsets.level);
+    levelData = readData("uint8", offsets.level);
     level.level.src = `./images/levels/${levelData}.png`;
     level.value.innerText = `${levelData} - ${level.name[levelData]}`;
 }
 
 function back() {
     changeVisibility([backButton, overview, visible]);
-}
-
-function changeVisibility(elements) {
-    for (let i = 0; i < elements.length; i++) {
-        elements[i].hidden = !elements[i].hidden;
-        if (!elements[i].hidden && elements[i] !== backButton) {
-            visible = elements[i];
-        }
-        console.log(`Toggled ${elements[i].id} to hidden=${elements[i].hidden}`);
-    }
 }
 
 function changeArrow(prefix) {
@@ -219,11 +153,19 @@ function changeArrow(prefix) {
     right.src = `./images/arrows/arrow${integer}R.svg`;
 }
 
+function writeData(type, offset, data) {
+    let save = type === "uint8" ? saveFile8 : saveFile32;
+    let ofs = type === "uint8" ? offset : offset/4;
+    if (save) {
+        save[ofs] = data;
+    }
+}
+
 // https://stackoverflow.com/a/30832210
 function download() {
-    console.log(saveFile)
-    debugAsHex(saveFile)
-    var file = new Blob([saveFile]);
+    console.log(saveFile8)
+    debugAsHex(saveFile8)
+    var file = new Blob([saveFile8]);
     console.log(file)
     if (window.navigator.msSaveBlob) // IE10+
         window.navigator.msSaveBlob(file, "SAVE.BIN");
@@ -241,25 +183,98 @@ function download() {
     }
 }
 
-function unload() {
-    if (!preserve) {
-        deleteStorage();
-    } else {
-        if (saveFile) {
-            setStorage(saveFile);
+// Moz wiki https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
+function dropHandler(ev) {
+    fileReader = new FileReader();
+    fileReader.onload = (callbackEvent) => callback(callbackEvent);
+
+    console.log('File(s) dropped');
+
+    // Prevent default behavior (Prevent file from being opened)
+    ev.preventDefault();
+
+    if (ev.dataTransfer.items) {
+        // Use DataTransferItemList interface to access the file(s)
+        // If dropped items aren't files, reject them
+        if (ev.dataTransfer.items[0].kind === 'file') {
+            const file = ev.dataTransfer.items[0].getAsFile();
+            fileReader.readAsArrayBuffer(file);
         }
+    } else {
+        // Use DataTransfer interface to access the file(s)
+        fileReader.readAsArrayBuffer(ev.dataTransfer.files[0]);
     }
 }
 
-function load() {
-    if (localStorage.getItem("save")) {
-        saveFile = getStorage();
-        changeVisibility([dropZoneVisibilityToggler, overview, editZone]);
-    }
+function dragOverHandler(ev) {
+    // Prevent default behavior (Prevent file from being opened)
+    ev.preventDefault();
+}
+
+function callback(callbackEvent) {
+    saveFile8 = new Uint8Array(callbackEvent.target.result);
+    saveFile32 = new Uint32Array(callbackEvent.target.result);
+    setStorage("uint8", saveFile8);
+    setStorage("uint32", saveFile32);
+    setupCall();
 }
 
 function preserveData() {
     preserve = true;
+}
+
+function load() {
+    if (localStorage.getItem("saveuint8") && localStorage.getItem("saveuint32")) {
+        saveFile8 = getStorage("uint8");
+        saveFile32 = getStorage("uint32");
+        setupCall();
+    }
+}
+
+function unload() {
+    if (!preserve) {
+        deleteStorage("uint8");
+        deleteStorage("uint32");
+    } else {
+        if (saveFile8 && saveFile32) {
+            setStorage("uint8", saveFile8);
+            setStorage("uint32", saveFile32);
+        }
+    }
+}
+
+function setStorage(type, data) {
+    localStorage.setItem(`save${type}`, data);
+}
+
+function getStorage(type) {
+    return type === "uint8" ? Uint8Array.from(localStorage.getItem("saveuint8").split(",")): Uint32Array.from(localStorage.getItem("saveuint32").split(","));
+}
+
+function deleteStorage(type) {
+    localStorage.removeItem(`save${type}`);
+}
+
+function readData(type, offset, until) {
+    let save = type === "uint8" ? saveFile8 : saveFile32;
+    let ofs = type === "uint8" ? offset : offset/4;
+    if (save) {
+        if (typeof(until) === "undefined") {
+            return save[ofs];
+        } else {
+            return save.slice(ofs, ofs+until);
+        }
+    }
+}
+
+function changeVisibility(elements) {
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].hidden = !elements[i].hidden;
+        if (!elements[i].hidden && typeof(visible) !== 'undefined') {
+            visible = elements[i];
+        }
+        console.log(`Toggled ${elements[i].id} to hidden=${elements[i].hidden}`);
+    }
 }
 
 function debugAsHex(arr) {
