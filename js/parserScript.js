@@ -39,8 +39,9 @@ function displayCompanions() {
         const safeHtmlSteamIdV3 = encodeURIComponent(steamIdV3);
         const steamLink = "https://steamcommunity.com/profiles/" + safeHtmlSteamIdV3;
 
-        const symbolBuffer = readData("uint8", symbolOffset+60*i);
-        const symbol = `./images/symbols/${symbolBuffer}.svg`;
+        const symbolNumber = readData("uint8", symbolOffset+60*i);
+
+        const hexUnicodeGlyphRepresentation = (symbolNumber + 1).toString(16).padStart(2, "0");
 
         const container = document.createElement("a");
         container.className = "container hov";
@@ -51,11 +52,10 @@ function displayCompanions() {
         div.innerText = name;
         div.className = "playerDisplay";
 
-        const img = document.createElement("img");
-        img.className = "symbol";
-        img.src = symbol;
-
-        container.appendChild(img);
+        const symbol = document.createElement("div");
+        symbol.className = "glyphDisplay";
+        symbol.innerText = String.fromCharCode("0xE0" + hexUnicodeGlyphRepresentation);
+        container.appendChild(symbol);
         container.appendChild(div);
         
         if (steamIdV3int32 != 0) {
