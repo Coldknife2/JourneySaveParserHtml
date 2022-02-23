@@ -6,6 +6,8 @@ let preserve = false;
 let fileReader;
 
 const resultZone = document.getElementById("resultZone");
+const recentCompanions = document.getElementById("recentCompanions");
+const olderCompanions = document.getElementById("olderCompanions");
 
 function setupCall() {
     displayCompanions();
@@ -15,17 +17,6 @@ function displayCompanions() {
     const baseOffset = 0x19a8; // hex 19A8 thanks Journey wiki  
     const symbolOffset = 0x1200;
     const companionOffset = 0x1588;
-
-    createTable();
-
-    const cmatwBuffer = document.createElement("th")
-    document.getElementById("row0").appendChild(cmatwBuffer);
-
-    const cmatw = document.createElement("th");
-    cmatw.innerText = "Companions Met Along The Way";
-    cmatw.classList = "cmatw";
-    cmatw.colSpan = "5"
-    document.getElementById("row0").appendChild(cmatw);
 
     const companionNumber = readData("uint8", companionOffset);
 
@@ -63,16 +54,10 @@ function displayCompanions() {
             tdBuffer.className = "td-buffer";
             
             if (i < companionNumber) {
-                const companionIndicator = document.createElement("img");
-                companionIndicator.src = "./images/diamond.svg";
-                tdBuffer.append(companionIndicator);
+                recentCompanions.appendChild(container);
+            } else {
+                olderCompanions.appendChild(container);
             }
-
-            const td = document.createElement("td");
-            td.appendChild(container);
-
-            document.getElementById("row"+(i%4+1)).appendChild(tdBuffer);
-            document.getElementById("row"+(i%4+1)).appendChild(td);
         } else { 
             break; 
         }
@@ -90,17 +75,6 @@ symbol: ${symbol}
 `)
     }
     changeVisibility([dropZoneVisibilityToggler, resultZone]);
-}
-
-function createTable() { // could just be hardcoded in html
-    const table = document.createElement("table");
-    table.className = "resultTable";
-    for (let i = 0; i < 5; i++) { 
-        const row = document.createElement("tr");
-        row.id = "row"+i;
-        table.appendChild(row);
-    }
-    document.getElementById("resultZone").appendChild(table);
 }
 
 // Moz wiki https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop

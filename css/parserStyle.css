@@ -19,6 +19,14 @@
     text-align: left;
     font-weight: normal;
     padding: 0 0 6vh 10px;
+    font-size: 5vh;
+}
+
+.cmatwPast {
+    text-align: left;
+    font-weight: normal;
+    padding: 5vh 0 2vh 10px;
+    font-size: 5vh;
 }
 
 .resultZone {
@@ -43,5 +51,14 @@
 
 .resultTable {
     border: 0px;
+    font-size: 4vh;
+}
+
+.companions {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
     font-size: 4vh;
 }
