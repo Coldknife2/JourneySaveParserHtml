@@ -48,6 +48,7 @@ function clamp(num, min, max) {
 
 function setupCall() {
     changeVisibility([dropZoneVisibilityToggler, overview, editZone]);
+    checkLevel();
 }
 
 function robeChanger(task) {
@@ -58,7 +59,7 @@ function robeChanger(task) {
     let newTier, newColor;
     switch (task) {
         case "init":
-            changeArrow("robe")
+            changeArrow("robe");
             changeVisibility([backButton, overview, robeSelect]);
             break;
         case "increment":
@@ -123,22 +124,29 @@ function levelChanger(task) {
     let levelData = readData("uint8", offsets.level);
     switch (task) {
         case "init":
-            changeArrow("level")
+            changeArrow("level");
             changeVisibility([backButton, overview, levelSelect]);
             break;
         case "increment":
             levelData += 1;
-            levelData %= 12;
+            levelData = levelData % 12 === 0 ? 1 : levelData;
             writeData("uint8", offsets.level, levelData);
             break;
         case "decrement":
-            levelData = levelData-1 < 0 ? 11 : levelData-1;
+            levelData = levelData-1 < 1 ? 11 : levelData-1;
             writeData("uint8", offsets.level, levelData);
             break;
     }
     levelData = readData("uint8", offsets.level);
     level.level.src = `./images/levels/${levelData}.png`;
     level.value.innerText = `${levelData} - ${level.name[levelData]}`;
+}
+
+function checkLevel() {
+    let levelData = readData("uint8", offsets.level);
+    if (levelData === 0) {
+        writeData("uint8", offsets.level, 1);
+    }
 }
 
 function back() {
@@ -163,10 +171,8 @@ function writeData(type, offset, data) {
 
 // https://stackoverflow.com/a/30832210
 function download() {
-    console.log(saveFile8)
-    debugAsHex(saveFile8)
+    debugAsHex(saveFile8);
     var file = new Blob([saveFile8]);
-    console.log(file)
     if (window.navigator.msSaveBlob) // IE10+
         window.navigator.msSaveBlob(file, "SAVE.BIN");
     else { // Others
