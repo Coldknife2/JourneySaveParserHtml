@@ -116,7 +116,8 @@ function symbolChanger(task) {
             break;
     }
     symbolData = readData("uint8", offsets.symbol);
-    symbol.symbol.src = `./images/symbols/${symbolData}.svg`;
+    const hexUnicodeGlyphRepresentation = (symbolData + 1).toString(16).padStart(2, "0");
+    symbol.symbol.innerText = String.fromCharCode("0xE0" + hexUnicodeGlyphRepresentation);
     symbol.value.innerText = `Symbol ${symbolData}`;
 }
 

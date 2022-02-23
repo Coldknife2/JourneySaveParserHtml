@@ -3,6 +3,11 @@
     src: url(./fonts/EyeglassCondensedBold.ttf);
 }
 
+@font-face {
+    font-family: Glyphs;
+    src: url(./fonts/glyphsFont.ttf);
+}
+
 body {
     color: white;
     font-family: 'Eyeglass Condensed Bold', sans-serif;
@@ -33,8 +38,6 @@ body {
 .hov:hover {
     text-shadow: -2px 0px 20px rgb(173 162 126 / 80%);
     border-radius: 7px;
-    text-decoration: underline;
-    background-color: #eff2f51f;
 }
 
 .dropSymbol {
@@ -70,4 +73,13 @@ body {
     display: flex;
     justify-content: space-evenly;
     text-align: center;
+}
+
+.glyphDisplay {
+    font-family: 'Glyphs', sans-serif;
+    margin: 10px;
+}
+
+.bigGlyph {
+    font-size: 3.5em;
 }
