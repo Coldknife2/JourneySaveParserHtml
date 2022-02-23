@@ -81,6 +81,7 @@ div#symbolValue {
 .editor-flex-item {
     text-align: center;
     flex-basis: 100%;
+    min-width: fit-content;
     max-width: 15vw;
     padding: 0px 10px;
     margin-top: 5vh;;
