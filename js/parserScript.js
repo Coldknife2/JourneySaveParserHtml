@@ -155,10 +155,16 @@ function unload() {
     if (!preserve) {
         deleteStorage("uint8");
         deleteStorage("uint32");
+        deleteStorage("Light");
     } else {
         if (saveFile8 && saveFile32) {
             setStorage("uint8", saveFile8);
             setStorage("uint32", saveFile32);
+            if (document.body.style.backgroundImage === 'url("./images/cmatw_sunny.png")') {
+                setStorage("Light", true);
+            } else { 
+                deleteStorage("Light");
+            }
         }
     }
 }
