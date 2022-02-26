@@ -28,6 +28,16 @@ html {
     padding: 2vh;
 }
 
+#editZone #scarfValueHintL {
+    font-size: 3.5vh;
+    text-align: left;
+}
+
+#editZone #scarfValueHintR {
+    font-size: 3.5vh;
+    text-align: right;
+}
+
 div#symbolValue {
     min-width: 15vw;
 }
