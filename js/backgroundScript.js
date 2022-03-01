@@ -8,10 +8,19 @@ function trig(x) {
 
 
 const randomPick = Math.random() > determineTimePercentage();
-document.body.style.backgroundImage = `url(./images/cmatw_${ randomPick ? "sunny" : "dark"}.png)`;
+const saveLight = localStorage.getItem("saveLight") === null;
+const saves = localStorage.getItem("saveuint8") === null && localStorage.getItem("saveuint32") === null;
+let background;
+if (saveLight && saves) {
+    background = `url(./images/cmatw_${randomPick ? "sunny" : "dark"}.png)`;
+} else if (!saveLight) {
+    background = 'url("./images/cmatw_sunny.png")';
+} else {
+    background = 'url("./images/cmatw_dark.png")';
+}
+document.body.style.backgroundImage = background;
 
-if (randomPick)
-{
+if (randomPick) {
     const link = document.createElement("link");
     link.href = "./css/sunnyStyle.css";
     link.rel = "stylesheet";

@@ -14,3 +14,5 @@ function toggleNavbar() {
     }
     expanded = !expanded;
 }
+
+document.querySelector("link[rel*='icon']").href = `./images/symbols/${Math.floor(Math.random()*20)}.svg`;

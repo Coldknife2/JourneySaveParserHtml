@@ -28,6 +28,16 @@ html {
     padding: 2vh;
 }
 
+#editZone #scarfValueHintL {
+    font-size: 3.5vh;
+    text-align: left;
+}
+
+#editZone #scarfValueHintR {
+    font-size: 3.5vh;
+    text-align: right;
+}
+
 div#symbolValue {
     min-width: 15vw;
 }
@@ -81,6 +91,7 @@ div#symbolValue {
 .editor-flex-item {
     text-align: center;
     flex-basis: 100%;
+    min-width: fit-content;
     max-width: 15vw;
     padding: 0px 10px;
     margin-top: 5vh;;
