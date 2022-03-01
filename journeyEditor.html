@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <link href="./css/style.css" rel="stylesheet">
     <link href="./css/editorStyle.css" rel="stylesheet">
+    <link rel="icon" href="./images/symbols/0.svg" type="image/x-icon">
+    <title>Journey Editor</title>
 </head>
 
 <body onunload="unload()" onload="load()">
@@ -51,7 +53,7 @@
                 </tr>
                 <tr>
                     <td><img onclick="levelChanger('decrement')" src="./images/arrows/arrow1L.svg" id="levelL" class="arrow"></td>
-                    <td><img class="levelImage" id="level" src="./images/levels/0.png"></td>
+                    <td><img class="levelImage" id="level" src="./images/levels/1.png"></td>
                     <td><img onclick="levelChanger('increment')" src="./images/arrows/arrow1L.svg" id="levelR" class="arrow"></td>
                 </tr>
             </table>
@@ -75,12 +77,14 @@
         <div hidden id="scarfSelect">
             <table>
                 <tr>
-                    <td><div id="scarfValue"></div></td>
+                    <td colspan="3"><div id="scarfValue"></div></td>
                 </tr>
                 <tr>
+                    <td id="scarfValueHintL">Red&nbsp;Robe<br>BB:&nbsp;07<br>PD:&nbsp;11<br>SC:&nbsp;17<br>UG:&nbsp;22<br>Tower:&nbsp;28<br>Snow:&nbsp;30</td>
                     <td><div class="slidecontainer">
                         <input type="range" min="0" max="30" value="0" class="slider" id="scarfSlider">
                     </div></td>
+                    <td id="scarfValueHintR">White&nbsp;Robe<br>BB:&nbsp;12<br>PD:&nbsp;16<br>SC:&nbsp;22<br>UG:&nbsp;27<br>Tower:&nbsp;30<br>Snow:&nbsp;30</td>
                 </tr>
             </table>
         </div>
