@@ -1,134 +1,135 @@
 html {
-    /* -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-    /* https://stackoverflow.com/a/4407335 */
-  }
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* https://stackoverflow.com/a/4407335 */
+  
+}
 
 .editZone {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 5vh;
+  font-size: 5vh;
+  left: 50%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .editTable {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .overview__container {
-    display: flex;
-    flex-direction: row;
-    width: 100vw;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100vw;
 }
 
 .levelValue {
-    padding: 2vh;
+  padding: 2vh;
 }
 
 .levelSelect__imageContainer {
-    display: flex;
-    flex-direction: row;
-    width: 100vw;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100vw;
 }
 
 .overview__block {
-    font-size: 5vh;
-    text-align: center;
-    padding: 2vh;
-    width: 4em;
-    height: 4em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 5vh;
+  height: 4em;
+  justify-content: center;
+  padding: 2vh;
+  text-align: center;
+  width: 4em;
 }
 
 div#symbolValue {
-    min-width: 15vw;
+  min-width: 15vw;
 }
 
 .symbolValue {
-    padding: 2vh;
+  padding: 2vh;
 }
 
 .robeSelect__image__container {
-    display: flex;
+  display: flex;
 }
 
 .symbolSelect__image__container {
-    display: flex;
+  display: flex;
 }
 
 .img {
-    padding: 2vh;
-    width: 8vw;
+  padding: 2vh;
+  width: 8vw;
 }
 
 .arrow:hover {
-    transform: scale(1.15);
-    transition: transform 0.2s;
+  transform: scale(1.15);
+  transition: transform 0.2s;
 }
 
-.arrow {    
-    padding: 2vh;
-    width: 5vw;
-    transition: transform 0.2s;
+.arrow {
+  padding: 2vh;
+  transition: transform 0.2s;
+  width: 5vw;
 }
 
 .levelImage {
-    width: 30vw;
-    border: 4px dashed #FFFFFF;
+  border: 4px dashed #ffffff;
+  width: 30vw;
 }
-  
+
 .slider {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 20vw;
-    height: 5vh;
-    background: linear-gradient(to right, #d1160d 10%, #ffe7a4 90%);
-    background-size: 20vw 1.5vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20vw 1.5vh;
+  background: linear-gradient(to right, #d1160d 10%, #ffe7a4 90%);
+  height: 5vh;
+  outline: none;
+  overflow: hidden;
+  width: 20vw;
 }
 
 .slider::-webkit-slider-thumb {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 2vw;
-    height: 2vw;
-    background: url("./../images/symbols/0.svg");
+  -webkit-appearance: none;
+  appearance: none;
+  background: url('./../images/symbols/0.svg');
+  height: 2vw;
+  width: 2vw;
 }
-  
+
 .editor-flex-container {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .levelSelect__container {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-    align-items: center;
-    height: 30vh;
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 30vh;
+  justify-content: center;
 }
 
 .editor-flex-item {
-    text-align: center;
-    flex-basis: 100%;
-    min-width: fit-content;
-    max-width: 15vw;
-    padding: 0px 10px;
-    margin-top: 5vh;;
+  flex-basis: 100%;
+  margin-top: 5vh;
+  max-width: 15vw;
+  min-width: fit-content;
+  padding: 0px 10px;
+  text-align: center;
 }
+

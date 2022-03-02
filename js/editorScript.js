@@ -32,7 +32,8 @@ const symbol = {
 
 const scarf = {
     slider: document.getElementById("scarfSlider"),
-    value: document.getElementById("scarfValue")
+    value: document.getElementById("scarfValue"),
+    redScarfRecommandations: [7, 11, 17, 22, 28, 30]
 };
 
 const level = {

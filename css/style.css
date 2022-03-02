@@ -1,85 +1,84 @@
 @font-face {
-    font-family: Eyeglass Condensed Bold;
-    src: url(./fonts/EyeglassCondensedBold.ttf);
+  font-family: Eyeglass Condensed Bold;
+  src: url(./fonts/EyeglassCondensedBold.ttf);
 }
 
 @font-face {
-    font-family: Glyphs;
-    src: url(./fonts/glyphsFont.ttf);
+  font-family: Glyphs;
+  src: url(./fonts/glyphsFont.ttf);
 }
 
 body {
-    color: white;
-    font-family: 'Eyeglass Condensed Bold', sans-serif;
-    background: url(./../images/cmatw_dark.png) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background: url(./../images/cmatw_dark.png) no-repeat center center fixed;
+  color: white;
+  font-family: 'Eyeglass Condensed Bold', sans-serif;
 }
 
 .dropZone {
-    width: 95%;
-    height: 33vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border: 4px dashed #FFFFFF;
-    border-radius: 5px;
-
-    margin-bottom: 10px;
-    margin-top: 18%;
-
-    font-size: 3.5vh;
+  align-items: center;
+  border-radius: 5px;
+  border: 4px dashed #ffffff;
+  display: flex;
+  font-size: 3.5vh;
+  height: 33vh;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 18%;
+  width: 95%;
 }
 
 .hov:hover {
-    text-shadow: -2px 0px 20px rgb(173 162 126 / 80%);
-    border-radius: 7px;
+  border-radius: 7px;
+  text-shadow: -2px 0px 20px rgb(173 162 126 / 80%);
 }
 
 .dropSymbol {
-    width: 4vh;
-    display: flex;
-    transform: rotate(270deg);
-    transition: transform 0.3s;
+  display: flex;
+  transform: rotate(270deg);
+  transition: transform 0.3s;
+  width: 4vh;
 }
 
 .navbarContainer {
-    position: fixed;
-    width: 100%;
+  position: fixed;
+  width: 100%;
 }
 
 .navbarOffsetExpanded {
-    top: 0vh;
-    transition: top 0.6s;
+  top: 0vh;
+  transition: top 0.6s;
 }
 
 .navbarOffsetRetracted {
-    top: -4vh;
-    transition: top 0.6s;
+  top: -4vh;
+  transition: top 0.6s;
 }
 
-.flex-item, .flex-item a, .flex-item a:visited{
-    font-size: 3vh;
-    color: #FFFFFF;
-    text-decoration: none;
-    flex-basis: 100%;
+.flex-item,
+.flex-item a,
+.flex-item a:visited {
+  color: #ffffff;
+  flex-basis: 100%;
+  font-size: 3vh;
+  text-decoration: none;
 }
 
 .flex-container {
-    display: flex;
-    justify-content: space-evenly;
-    text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
 }
 
 .glyphDisplay {
-    font-family: 'Glyphs', sans-serif;
-    margin: 10px;
+  font-family: 'Glyphs', sans-serif;
+  margin: 10px;
 }
 
 .bigGlyph {
-    font-size: 3.5em;
+  font-size: 3.5em;
 }
+

@@ -1,64 +1,64 @@
 .td-buffer {
-    width: 3.5vw;
+  width: 3.5vw;
 }
 
 .td-buffer img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 6.5vh;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 6.5vh;
 }
 
 .playerDisplay {
-    display: inline-block;
-    margin: 10px;
-    width: 29vw;
+  display: inline-block;
+  margin: 10px;
+  width: 29vw;
 }
 
 .cmatw {
-    text-align: left;
-    font-weight: normal;
-    padding: 0 0 6vh 10px;
-    font-size: 5vh;
+  font-size: 5vh;
+  font-weight: normal;
+  padding: 0 0 6vh 10px;
+  text-align: left;
 }
 
 .cmatwPast {
-    text-align: left;
-    font-weight: normal;
-    padding: 5vh 0 2vh 10px;
-    font-size: 5vh;
+  font-size: 5vh;
+  font-weight: normal;
+  padding: 5vh 0 2vh 10px;
+  text-align: left;
 }
 
 .resultZone {
-    margin-bottom: 10px;
-    margin-top: 15vh;
-    max-width: 90%;
-    margin-left: 16%;
+  margin-bottom: 10px;
+  margin-left: 16%;
+  margin-top: 15vh;
+  max-width: 90%;
 }
 
 .symbol {
-    padding-left: 10px;
-    width: 4.5vh;
-    margin-right: 0.5em;
+  margin-right: 0.5em;
+  padding-left: 10px;
+  width: 4.5vh;
 }
 
 .container {
-    display: flex;
-    color: white;
-    text-decoration: unset;
-    margin-bottom: 1vh;
+  color: white;
+  display: flex;
+  margin-bottom: 1vh;
+  text-decoration: unset;
 }
 
 .resultTable {
-    border: 0px;
-    font-size: 4vh;
+  border: 0px;
+  font-size: 4vh;
 }
 
 .companions {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    font-size: 4vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: 4vh;
+  height: 100%;
+  width: 100%;
 }
