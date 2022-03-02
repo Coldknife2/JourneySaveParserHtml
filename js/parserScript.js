@@ -25,8 +25,7 @@ function displayCompanions() {
 
     const companionNumber = readData("uint8", companionOffset);
 
-    if(companionNumber < 1)
-    {
+    if (companionNumber < 1) {
         cmatw.hidden = true;
     }
 
@@ -62,20 +61,15 @@ function displayCompanions() {
         container.appendChild(div);
         
         if (steamIdV3int32 != 0) {
-            const tdBuffer = document.createElement("td");
-            tdBuffer.className = "td-buffer";
-            
             if (i < companionNumber) {
-                if(i/4 < 1)
-                {
+                if (i/4 < 1) {
                     companionsLeft.appendChild(container);
                 } else {
                     companionsRight.appendChild(container);
                 }
             } else {
                 olderCompanionsNumber++;
-                if((i-companionNumber)/4 < 1)
-                {
+                if ((i-companionNumber)/4 < 1) {
                     olderCompanionsLeft.appendChild(container);
                 } else {
                     olderCompanionsRight.appendChild(container);
@@ -97,8 +91,7 @@ symbol: ${symbol}
 
 `)
     }
-    if(olderCompanionsNumber === 0)
-    {
+    if (olderCompanionsNumber === 0) {
         cmatwPast.hidden = true;
     }
     changeVisibility([dropZoneVisibilityToggler, resultZone]);
