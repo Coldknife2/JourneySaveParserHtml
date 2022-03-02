@@ -14,13 +14,13 @@ let background;
 if (saveLight && saves) {
     background = `url(./images/cmatw_${randomPick ? "sunny" : "dark"}.png)`;
 } else if (!saveLight) {
-    background = 'url("./images/cmatw_sunny.png")';
+    background = 'url(./images/cmatw_sunny.png)';
 } else {
-    background = 'url("./images/cmatw_dark.png")';
+    background = 'url(./images/cmatw_dark.png)';
 }
 document.body.style.backgroundImage = background;
 
-if (randomPick) {
+if (background === 'url(./images/cmatw_sunny.png)') {
     const link = document.createElement("link");
     link.href = "./css/sunnyStyle.css";
     link.rel = "stylesheet";
