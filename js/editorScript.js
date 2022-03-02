@@ -23,6 +23,7 @@ const offsets = {
 
 const robe = {
     robe: document.getElementById("robeImage"),
+    currentColor: "red"
 };
 
 const symbol = {
@@ -33,12 +34,14 @@ const symbol = {
 const scarf = {
     slider: document.getElementById("scarfSlider"),
     value: document.getElementById("scarfValue"),
-    redScarfRecommandations: [7, 11, 17, 22, 28, 30]
+    recommendation: document.getElementById("recommendation"),
+    redScarfRecommandations: [7, 11, 17, 22, 28, 30] // + 5 for white scarf
 };
 
 const level = {
     level: document.getElementById("level"),
     value: document.getElementById("levelValue"),
+    currentValue: 0,
     name: ["Chapter Select", "Broken Bridge", "Pink Desert", "Sunken City", "Underground", "Tower", "Snow", "Paradise", "Credits", "Level Bryan", "Level Matt", "Level Chris"]
 }
 
@@ -50,6 +53,20 @@ function clamp(num, min, max) {
 function setupCall() {
     changeVisibility([dropZoneVisibilityToggler, overview, editZone]);
     checkLevel();
+}
+
+function setScarfLengthRecommendationText() {
+    const robeData = readData("uint8", offsets.robe);
+    const color = robeData > 3 ? "white" : "red";
+    robe.currentColor = color;
+
+    const levelData = readData("uint8", offsets.level);
+    level.currentValue = levelData;
+
+    const levelToUse = level.currentValue - 1 >= scarf.redScarfRecommandations.length ? scarf.redScarfRecommandations.length - 1 : level.currentValue - 1;
+    const suggestedScarfLength = scarf.redScarfRecommandations[levelToUse] + (robe.currentColor === "red" ? 0 : 5);
+    const roundedSuggestedLength = clamp(suggestedScarfLength, 0, 30);
+    scarf.recommendation.innerText = `Recommended scarf length for ${robe.currentColor} robe in ${level.name[level.currentValue]} is ${roundedSuggestedLength}`;
 }
 
 function robeChanger(task) {
@@ -64,21 +81,21 @@ function robeChanger(task) {
             changeVisibility([backButton, overview, robeSelect]);
             break;
         case "increment":
-            newTier = robeData > 3 ? clamp(clamp(robeData+1, 4, 7) % 7, 4, 6) : clamp(robeData+1, 0, 4) % 4;
+            newTier = robeData > 3 ? clamp(clamp(robeData + 1, 4, 7) % 7, 4, 6) : clamp(robeData + 1, 0, 4) % 4;
             writeData("uint8", offsets.robe, newTier);
             break;
         case "decrement":
-            newTier = robeData > 3 ? robeData-1 < 4 ? 6 : clamp(robeData-1, 4, 6) : robeData-1 < 0 ? 3 : clamp(robeData-1, 0, 3);
+            newTier = robeData > 3 ? robeData - 1 < 4 ? 6 : clamp(robeData - 1, 4, 6) : robeData - 1 < 0 ? 3 : clamp(robeData - 1, 0, 3);
             writeData("uint8", offsets.robe, newTier);
             break;
         case "changeColor":
-            newColor = robeData ? robeData > 3 ? robeData-3 : robeData+3 : 4;
+            newColor = robeData ? robeData > 3 ? robeData - 3 : robeData + 3 : 4;
             writeData("uint8", offsets.robe, newColor);
             break;
     }
     robeData = readData("uint8", offsets.robe);
     let color = robeData > 3 ? "white" : "red";
-    let tier = robeData > 3 ? robeData-2 : robeData+1;
+    let tier = robeData > 3 ? robeData - 2 : robeData + 1;
     robe.robe.src = `./images/robes/${color}${tier}.png`;
 }
 
@@ -89,6 +106,7 @@ function scarfChanger(task) {
             changeVisibility([backButton, overview, scarfSelect]);
             scarf.value.innerText = scarfData;
             scarf.slider.value = scarfData;
+            setScarfLengthRecommendationText();
             break;
         case "valueChange":
             scarf.value.innerText = scarf.slider.value;
@@ -97,7 +115,7 @@ function scarfChanger(task) {
     }
 }
 
-scarf.slider.oninput = function() {scarfChanger("valueChange");};
+scarf.slider.oninput = function () { scarfChanger("valueChange"); };
 
 function symbolChanger(task) {
     let symbolData = readData("uint8", offsets.symbol);
@@ -112,7 +130,7 @@ function symbolChanger(task) {
             writeData("uint8", offsets.symbol, symbolData);
             break;
         case "decrement":
-            symbolData = symbolData-1 < 0 ? 20 : symbolData-1; // negative wrap-around
+            symbolData = symbolData - 1 < 0 ? 20 : symbolData - 1; // negative wrap-around
             writeData("uint8", offsets.symbol, symbolData);
             break;
     }
@@ -135,14 +153,15 @@ function levelChanger(task) {
             writeData("uint8", offsets.level, levelData);
             break;
         case "decrement":
-            levelData = levelData-1 < 1 ? 11 : levelData-1;
+            levelData = levelData - 1 < 1 ? 11 : levelData - 1;
             writeData("uint8", offsets.level, levelData);
             break;
     }
     levelData = readData("uint8", offsets.level);
-    
+
     level.level.src = `./images/levels/${levelData}.png`;
     level.value.innerText = `${levelData} - ${level.name[levelData]}`;
+    level.currentValue = levelData;
 }
 
 function checkLevel() {
@@ -166,7 +185,7 @@ function changeArrow(prefix) {
 
 function writeData(type, offset, data) {
     let save = type === "uint8" ? saveFile8 : saveFile32;
-    let ofs = type === "uint8" ? offset : offset/4;
+    let ofs = type === "uint8" ? offset : offset / 4;
     if (save) {
         save[ofs] = data;
     }
@@ -180,15 +199,15 @@ function download() {
         window.navigator.msSaveBlob(file, "SAVE.BIN");
     else { // Others
         var a = document.createElement("a"),
-                url = URL.createObjectURL(file);
+            url = URL.createObjectURL(file);
         a.href = url;
         a.download = "SAVE.BIN";
         document.body.appendChild(a);
         a.click();
-        setTimeout(function() {
+        setTimeout(function () {
             document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);  
-        }, 0); 
+            window.URL.revokeObjectURL(url);
+        }, 0);
     }
 }
 
@@ -251,7 +270,7 @@ function unload() {
             setStorage("uint32", saveFile32);
             if (document.body.style.backgroundImage === 'url("./images/cmatw_sunny.png")') {
                 setStorage("Light", true);
-            } else { 
+            } else {
                 deleteStorage("Light");
             }
         }
@@ -263,7 +282,7 @@ function setStorage(type, data) {
 }
 
 function getStorage(type) {
-    return type === "uint8" ? Uint8Array.from(localStorage.getItem("saveuint8").split(",")): Uint32Array.from(localStorage.getItem("saveuint32").split(","));
+    return type === "uint8" ? Uint8Array.from(localStorage.getItem("saveuint8").split(",")) : Uint32Array.from(localStorage.getItem("saveuint32").split(","));
 }
 
 function deleteStorage(type) {
@@ -272,12 +291,12 @@ function deleteStorage(type) {
 
 function readData(type, offset, until) {
     let save = type === "uint8" ? saveFile8 : saveFile32;
-    let ofs = type === "uint8" ? offset : offset/4;
+    let ofs = type === "uint8" ? offset : offset / 4;
     if (save) {
-        if (typeof(until) === "undefined") {
+        if (typeof (until) === "undefined") {
             return save[ofs];
         } else {
-            return save.slice(ofs, ofs+until);
+            return save.slice(ofs, ofs + until);
         }
     }
 }
@@ -285,7 +304,7 @@ function readData(type, offset, until) {
 function changeVisibility(elements) {
     for (let i = 0; i < elements.length; i++) {
         elements[i].hidden = !elements[i].hidden;
-        if (!elements[i].hidden && typeof(visible) !== 'undefined') {
+        if (!elements[i].hidden && typeof (visible) !== 'undefined') {
             visible = elements[i];
         }
         console.log(`Toggled ${elements[i].id} to hidden=${elements[i].hidden}`);

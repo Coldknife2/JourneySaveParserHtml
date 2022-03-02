@@ -54,7 +54,7 @@
         </div>
 
         <div hidden id="robeSelect">
-            <div class="editTable">
+            <div class="robeSelect__container">
                 <div class="robeSelect__image__container">
                     <img onclick="robeChanger('decrement')" src="./images/arrows/arrow1L.svg" id="robeL" class="arrow">
                     <img id="robeImage">
@@ -64,31 +64,18 @@
             </div>
         </div>
 
-        <div hidden id="scarfSelect">
-            <table>
-                <tr>
-                    <td colspan="3">
-                        <div id="scarfValue"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td id="scarfValueHintL">
-                        Red&nbsp;Robe<br>BB:&nbsp;07<br>PD:&nbsp;11<br>SC:&nbsp;17<br>UG:&nbsp;22<br>Tower:&nbsp;28<br>Snow:&nbsp;30
-                    </td>
-                    <td>
-                        <div class="slidecontainer">
-                            <input type="range" min="0" max="30" value="0" class="slider" id="scarfSlider">
-                        </div>
-                    </td>
-                    <td id="scarfValueHintR">
-                        White&nbsp;Robe<br>BB:&nbsp;12<br>PD:&nbsp;16<br>SC:&nbsp;22<br>UG:&nbsp;27<br>Tower:&nbsp;30<br>Snow:&nbsp;30
-                    </td>
-                </tr>
-            </table>
+        <div hidden id="scarfSelect" class="scarfSelect">
+            <div class="scarfSelect__container">
+                <div id="scarfValue"></div>
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="30" value="0" class="slider" id="scarfSlider">
+                </div>
+                <div id="recommendation" class="recommendation"></div>
+            </div>
         </div>
 
         <div hidden id="symbolSelect">
-            <div class="editTable">
+            <div class="symbolSelect__container">
                 <div id="symbolValue" class="symbolValue"></div>
                 <div class="symbolSelect__image__container">
                     <img onclick="symbolChanger('decrement')" src="./images/arrows/arrow1L.svg" id="symbolL"
