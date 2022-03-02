@@ -139,6 +139,7 @@ function levelChanger(task) {
             break;
     }
     levelData = readData("uint8", offsets.level);
+    
     level.level.src = `./images/levels/${levelData}.png`;
     level.value.innerText = `${levelData} - ${level.name[levelData]}`;
 }

@@ -18,28 +18,54 @@ html {
 }
 
 .editTable {
-    border: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-#editZone td {
-    font-size: 5vh;
-    width: 4vw;
-    text-align: center;
+.overview__container {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    justify-content: space-evenly;
+}
+
+.levelValue {
     padding: 2vh;
 }
 
-#editZone #scarfValueHintL {
-    font-size: 3.5vh;
-    text-align: left;
+.levelSelect__imageContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    justify-content: center;
 }
 
-#editZone #scarfValueHintR {
-    font-size: 3.5vh;
-    text-align: right;
+.overview__block {
+    font-size: 5vh;
+    text-align: center;
+    padding: 2vh;
+    width: 4em;
+    height: 4em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 div#symbolValue {
     min-width: 15vw;
+}
+
+.symbolValue {
+    padding: 2vh;
+}
+
+.robeSelect__image__container {
+    display: flex;
+}
+
+.symbolSelect__image__container {
+    display: flex;
 }
 
 .img {
@@ -52,8 +78,9 @@ div#symbolValue {
     transition: transform 0.2s;
 }
 
-.arrow {
-    width: 4vw;
+.arrow {    
+    padding: 2vh;
+    width: 5vw;
     transition: transform 0.2s;
 }
 
@@ -86,6 +113,15 @@ div#symbolValue {
 .editor-flex-container {
     display: flex;
     justify-content: space-evenly;
+}
+
+.levelSelect__container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 30vh;
 }
 
 .editor-flex-item {
