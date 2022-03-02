@@ -52,10 +52,6 @@ html {
   width: 4em;
 }
 
-div#symbolValue {
-  min-width: 15vw;
-}
-
 .symbolValue {
   padding: 2vh;
 }
