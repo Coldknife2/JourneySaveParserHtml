@@ -1,22 +1,3 @@
-.td-buffer {
-  width: 3.5vw;
-}
-
-.td-buffer img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 6.5vh;
-}
-
-.companionsRight {
-
-}
-
-.companionsLeft {
-
-}
-
 .playerDisplay {
   display: inline-block;
   margin: 10px;
