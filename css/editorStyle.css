@@ -88,13 +88,8 @@ html {
 .slider {
   -webkit-appearance: none;
   appearance: none;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 20vw 1.5vh;
   background: linear-gradient(to right, #d1160d 10%, #ffe7a4 90%);
-  height: 5vh;
-  outline: none;
-  overflow: hidden;
+  height: 1vh;
   width: 20vw;
 }
 
@@ -104,6 +99,12 @@ html {
   background: url('./../images/symbols/0.svg');
   height: 2vw;
   width: 2vw;
+}
+
+.scarfSelect__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .editor-flex-container {
