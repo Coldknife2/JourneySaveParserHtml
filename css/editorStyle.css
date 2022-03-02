@@ -73,6 +73,7 @@ html {
 
 .robeSelect__image__container {
   display: flex;
+  margin-bottom: 2vh;
 }
 
 .symbolSelect__image__container {
