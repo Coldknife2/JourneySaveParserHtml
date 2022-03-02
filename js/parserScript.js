@@ -6,8 +6,13 @@ let preserve = false;
 let fileReader;
 
 const resultZone = document.getElementById("resultZone");
-const recentCompanions = document.getElementById("recentCompanions");
-const olderCompanions = document.getElementById("olderCompanions");
+const companionsLeft = document.getElementById("companionsLeft");
+const companionsRight = document.getElementById("companionsRight");
+const cmatw = document.getElementById("cmatw");
+
+const olderCompanionsLeft = document.getElementById("olderCompanionsLeft");
+const olderCompanionsRight = document.getElementById("olderCompanionsRight");
+const cmatwPast = document.getElementById("cmatwPast");
 
 function setupCall() {
     displayCompanions();
@@ -19,6 +24,13 @@ function displayCompanions() {
     const companionOffset = 0x1588;
 
     const companionNumber = readData("uint8", companionOffset);
+
+    if(companionNumber < 1)
+    {
+        cmatw.hidden = true;
+    }
+
+    let olderCompanionsNumber = 0;
 
     for (let i = 0; i < 8; i++) { // Let's read those 8 players entries
         const tempNameBuffer = readData("uint8", baseOffset+32*i, 24);
@@ -54,9 +66,20 @@ function displayCompanions() {
             tdBuffer.className = "td-buffer";
             
             if (i < companionNumber) {
-                recentCompanions.appendChild(container);
+                if(i/4 < 1)
+                {
+                    companionsLeft.appendChild(container);
+                } else {
+                    companionsRight.appendChild(container);
+                }
             } else {
-                olderCompanions.appendChild(container);
+                olderCompanionsNumber++;
+                if((i-companionNumber)/4 < 1)
+                {
+                    olderCompanionsLeft.appendChild(container);
+                } else {
+                    olderCompanionsRight.appendChild(container);
+                }
             }
         } else { 
             break; 
@@ -73,6 +96,10 @@ steamID3: ${steamIdV3}
 symbol: ${symbol}
 
 `)
+    }
+    if(olderCompanionsNumber === 0)
+    {
+        cmatwPast.hidden = true;
     }
     changeVisibility([dropZoneVisibilityToggler, resultZone]);
 }
