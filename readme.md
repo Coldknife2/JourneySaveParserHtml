@@ -8,24 +8,24 @@ ___
 
 In this game, during your adventure, you are matched with players from around the world without knowing who they are.
 
-You cannot communicate with speech or text as there is only what is called a [Chirp](https://journey.fandom.com/wiki/Chirp), but the adventure is a shared experience and you can often grow fond of your partner.
+You cannot communicate via speech or text as there is only what is called a [Chirp](https://journey.fandom.com/wiki/Chirp), but the adventure is a shared experience and you can often grow fond of your partner(s).
 
-At the end of the game, a screen appears that reveals the names of the people you've met during your adventure. This screen is called "Companions Met Along The Way" or CMATW for short.
+At the end of the game, a screen appears that reveals the names of everyone you have met during your adventure. This screen is called "Companions Met Along The Way" or CMATW for short.
 
 ![imageOfTheCmatwScreen](./visualGuide.png)
 
-This project aims to give players the abilty to display the names of companions they've met, in a manner similar to what the game does. It currently works with the [Steam](https://store.steampowered.com/app/638230/Journey) version only.
+This project aims to give you the abilty to look up the names of companions you have met, in a manner similar to what the game does. It currently works with the [Steam](https://store.steampowered.com/app/638230/Journey) version only.
 
-This is an example for how the project looks:
-![CMATW project](./cmatw.jpg)
+This is how the project looks:
+![CMATW project](./cmatw.png)
 
-To understand what the "SAVE.BIN" the website is talking about is, please take a look at [The Journey Wiki](https://journey.fandom.com/wiki/Guide:_PC_version_-_Companions_Met_Along_the_Way_Problems).
+To understand what the "SAVE.BIN" you are asked to drop is, please take a look at [The Journey Wiki](https://journey.fandom.com/wiki/Guide:_PC_version_-_Companions_Met_Along_the_Way_Problems).
 
 ___
 ## Save editor
 
-Recently a new functionality was added that had been around in the Journey community for a while in the form of an Executable.
+Recently, a new functionality was added that has been around in the Journey community for a while in the form of an [Executable](https://github.com/zackmichaels5/Journey-Save-Editor).
 
 But now it is also available [online](https://www.coldknife2.ninja/Journey/journeyEditor.html)!
 
-With this editor, players will be able to choose multiple parameters concerning their Journey saves, such as scarf length, symbol used, robe color and selected level.
+With this editor, you are able to choose multiple parameters concerning your Journey save, such as scarf length, symbol used, robe color and selected level.
