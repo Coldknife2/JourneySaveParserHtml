@@ -12,8 +12,8 @@
 <body onunload="unload()" onload="load()">
     <div class="navbarContainer navbarOffsetRetracted" id="navbarContainer">
         <div class="flex-container">
-            <a class="flex-item" href="./journeyEditor.html">JourneyEditor</a>
-            <a class="flex-item" href="./journeyParser.html" onclick="preserveData()">JourneyParser</a>
+            <a class="flex-item" href="./journeyEditor.html">Journey Editor</a>
+            <a class="flex-item" href="./journeyParser.html" onclick="preserveData()">Journey Parser</a>
             <a class="flex-item" href="./about.html" onclick="preserveData()">About</a>
         </div>
         <center><img class="dropSymbol" src="./images/arrows/arrow1L.svg" id="dropSymbol" onclick="toggleNavbar()">
@@ -32,11 +32,11 @@
 
         <div hidden id="overview">
             <div class="overview__container">
-                <div class="overview__block hov" onclick="levelChanger('init')">Level Select</div>
-                <div class="overview__block hov" onclick="robeChanger('init')">Robe Select</div>
-                <div class="overview__block hov overview__block__scarf" onclick="scarfChanger('init')">Scarf Length
-                    Select</div>
-                <div class="overview__block hov" onclick="symbolChanger('init')">Symbol Select</div>
+                <div class="overview__block hov cursorPointer" onclick="levelChanger('init')">Level Select</div>
+                <div class="overview__block hov cursorPointer" onclick="robeChanger('init')">Robe Select</div>
+                <div class="overview__block hov overview__block__scarf cursorPointer" onclick="scarfChanger('init')">
+                    Scarf Length Select</div>
+                <div class="overview__block hov cursorPointer" onclick="symbolChanger('init')">Symbol Select</div>
             </div>
         </div>
 
@@ -60,7 +60,7 @@
                     <img id="robeImage">
                     <img onclick="robeChanger('increment')" src="./images/arrows/arrow1L.svg" id="robeR" class="arrow">
                 </div>
-                <div class="hov" onclick="robeChanger('changeColor')">Toggle Color</div>
+                <div class="hov cursorPointer" onclick="robeChanger('changeColor')">Toggle Color</div>
             </div>
         </div>
 
@@ -68,7 +68,7 @@
             <div class="scarfSelect__container">
                 <div id="scarfValue"></div>
                 <div class="slidecontainer">
-                    <input type="range" min="0" max="30" value="0" class="slider" id="scarfSlider">
+                    <input type="range" min="0" max="30" value="0" class="slider cursorPointer" id="scarfSlider">
                 </div>
                 <div id="recommendation" class="recommendation"></div>
             </div>
@@ -88,8 +88,8 @@
         </div>
 
         <div class="editor-flex-container">
-            <div hidden id="backButton" onclick="back()" class="editor-flex-item hov">Back</div>
-            <div onclick="download()" class="editor-flex-item hov">Download</div>
+            <div hidden id="backButton" onclick="back()" class="editor-flex-item hov cursorPointer">Back</div>
+            <div onclick="download()" class="editor-flex-item hov cursorPointer">Download</div>
         </div>
 
 </body>
