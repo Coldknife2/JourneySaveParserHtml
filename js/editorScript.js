@@ -1,5 +1,6 @@
 
 const dropZoneVisibilityToggler = document.getElementById("dropZoneVisibilityToggler"); // display: flex & hidden does not works well together
+const dropZone = document.getElementById("dropZone");
 let saveFile32 = null;
 let saveFile8 = null;
 let preserve = false;
@@ -12,7 +13,15 @@ const robeSelect = document.getElementById("robeSelect");
 const scarfSelect = document.getElementById("scarfSelect");
 const symbolSelect = document.getElementById("symbolSelect");
 const backButton = document.getElementById("backButton");
+const downloadButton = document.getElementById("downloadButton");
 let visible = null;
+
+const overviewButtons = {
+    robe: document.getElementById("robeSelectButton"),
+    symbol: document.getElementById("symbolSelectButton"),
+    scarf: document.getElementById("scarfSelectButton"),
+    level: document.getElementById("levelSelectButton")
+};
 
 const offsets = {
     robe: 0x08,
@@ -22,11 +31,16 @@ const offsets = {
 };
 
 const robe = {
+    arrowL: document.getElementById("robeL"),
+    arrowR: document.getElementById("robeR"),
+    colorToggle: document.getElementById("toggleRobeColor"),
     robe: document.getElementById("robeImage"),
     currentColor: "red"
 };
 
 const symbol = {
+    arrowL: document.getElementById("symbolL"),
+    arrowR: document.getElementById("symbolR"),
     symbol: document.getElementById("symbol"),
     value: document.getElementById("symbolValue")
 };
@@ -39,11 +53,34 @@ const scarf = {
 };
 
 const level = {
+    arrowL: document.getElementById("levelL"),
+    arrowR: document.getElementById("levelR"),
     level: document.getElementById("level"),
     value: document.getElementById("levelValue"),
     currentValue: 0,
     name: ["Chapter Select", "Broken Bridge", "Pink Desert", "Sunken City", "Underground", "Tower", "Snow", "Paradise", "Credits", "Level Bryan", "Level Matt", "Level Chris"]
+};
+
+function attachListeners() {
+    overviewButtons.robe.addEventListener("click", function() { robeChanger("init"); });
+    overviewButtons.symbol.addEventListener("click", function() { symbolChanger("init"); });
+    overviewButtons.scarf.addEventListener("click", function() { scarfChanger("init"); });
+    overviewButtons.level.addEventListener("click", function() { levelChanger("init"); });
+
+    level.arrowL.addEventListener("click", function() { levelChanger("decrement"); });
+    level.arrowR.addEventListener("click", function() { levelChanger("increment"); });
+
+    robe.arrowL.addEventListener("click", function() { robeChanger("decrement"); });
+    robe.arrowR.addEventListener("click", function() { robeChanger("increment"); });
+    robe.colorToggle.addEventListener("click", function() { robeChanger("changeColor"); });
+
+    symbol.arrowL.addEventListener("click", function() { symbolChanger("decrement"); });
+    symbol.arrowR.addEventListener("click", function() { symbolChanger("increment"); });
+
+    backButton.addEventListener("click", function() { back(); });
+    downloadButton.addEventListener("click", function() { download(); });
 }
+
 
 // https://stackoverflow.com/a/11410079
 function clamp(num, min, max) {
@@ -53,6 +90,7 @@ function clamp(num, min, max) {
 function setupCall() {
     changeVisibility([dropZoneVisibilityToggler, overview, editZone]);
     checkLevel();
+    attachListeners();
 }
 
 function setScarfLengthRecommendationText() {
@@ -245,6 +283,26 @@ function callback(callbackEvent) {
     setStorage("uint8", saveFile8);
     setStorage("uint32", saveFile32);
     setupCall();
+}
+
+attachGeneralListeners();
+function attachGeneralListeners() {
+    const navbarElements = document.getElementsByClassName("flex-item");
+    for (let i=0; i<navbarElements.length; i++) {
+        // if the href is not the same as the pathname of the html file - if href doesn't link to the file it came from
+        if (navbarElements[i].href.split("/")[navbarElements[i].href.split("/").length -1] !== location.pathname.replace("/", "")) {
+            navbarElements[i].addEventListener("click", function() { preserveData(); });
+        }
+    }
+    document.getElementById("dropSymbol").addEventListener("click", function() { toggleNavbar(); });
+    window.onload = function() { load(); }
+    window.onbeforeunload = function() { unload(); }
+
+    dropZone.addEventListener("drop", function(event) { dropHandler(event); });
+    dropZone.addEventListener("dragover", function(event) { dragOverHandler(event); });
+    
+    document.addEventListener("drop", function(event) { dragOverHandler(event); });
+    document.addEventListener("dragover", function(event) { dragOverHandler(event); });
 }
 
 function preserveData() {

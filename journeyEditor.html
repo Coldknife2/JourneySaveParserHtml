@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ondrop="dragOverHandler(event);" ondragover="dragOverHandler(event);">
+<html>
 
 <head>
     <meta charset="utf-8">
@@ -9,20 +9,19 @@
     <title>Journey Editor</title>
 </head>
 
-<body onunload="unload()" onload="load()">
+<body>
     <div class="navbarContainer navbarOffsetRetracted" id="navbarContainer">
         <div class="flex-container">
             <a class="flex-item" href="./journeyEditor.html">Journey Editor</a>
-            <a class="flex-item" href="./journeyParser.html" onclick="preserveData()">Journey Parser</a>
-            <a class="flex-item" href="./about.html" onclick="preserveData()">About</a>
+            <a class="flex-item" href="./journeyParser.html">Journey Parser</a>
+            <a class="flex-item" href="./about.html">About</a>
         </div>
-        <center><img class="dropSymbol" src="./images/arrows/arrow1L.svg" id="dropSymbol" onclick="toggleNavbar()">
-        </center>
+         <center><img class="dropSymbol" src="./images/arrows/arrow1L.svg" id="dropSymbol"></center>
     </div>
 
     <center>
         <div id="dropZoneVisibilityToggler">
-            <div class="dropZone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+            <div class="dropZone" id="dropZone">
                 <center>Drop your Journey Save.bin here</center>
             </div>
         </div>
@@ -32,11 +31,11 @@
 
         <div hidden id="overview">
             <div class="overview__container">
-                <div class="overview__block hov cursorPointer" onclick="levelChanger('init')">Level Select</div>
-                <div class="overview__block hov cursorPointer" onclick="robeChanger('init')">Robe Select</div>
-                <div class="overview__block hov overview__block__scarf cursorPointer" onclick="scarfChanger('init')">
+                <div class="overview__block hov cursorPointer" id ="levelSelectButton">Level Select</div>
+                <div class="overview__block hov cursorPointer" id ="robeSelectButton">Robe Select</div>
+                <div class="overview__block hov overview__block__scarf cursorPointer" id ="scarfSelectButton">
                     Scarf Length Select</div>
-                <div class="overview__block hov cursorPointer" onclick="symbolChanger('init')">Symbol Select</div>
+                <div class="overview__block hov cursorPointer" id ="symbolSelectButton">Symbol Select</div>
             </div>
         </div>
 
@@ -44,11 +43,9 @@
             <div class="levelSelect__container">
                 <div id="levelValue" class="levelValue"></div>
                 <div class="levelSelect__imageContainer">
-                    <img onclick="levelChanger('decrement')" src="./images/arrows/arrow1L.svg" id="levelL"
-                        class="arrow">
+                    <img src="./images/arrows/arrow1L.svg" id="levelL" class="arrow">
                     <img class="levelImage" id="level" src="./images/levels/1.png">
-                    <img onclick="levelChanger('increment')" src="./images/arrows/arrow1L.svg" id="levelR"
-                        class="arrow">
+                    <img src="./images/arrows/arrow1L.svg" id="levelR" class="arrow">
                 </div>
             </div>
         </div>
@@ -56,11 +53,11 @@
         <div hidden id="robeSelect">
             <div class="robeSelect__container">
                 <div class="robeSelect__image__container">
-                    <img onclick="robeChanger('decrement')" src="./images/arrows/arrow1L.svg" id="robeL" class="arrow">
+                    <img src="./images/arrows/arrow1L.svg" id="robeL" class="arrow">
                     <img id="robeImage">
-                    <img onclick="robeChanger('increment')" src="./images/arrows/arrow1L.svg" id="robeR" class="arrow">
+                    <img src="./images/arrows/arrow1L.svg" id="robeR" class="arrow">
                 </div>
-                <div class="hov cursorPointer" onclick="robeChanger('changeColor')">Toggle Color</div>
+                <div class="hov cursorPointer" id="toggleRobeColor">Toggle Color</div>
             </div>
         </div>
 
@@ -78,18 +75,16 @@
             <div class="symbolSelect__container">
                 <div id="symbolValue" class="symbolValue"></div>
                 <div class="symbolSelect__image__container">
-                    <img onclick="symbolChanger('decrement')" src="./images/arrows/arrow1L.svg" id="symbolL"
-                        class="arrow">
+                    <img src="./images/arrows/arrow1L.svg" id="symbolL" class="arrow">
                     <div class="glyphDisplay bigGlyph" id="symbol"></div>
-                    <img onclick="symbolChanger('increment')" src="./images/arrows/arrow1R.svg" id="symbolR"
-                        class="arrow">
+                    <img src="./images/arrows/arrow1R.svg" id="symbolR" class="arrow">
                 </div>
             </div>
         </div>
 
         <div class="editor-flex-container">
-            <div hidden id="backButton" onclick="back()" class="editor-flex-item hov cursorPointer">Back</div>
-            <div onclick="download()" class="editor-flex-item hov cursorPointer">Download</div>
+            <div hidden id="backButton" class="editor-flex-item hov cursorPointer">Back</div>
+            <div id="downloadButton" class="editor-flex-item hov cursorPointer">Download</div>
         </div>
 
 </body>

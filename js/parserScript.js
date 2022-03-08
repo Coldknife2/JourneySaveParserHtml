@@ -1,5 +1,6 @@
 
 const dropZoneVisibilityToggler = document.getElementById("dropZoneVisibilityToggler"); // display: flex & hidden does not works well together
+const dropZone = document.getElementById("dropZone");
 let saveFile32 = null;
 let saveFile8 = null;
 let preserve = false;
@@ -131,6 +132,26 @@ function callback(callbackEvent) {
     setStorage("uint8", saveFile8);
     setStorage("uint32", saveFile32);
     setupCall();
+}
+
+attachGeneralListeners();
+function attachGeneralListeners() {
+    const navbarElements = document.getElementsByClassName("flex-item");
+    for (let i=0; i<navbarElements.length; i++) {
+        // if the href is not the same as the pathname of the html file - if href doesn't link to the file it came from
+        if (navbarElements[i].href.split("/")[navbarElements[i].href.split("/").length -1] !== location.pathname.replace("/", "")) {
+            navbarElements[i].addEventListener("click", function() { preserveData(); });
+        }
+    }
+    document.getElementById("dropSymbol").addEventListener("click", function() { toggleNavbar(); });
+    window.onload = function() { load(); }
+    window.onbeforeunload = function() { unload(); }
+
+    dropZone.addEventListener("drop", function(event) { dropHandler(event); });
+    dropZone.addEventListener("dragover", function(event) { dragOverHandler(event); });
+    
+    document.addEventListener("drop", function(event) { dragOverHandler(event); });
+    document.addEventListener("dragover", function(event) { dragOverHandler(event); });
 }
 
 function preserveData() {

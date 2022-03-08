@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ondrop="dragOverHandler(event);" ondragover="dragOverHandler(event);">
+<html>
 
 <head>
     <meta charset="utf-8">
@@ -9,14 +9,14 @@
     <title>About</title>
 </head>
 
-<body onunload="unload()">
+<body>
     <div class="navbarContainer navbarOffsetRetracted" id="navbarContainer">
         <div class=flex-container>
-            <a class="flex-item" href="./journeyEditor.html" onclick="preserveData()">Journey Editor</a>
-            <a class="flex-item" href="./journeyParser.html" onclick="preserveData()">Journey Parser</a>
-            <a class="flex-item" href="./about.html" onclick="preserveData()">About</a>
+            <a class="flex-item" href="./journeyEditor.html">Journey Editor</a>
+            <a class="flex-item" href="./journeyParser.html">Journey Parser</a>
+            <a class="flex-item" href="./about.html">About</a>
         </div>
-        <center><img class="dropSymbol" src="./images/arrows/arrow1L.svg" id="dropSymbol" onclick="toggleNavbar()"></center>
+        <center><img class="dropSymbol" src="./images/arrows/arrow1L.svg" id="dropSymbol"></center>
     </div>
 
     <div id="resultZone" class="resultZone">
@@ -50,10 +50,5 @@
     </div>
 </body>
 <script src="./js/script.js?version=1" type="text/javascript"></script>
-<script type="text/javascript">
-    let preserve = false;
-    function preserveData() { preserve = true; }
-    function deleteStorage(type) { localStorage.removeItem(`save${type}`); }
-    function unload() { if (!preserve) { deleteStorage("uint8"); deleteStorage("uint32"); deleteStorage("Light"); } }
-</script> 
+<script src="./js/aboutScript.js" type="text/javascript"></script> 
 </html>
