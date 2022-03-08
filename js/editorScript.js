@@ -295,8 +295,8 @@ function attachGeneralListeners() {
         }
     }
     document.getElementById("dropSymbol").addEventListener("click", function() { toggleNavbar(); });
-    window.onload = function() { load(); }
-    window.onbeforeunload = function() { unload(); }
+    window.addEventListener("load", function() { load(); });
+    window.addEventListener("beforeunload", function() { unload(); });
 
     dropZone.addEventListener("drop", function(event) { dropHandler(event); });
     dropZone.addEventListener("dragover", function(event) { dragOverHandler(event); });

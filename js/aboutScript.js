@@ -20,7 +20,7 @@ const navbarElements = document.getElementsByClassName("flex-item");
 for (let i=0; i<navbarElements.length; i++) {
     navbarElements[i].addEventListener("click", function() { preserveData(); });
 }
-window.onbeforeunload = function() { unload(); }
+window.addEventListener("beforeunload", function() { unload(); });
 document.getElementById("dropSymbol").addEventListener("click", function() { toggleNavbar(); });
 document.addEventListener("drop", function(event) { dragOverHandler(event); });
 document.addEventListener("dragover", function(event) { dragOverHandler(event); });
