@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -16,16 +16,16 @@
             <a class="flex-item" href="./journeyParser.html">Journey Parser</a>
             <a class="flex-item" href="./about.html">About</a>
         </div>
-         <center><img class="dropSymbol" src="./images/arrows/arrow1L.svg" id="dropSymbol"></center>
+        <div class="center__container"><img class="dropSymbol center" src="./images/arrows/arrow1L.svg" id="dropSymbol" alt="Expand Navigation Bar"></div>
     </div>
 
-    <center>
-        <div id="dropZoneVisibilityToggler">
+    <div class="center__container">
+        <div id="dropZoneVisibilityToggler" class="center">
             <div class="dropZone" id="dropZone">
-                <center>Drop your Journey Save.bin here</center>
+                Drop your Journey Save.bin here
             </div>
         </div>
-    </center>
+    </div>
 
     <div hidden class="editZone" id="editZone">
 
@@ -43,9 +43,9 @@
             <div class="levelSelect__container">
                 <div id="levelValue" class="levelValue"></div>
                 <div class="levelSelect__imageContainer">
-                    <img src="./images/arrows/arrow1L.svg" id="levelL" class="arrow">
-                    <img class="levelImage" id="level" src="./images/levels/1.png">
-                    <img src="./images/arrows/arrow1L.svg" id="levelR" class="arrow">
+                    <img src="./images/arrows/arrow1L.svg" id="levelL" class="arrow" alt="Previous Level">
+                    <img class="levelImage" id="level" src="./images/levels/1.png" alt="The currently selected Level">
+                    <img src="./images/arrows/arrow1L.svg" id="levelR" class="arrow" alt="Next Level">
                 </div>
             </div>
         </div>
@@ -53,9 +53,9 @@
         <div hidden id="robeSelect">
             <div class="robeSelect__container">
                 <div class="robeSelect__image__container">
-                    <img src="./images/arrows/arrow1L.svg" id="robeL" class="arrow">
-                    <img id="robeImage">
-                    <img src="./images/arrows/arrow1L.svg" id="robeR" class="arrow">
+                    <img src="./images/arrows/arrow1L.svg" id="robeL" class="arrow" alt="Previous Robe Tier">
+                    <img src="./images/robes/red1.png" id="robeImage" alt="The currently selected Robe">
+                    <img src="./images/arrows/arrow1L.svg" id="robeR" class="arrow" alt="Next Robe Tier">
                 </div>
                 <div class="hov cursorPointer" id="toggleRobeColor">Toggle Color</div>
             </div>
@@ -75,9 +75,9 @@
             <div class="symbolSelect__container">
                 <div id="symbolValue" class="symbolValue"></div>
                 <div class="symbolSelect__image__container">
-                    <img src="./images/arrows/arrow1L.svg" id="symbolL" class="arrow">
+                    <img src="./images/arrows/arrow1L.svg" id="symbolL" class="arrow" alt="Previous Symbol">
                     <div class="glyphDisplay bigGlyph" id="symbol"></div>
-                    <img src="./images/arrows/arrow1R.svg" id="symbolR" class="arrow">
+                    <img src="./images/arrows/arrow1R.svg" id="symbolR" class="arrow" alt="Next Symbol">
                 </div>
             </div>
         </div>
@@ -86,8 +86,8 @@
             <div hidden id="backButton" class="editor-flex-item hov cursorPointer">Back</div>
             <div id="downloadButton" class="editor-flex-item hov cursorPointer">Download</div>
         </div>
-
+    </div>
+    <script src="./js/editorScript.js?version=1"></script>
+    <script src="./js/script.js?version=1"></script>
 </body>
-<script src="./js/editorScript.js?version=1" type="text/javascript"></script>
-<script src="./js/script.js?version=1" type="text/javascript"></script>
 </html>
