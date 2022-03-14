@@ -16,6 +16,10 @@ html {
   transform: translate(-50%, -50%);
 }
 
+.cursorPointer:hover {
+  cursor: pointer;
+}
+
 .scarfSelect {
   width: 75vw;
 }
@@ -52,6 +56,7 @@ html {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   margin-bottom: 10vh;
   width: 100vw;
 }
@@ -74,10 +79,12 @@ html {
 .robeSelect__image__container {
   display: flex;
   margin-bottom: 2vh;
+  align-items: center;
 }
 
 .symbolSelect__image__container {
   display: flex;
+  align-items: center;
 }
 
 .img {
@@ -94,6 +101,7 @@ html {
   padding: 2vh;
   transition: transform 0.2s;
   width: 5vw;
+  height: 5vw;
 }
 
 .levelImage {
@@ -145,4 +153,3 @@ html {
   padding: 0px 10px;
   text-align: center;
 }
-

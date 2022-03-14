@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ondrop="dragOverHandler(event);" ondragover="dragOverHandler(event);">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -11,12 +11,11 @@
 
 <body>
     <div class="navbarContainer navbarOffsetRetracted" id="navbarContainer">
-        <div class=flex-container>
-            <a class="flex-item" href="./journeyEditor.html">JourneyEditor</a>
-            <a class="flex-item" href="./journeyParser.html">JourneyParser</a>
+        <div class="flex-container">
+            <a class="flex-item" href="./journeyParser.html">Journey Parser</a>
             <a class="flex-item" href="./about.html">About</a>
         </div>
-        <center><img class="dropSymbol" src="./images/arrows/arrow1L.svg" id="dropSymbol" onclick="toggleNavbar()"></center>
+        <div class="center__container"><img class="dropSymbol center" src="./images/arrows/arrow1L.svg" id="dropSymbol" alt="Expand Navigation Bar"></div>
     </div>
 
     <div id="resultZone" class="resultZone">
@@ -48,6 +47,7 @@
             </div>
         </div>
     </div>
+    <script src="./js/script.js?version=1"></script>
+    <script src="./js/aboutScript.js?version=1"></script> 
 </body>
-<script src="./js/script.js?version=1" type="text/javascript"></script>
 </html>

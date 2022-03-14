@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ondrop="dragOverHandler(event);" ondragover="dragOverHandler(event);">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -9,21 +9,21 @@
     <title>Journey Parser</title>
 </head>
 
-<body onunload="unload()" onload="load()"> 
+<body> 
     <div class="navbarContainer navbarOffsetRetracted" id="navbarContainer">
-        <div class=flex-container>
-            <a class="flex-item" href="./journeyEditor.html" onclick="preserveData()">JourneyEditor</a>
-            <a class="flex-item" href="./journeyParser.html">JourneyParser</a>
-            <a class="flex-item" href="./about.html" onclick="preserveData()">About</a>
+        <div class="flex-container">
+            <a class="flex-item" href="./journeyParser.html">Journey Parser</a>
+            <a class="flex-item" href="./about.html">About</a>
         </div>
-        <center><img class="dropSymbol" src="./images/arrows/arrow1L.svg" id="dropSymbol" onclick="toggleNavbar()"></center>
+        <div class="center__container"><img class="dropSymbol center" src="./images/arrows/arrow1L.svg" id="dropSymbol" alt="Expand Navigation Bar"></div>
     </div>
 
-    <center>
-        <div id="dropZoneVisibilityToggler">
-            <div class="dropZone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);"><center>Drop your Journey Save.bin here</center></div>
+    <div id="dropZoneVisibilityToggler" class="center">
+        <div class="dropZone" id="dropZone">
+            Drop your Journey Save.bin here
         </div>
-    </center>
+    </div>
+
     <div hidden id="resultZone" class="resultZone">
         <div class="cmatw" id="cmatw">Companions Met Along The Way</div>
         <div id="recentCompanions" class="companions">
@@ -36,7 +36,7 @@
             <div id="olderCompanionsRight" class="companionsRight"></div>
         </div>
     </div>
+    <script src="./js/parserScript.js?version=1"></script>
+    <script src="./js/script.js?version=1"></script>
 </body>
-<script src="./js/parserScript.js?version=1" type="text/javascript"></script>
-<script src="./js/script.js?version=1" type="text/javascript"></script>
 </html>
