@@ -44,7 +44,7 @@ document.body.style.backgroundImage = background;
 
 if (background === "url(./images/cmatw_sunny.png)") {
 	const link = document.createElement("link");
-	link.href = "./css/sunnyStyle.css?version=1";
+	link.href = "./css/sunnyStyle.css?version=2";
 	link.rel = "stylesheet";
 	link.type = "text/css";
 	document.getElementsByTagName("head")[0].appendChild(link);
