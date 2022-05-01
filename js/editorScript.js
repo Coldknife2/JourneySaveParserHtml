@@ -23,7 +23,8 @@ const offsets = {
 	robe: 0x08,
 	symbol: 0x0C,
 	scarf: 0x10,
-	level: 0x18
+	level: 0x18,
+	symbolNumber: 0x20
 };
 
 const robe = {
@@ -45,7 +46,8 @@ const scarf = {
 	slider: document.getElementById("scarfSlider"),
 	value: document.getElementById("scarfValue"),
 	recommendation: document.getElementById("recommendation"),
-	redScarfRecommendations: [7, 11, 17, 22, 28, 30] // + 5 for white scarf
+	redScarfRecommendations1: [7, 12, 18, 22, 28, 30], // +1 row; values by nathanj
+	redScarfRecommendations2: [7, 11, 17, 22, 28, 30] // +2 row; +6 for white scarf
 };
 
 const level = {
@@ -96,8 +98,10 @@ function setScarfLengthRecommendationText() {
 	const levelData = helper.readData("uint8", offsets.level);
 	level.currentValue = levelData;
 
-	const levelToUse = level.currentValue - 1 >= scarf.redScarfRecommendations.length ? scarf.redScarfRecommendations.length - 1 : level.currentValue - 1;
-	const suggestedScarfLength = scarf.redScarfRecommendations[levelToUse] + (robe.currentColor === "red" ? 0 : 5);
+	const valueToAdd = helper.readData("uint8", offsets.symbolNumber) % 2;
+	const recommendationsToUse = valueToAdd === 1 ? scarf.redScarfRecommendations2 : scarf.redScarfRecommendations1;
+	const levelToUse = level.currentValue - 1 >= recommendationsToUse.length ? recommendationsToUse.length - 1 : level.currentValue - 1;
+	const suggestedScarfLength = recommendationsToUse[levelToUse] + (robe.currentColor === "red" ? 0 : 6);
 	const roundedSuggestedLength = clamp(suggestedScarfLength, 0, 30);
 	scarf.recommendation.innerText = `Recommended scarf length for ${robe.currentColor} robe in ${level.name[level.currentValue]} is ${roundedSuggestedLength}`;
 }
