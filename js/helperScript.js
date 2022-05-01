@@ -10,6 +10,7 @@ class JourneyHelper {
 		this.visible = null;
 		this.dropZone = document.getElementById("dropZone");
 		this.dropZoneVisibilityToggler = document.getElementById("dropZoneVisibilityToggler"); // display: flex & hidden does not works well together
+		this.setDraggableFalse();
 	}
 
 	// Moz wiki https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
@@ -64,6 +65,16 @@ class JourneyHelper {
 
 		document.addEventListener("drop", (event) => this.dragOverHandler(event));
 		document.addEventListener("dragover", (event) => this.dragOverHandler(event));
+	}
+
+	setDraggableFalse() {
+		const divs = document.getElementsByTagName("div");
+		for (const div of divs) {
+			div.addEventListener("dragstart", (e) => e.preventDefault());
+			if (div.id.indexOf("dropZone") === -1) {
+				div.addEventListener("drop", (e) => e.preventDefault());
+			}
+		}
 	}
 
 	preserveData() {
