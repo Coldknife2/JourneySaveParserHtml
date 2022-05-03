@@ -1,31 +1,10 @@
-let preserve = false;
-
-function preserveData() {
-	preserve = true;
-}
-
-function deleteStorage(type) {
-	localStorage.removeItem(`save${type}`);
-}
-
-function unload() {
-	if (!preserve) {
-		deleteStorage("uint8");
-		deleteStorage("uint32");
-		deleteStorage("Light");
-	}
-}
-
-function dragOverHandler(ev) {
-	ev.preventDefault();
-}
+// eslint-disable-next-line no-undef
+const helper = new JourneyHelper(undefined);
 
 const navbarElements = document.getElementsByClassName("flex-item");
 for (let i=0; i<navbarElements.length; i++) {
-	navbarElements[i].addEventListener("click", function() {
-		preserveData();
-	});
+	navbarElements[i].addEventListener("click", () => helper.preserveData());
 }
-window.addEventListener("beforeunload", function() { unload(); });
-document.addEventListener("drop", function(event) { dragOverHandler(event); });
-document.addEventListener("dragover", function(event) { dragOverHandler(event); });
+window.addEventListener("beforeunload", () => helper.unload());
+document.addEventListener("drop", (event) =>  helper.dragOverHandler(event));
+document.addEventListener("dragover", (event) =>  helper.dragOverHandler(event));
