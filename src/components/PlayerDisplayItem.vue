@@ -17,7 +17,12 @@ defineProps({
 </script>
 
 <template>
-	<a :class="lightBackground" :href="playerLink" target="_blank">
+	<a
+		:class="lightBackground"
+		:href="playerLink"
+		target="_blank"
+		@dragstart.prevent
+	>
 		<div class="glyphDisplay">
 			{{ String.fromCharCode(playerSymbol) }}
 		</div>

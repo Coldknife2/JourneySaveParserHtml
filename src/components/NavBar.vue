@@ -12,9 +12,18 @@ defineProps({
 	<div class="navbarContainer" :class="{ navbarOffsetRetracted: !isDisplayed, navbarOffsetExpanded: isDisplayed }">
 		<div class="flex-container">
 			<slot name="editorLink" />
-
-			<NavBarItem link="/" display-name="Journey Parser" :path="path" />
-			<NavBarItem link="/about/" display-name="About" :path="path" />
+			<NavBarItem
+				link="/"
+				display-name="Journey Parser"
+				:path="path"
+				@dragstart.prevent
+			/>
+			<NavBarItem
+				link="/about/"
+				display-name="About"
+				:path="path"
+				@dragstart.prevent
+			/>
 		</div>
 		<div class="center__container">
 			<img

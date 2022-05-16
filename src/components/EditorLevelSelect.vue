@@ -9,7 +9,7 @@ import { level } from "@/images";
 	<div>{{ levelIndex+1 + " - " + level_names[levelIndex] }}</div>
 	<EditorLayout @left-arrow="decrementLevel" @right-arrow="incrementLevel">
 		<template #innerEditorContent>
-			<img :src="level[levelIndex]" alt="The currently selected Level">
+			<img :src="level[levelIndex]" alt="The currently selected Level" @dragstart.prevent>
 		</template>
 	</EditorLayout>
 </template>

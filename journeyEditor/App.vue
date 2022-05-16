@@ -10,7 +10,12 @@ import { initializeSaves, clearLocalStorage } from "@/ts/dataManager";
 <template>
 	<NavBar path="/journeyParser/" @preserve-data="clearData = false;">
 		<template #editorLink>
-			<NavBarItem link="/journeyEditor/" display-name="Journey Editor" path="/journeyParser/" />
+			<NavBarItem
+				link="/journeyEditor/"
+				display-name="Journey Editor"
+				path="/journeyParser/"
+				@dragstart.prevent
+			/>
 		</template>
 	</NavBar>
 	<DropZone v-if="displayDropZone" @display-content="displayDropZone = false" />

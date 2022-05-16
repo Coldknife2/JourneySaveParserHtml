@@ -10,7 +10,7 @@ import { robe } from "@/images";
 <template>
 	<EditorLayout @left-arrow="decrementRobe" @right-arrow="incrementRobe">
 		<template #innerEditorContent>
-			<img :src="robeDisplay" alt="The currently selected Robe">
+			<img :src="robeDisplay" alt="The currently selected Robe" @dragstart.prevent>
 		</template>
 	</EditorLayout>
 	<div :class="lightBackground + ' cursorPointer'" @click="toggleColor">
