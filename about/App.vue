@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import NavBar from "@/components/NavBar.vue";
 import PlayerDisplay from "@/components/PlayerDisplay.vue";
-import { setBackground } from "@/ts/visualManager";
+import { setBackground, setIcon } from "@/ts/visualManager";
 </script>
 
 <template>
@@ -13,6 +13,7 @@ import { setBackground } from "@/ts/visualManager";
 import { defineComponent } from "vue";
 
 setBackground();
+setIcon();
 export default defineComponent({
 	data() {
 		return {

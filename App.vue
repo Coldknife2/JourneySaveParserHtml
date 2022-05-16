@@ -3,6 +3,9 @@ import NavBar from "@/components/NavBar.vue";
 import PlayerDisplay from "@/components/PlayerDisplay.vue";
 import PlayerDisplayHeading from "@/components/PlayerDisplayHeading.vue";
 import DropZone from "./src/components/DropZone.vue";
+import { setBackground, setIcon } from "@/ts/visualManager";
+import { initializeSaves, clearLocalStorage, readData } from "@/ts/dataManager";
+import { offsets } from "@/ts/offsets";
 </script>
 
 <template>
@@ -20,13 +23,10 @@ import DropZone from "./src/components/DropZone.vue";
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { readData, clearLocalStorage, initializeSaves } from "@/ts/dataManager";
-import { offsets } from "@/ts/offsets";
-import { setBackground } from "@/ts/visualManager";
 
 setBackground();
+setIcon();
 initializeSaves();
-
 export default defineComponent({
 	data() {
 		return {

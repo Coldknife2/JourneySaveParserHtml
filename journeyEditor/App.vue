@@ -3,7 +3,7 @@ import NavBar from "@/components/NavBar.vue";
 import NavBarItem from "@/components/NavBarItem.vue";
 import DropZone from "@/components/DropZone.vue";
 import EditorDisplay from "@/components/EditorDisplay.vue";
-import { setBackground } from "@/ts/visualManager";
+import { setBackground, setIcon } from "@/ts/visualManager";
 import { initializeSaves, clearLocalStorage } from "@/ts/dataManager";
 </script>
 
@@ -26,6 +26,7 @@ import { initializeSaves, clearLocalStorage } from "@/ts/dataManager";
 import { defineComponent } from "vue";
 
 setBackground();
+setIcon();
 initializeSaves();
 export default defineComponent({
 	data() {

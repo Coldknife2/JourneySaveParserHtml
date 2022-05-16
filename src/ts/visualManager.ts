@@ -28,4 +28,6 @@ export function setBackground() {
 	document.body.className = background;
 }
 
-(document.querySelector("link[rel*='icon']") as HTMLAnchorElement).href = sym[randomRange(0, 20)];
+export function setIcon() {
+	(document.querySelector("link[rel*='icon']") as HTMLAnchorElement).href = sym[randomRange(0, 20)];
+}
