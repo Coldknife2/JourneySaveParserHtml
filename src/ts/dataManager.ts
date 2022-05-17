@@ -39,7 +39,7 @@ export function clearLocalStorage(remove: boolean) {
 		deleteStorage("uint32");
 		deleteStorage("light");
 	} else {
-		if (document.body.className == "sunny") {
+		if (document.body.className == "light") {
 			setStorage("light", new Uint8Array(1));
 		}
 	}
