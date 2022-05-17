@@ -9,8 +9,8 @@ defineProps({
 </script>
 
 <template>
-	<div class="navbarContainer" :class="{ navbarOffsetRetracted: !isDisplayed, navbarOffsetExpanded: isDisplayed }">
-		<div class="flex-container">
+	<div class="navbar" :class="{ navbarOffsetRetracted: !isDisplayed, navbarOffsetExpanded: isDisplayed }">
+		<div class="flex">
 			<slot name="editorLink" />
 			<NavBarItem
 				link="/"
@@ -25,7 +25,7 @@ defineProps({
 				@dragstart.prevent
 			/>
 		</div>
-		<div class="center__container">
+		<div class="center">
 			<img
 				:style="{ transform: (isDisplayed ? 'rotate(90deg)' : 'rotate(270deg)') }"
 				src="@/images/arrows/arrow1L.svg"
@@ -63,13 +63,13 @@ img {
 	width: 4vh;
 }
 
-.center__container {
+.center {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.navbarContainer {
+.navbar {
 	position: fixed;
 	min-width: 100vw;
 	width: 100vw;
@@ -85,7 +85,7 @@ img {
 	transition: top 0.6s;
 }
 
-.flex-container {
+.flex {
 	display: flex;
 	justify-content: space-evenly;
 	text-align: center;

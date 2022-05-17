@@ -45,12 +45,12 @@ export default defineComponent({
 <style>
 @import "@/css/style.css";
 html {
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-  /* https://stackoverflow.com/a/4407335 */
-  user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	/* https://stackoverflow.com/a/4407335 */
+	user-select: none;
 }
 </style>
 

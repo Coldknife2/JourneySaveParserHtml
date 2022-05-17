@@ -29,22 +29,15 @@ export default defineComponent({
 	},
 	methods: {
 		dropHandler(ev: DragEvent) {
+			// Moz wiki https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
 			this.fileReader.onload = (callbackEvent) => this.callback(callbackEvent);
-
-			console.log("File(s) dropped", typeof ev);
-
-			// Prevent default behavior (Prevent file from being opened)
 			ev.preventDefault();
-
 			if (ev.dataTransfer?.items) {
-				// Use DataTransferItemList interface to access the file(s)
-				// If dropped items aren't files, reject them
 				if (ev.dataTransfer?.items[0].kind === "file") {
 					const file = ev.dataTransfer.items[0].getAsFile() as File;
 					this.fileReader.readAsArrayBuffer(file);
 				}
 			} else {
-				// Use DataTransfer interface to access the file(s)
 				this.fileReader.readAsArrayBuffer(ev.dataTransfer?.files[0] as File);
 			}
 		},

@@ -5,7 +5,7 @@ import { clamp } from "@/ts/math";
 </script>
 
 <template>
-	<div class="scarfSelect__container">
+	<div class="container">
 		<div>{{ scarfValue }}</div>
 		<div class="container">
 			<input
@@ -75,8 +75,7 @@ input::-webkit-slider-thumb {
 	height: 2vw;
 	width: 2vw;
 }
-
-.scarfSelect__container {
+.container {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
