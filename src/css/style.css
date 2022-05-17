@@ -1,0 +1,43 @@
+@font-face {
+	font-family: Eyeglass Condensed Bold;
+	src: url(./fonts/EyeglassCondensedBold.ttf);
+}
+
+@font-face {
+	font-family: Glyphs;
+	src: url(./fonts/glyphsFont.ttf);
+}
+
+body {
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background: url("@/images/cmatw_sunny.png") no-repeat center center fixed;
+	color: white;
+	font-family: 'Eyeglass Condensed Bold', sans-serif;
+	margin: 0px;
+}
+
+.light {
+	background: url("@/images/cmatw_sunny.png") no-repeat center center fixed;
+}
+
+
+.dark {
+	background: url("@/images/cmatw_dark.png") no-repeat center center fixed;
+}
+
+.hov:hover {
+	border-radius: 7px;
+	text-shadow: -2px 0px 20px rgb(173 162 126 / 80%);
+}
+
+.hovLight:hover {
+	background-color: #eff2f51f;
+}
+
+.glyphDisplay {
+	font-family: 'Glyphs', sans-serif;
+	margin: 10px;
+}

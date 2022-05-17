@@ -14,7 +14,7 @@ At the end of the game, a screen appears that reveals the names of everyone you 
 
 ![imageOfTheCmatwScreen](./visualGuide.png)
 
-This project aims to give you the abilty to look up the names of companions you have met, in a manner similar to what the game does. It currently works with the [Steam](https://store.steampowered.com/app/638230/Journey) version only.
+This project aims to give you the ability to look up the names of companions you have met, in a manner similar to what the game does. It currently works with the [Steam](https://store.steampowered.com/app/638230/Journey) version only.
 
 This is how the project looks:
 ![CMATW project](./cmatw.png)
