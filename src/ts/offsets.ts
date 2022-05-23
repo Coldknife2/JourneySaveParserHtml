@@ -1,4 +1,3 @@
-
 export const offsets = {
 	robe_value: 0x008,
 	symbol_value: 0x00C,

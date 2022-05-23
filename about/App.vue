@@ -34,4 +34,3 @@ export default defineComponent({
 <style>
 @import "@/css/style.css";
 </style>
-
