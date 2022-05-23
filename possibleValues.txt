@@ -1,0 +1,54 @@
+General:
+	Number of Journeys
+	Number of Companions (Total)
+	Number of Symbols
+	Last time played
+	WR unlocked
+
+Journey:
+	Current Level
+	Number of Companions (Journey)
+	Scarf Value
+	Symbol
+	Robe Color | Tier
+
+Symbols:
+	Collected (Lifetime)
+	Collected (Journey)
+
+Murals:
+	Collected
+
+Derived from other values:
+	CS unlocked
+	Continue
+
+Potentially there:
+	Camera settings
+
+Combinations for symbol storage (CS)
+	0000 00
+	0001 01
+	0010 02
+	0011 03
+	0100 04
+	0101 05
+	0110 06
+	0111 07
+
+	0000 00
+	0001 01
+	0010 02
+	0011 03
+	0100 04
+	0101 05
+	0110 06
+	0111 07
+	1000 08
+	1001 09
+	1010 0A
+	1011 0B
+	1100 0C
+	1101 0D
+	1110 0E
+	1111 0F
