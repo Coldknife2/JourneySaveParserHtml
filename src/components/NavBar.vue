@@ -19,7 +19,7 @@ defineProps({
 				@dragstart.prevent
 			/>
 			<NavBarItem
-				link="/about/"
+				link="about/"
 				display-name="About"
 				:path="path"
 				@dragstart.prevent

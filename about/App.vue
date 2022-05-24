@@ -5,7 +5,7 @@ import { setBackground, setIcon } from "@/ts/visualManager";
 </script>
 
 <template>
-	<NavBar />
+	<NavBar path="about/" />
 	<PlayerDisplay :companions="companions" heading-name="Contributors" />
 </template>
 

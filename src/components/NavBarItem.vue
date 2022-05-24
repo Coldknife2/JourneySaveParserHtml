@@ -17,7 +17,7 @@ defineProps({
 
 <template>
 	<div>
-		<a :href="link" @click="emitPreserve">{{ displayName }}</a>
+		<a :href="parseLink()" @click="emitPreserve">{{ displayName }}</a>
 	</div>
 </template>
 
@@ -27,6 +27,18 @@ import { defineComponent } from "vue";
 export default defineComponent({
 	emits: ["preserveData"],
 	methods: {
+		parseLink() {
+			if (this.link === this.path) {
+				return "./";
+			} else if (this.path.length === 1) {
+				return this.link;
+			} else {
+				if (this.link.length === 1) {
+					return "./../";
+				}
+				return `./../${this.link}`;
+			}
+		},
 		emitPreserve() {
 			if (!(this.link === this.path)) {
 				this.$parent?.$emit("preserveData");
