@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build && npm run deploy",
-    "production": "vue-tsc --noEmit && vite build --base=/Journey2/ && npm run deploy",
     "deploy": "node buildScripts/deployScript buildScripts/include dist",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore",
