@@ -94,6 +94,9 @@ module.exports = {
 		],
 		"no-trailing-spaces": [
 			"error"
+		],
+		"eol-last": [
+			"error"
 		]
 	}
 };

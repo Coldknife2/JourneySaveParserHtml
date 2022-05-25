@@ -8,10 +8,10 @@ import { initializeSaves, clearLocalStorage } from "@/ts/dataManager";
 </script>
 
 <template>
-	<NavBar path="/journeyParser/" @preserve-data="clearData = false;">
+	<NavBar path="journeyParser/" @preserve-data="clearData = false;">
 		<template #editorLink>
 			<NavBarItem
-				link="/journeyEditor/"
+				link="journeyEditor/"
 				display-name="Journey Editor"
 				path="/journeyParser/"
 				@dragstart.prevent
@@ -53,4 +53,3 @@ html {
 	user-select: none;
 }
 </style>
-

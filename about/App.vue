@@ -5,7 +5,7 @@ import { setBackground, setIcon } from "@/ts/visualManager";
 </script>
 
 <template>
-	<NavBar />
+	<NavBar path="about/" />
 	<PlayerDisplay :companions="companions" heading-name="Contributors" />
 </template>
 
@@ -34,4 +34,3 @@ export default defineComponent({
 <style>
 @import "@/css/style.css";
 </style>
-
