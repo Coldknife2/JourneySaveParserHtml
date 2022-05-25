@@ -15,7 +15,7 @@ export default defineConfig({
 		rollupOptions: {
 			input: {
 				main: resolve(__dirname, "index.html"),
-				journeyEditor: resolve(__dirname, "journeyEditor/index.html"),
+				editor: resolve(__dirname, "editor/index.html"),
 				about: resolve(__dirname, "about/index.html")
 			}
 		},

@@ -8,12 +8,12 @@ import { initializeSaves, clearLocalStorage } from "@/ts/dataManager";
 </script>
 
 <template>
-	<NavBar path="journeyParser/" @preserve-data="clearData = false;">
+	<NavBar path="editor/" @preserve-data="clearData = false;">
 		<template #editorLink>
 			<NavBarItem
-				link="journeyEditor/"
+				link="editor/"
 				display-name="Journey Editor"
-				path="/journeyParser/"
+				path="editor/"
 				@dragstart.prevent
 			/>
 		</template>
