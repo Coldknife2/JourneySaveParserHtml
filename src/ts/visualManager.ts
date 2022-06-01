@@ -11,7 +11,7 @@ function determineTimePercentage() {
 export function setBackground() {
 	const randomPick = Math.random() > determineTimePercentage();
 
-	let saveLight, saves;
+	let saveLight = true, saves = true;
 	if (checkLocalStorageAvailable()) {
 		saveLight = localStorage.getItem("savelight") === null;
 		saves = localStorage.getItem("saveuint8") === null && localStorage.getItem("saveuint32") === null;
