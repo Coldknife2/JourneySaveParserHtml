@@ -41,3 +41,8 @@ body {
 	font-family: 'Glyphs', sans-serif;
 	margin: 10px;
 }
+
+.cursorPointer:hover {
+	cursor: pointer;
+  }
+  

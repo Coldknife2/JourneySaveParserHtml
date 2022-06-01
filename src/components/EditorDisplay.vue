@@ -32,10 +32,10 @@ import { offsets } from "@/ts/offsets";
 			<EditorSymbolSelect />
 		</div>
 		<div class="flex-container">
-			<div v-if="active.some(e=>e>0)" :class="lightBackground + ' flex-item'" @click="returnToOverview">
+			<div v-if="active.some(e=>e>0)" :class="lightBackground + ' flex-item cursorPointer'" @click="returnToOverview">
 				Back
 			</div>
-			<div :class="lightBackground + ' flex-item'" @click="download">
+			<div :class="lightBackground + ' flex-item cursorPointer'" @click="download">
 				Download
 			</div>
 		</div>
@@ -86,7 +86,6 @@ export default defineComponent({
 
 <style scoped>
 @import "@/css/style.css";
-
 .editZone {
   font-size: 5vh;
   left: 50%;
@@ -110,7 +109,4 @@ export default defineComponent({
   margin: 20px 50px;
   text-align: center;
 }
-
-
 </style>
-
