@@ -1,6 +1,6 @@
 # Journey Parser
 
-The official website can be found [here](https://www.coldknife2.ninja/Journey/journeyParser.html).
+The official website can be found [here](https://journey.coldknife2.ninja/).
 
 ___
 ## CMATW
@@ -19,13 +19,13 @@ This project aims to give you the ability to look up the names of companions you
 This is how the project looks:
 ![CMATW project](./cmatw.png)
 
-To understand what the "SAVE.BIN" you are asked to drop is, please take a look at [The Journey Wiki](https://journey.fandom.com/wiki/Guide:_PC_version_-_Companions_Met_Along_the_Way_Problems).
+To understand what the "SAVE.BIN" you are asked to drop is, please take a look at [The Journey Wiki](https://journey.fandom.com/wiki/Guide:_PC_version_-_Companions_Met_Along_the_Way_Problems#Steam_-_SAVE.BIN).
 
 ___
 ## Save editor
 
 Recently, a new functionality was added that has been around in the Journey community for a while in the form of an [Executable](https://github.com/zackmichaels5/Journey-Save-Editor).
 
-But now it is also available [online](https://www.coldknife2.ninja/Journey/journeyEditor.html)!
+But now it is also available [online](https://journey.coldknife2.ninja/editor/)!
 
 With this editor, you are able to choose multiple parameters concerning your Journey save, such as scarf length, symbol used, robe color and selected level.
