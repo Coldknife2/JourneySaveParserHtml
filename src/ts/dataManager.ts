@@ -1,5 +1,37 @@
+class MemoryStorage {
+	data: Record<string, string>;
+	constructor() {
+		this.data = {};
+	}
+
+	getItem(key: string) {
+		return this.data[key];
+	}
+
+	setItem(key: string, data: string) {
+		this.data[key] = data;
+	}
+
+	removeItem(key: string) {
+		delete this.data[key];
+	}
+}
+
 let save8: Uint8Array;
 let save32: Uint32Array;
+const storage = checkLocalStorageAvailable() ? localStorage : new MemoryStorage();
+
+export function checkLocalStorageAvailable() {
+	try {
+		const testKey = "__test_save";
+		localStorage.setItem(testKey, testKey);
+		localStorage.getItem(testKey);
+		localStorage.removeItem(testKey);
+		return true;
+	} catch {
+		return false;
+	}
+}
 
 export function initializeSaves() {
 	getStorage("uint8");
@@ -12,11 +44,11 @@ export function setStorage(type: string, data: Uint8Array | Uint32Array) {
 	} else {
 		save32 = data as Uint32Array;
 	}
-	localStorage.setItem(`save${type}`, data.toString());
+	storage.setItem(`save${type}`, data.toString());
 }
 
 export function getStorage(type: string) {
-	const local = localStorage.getItem(`save${type}`)?.split(",").map(Number) as Array<number> | undefined;
+	const local = storage.getItem(`save${type}`)?.split(",").map(Number) as Array<number> | undefined;
 	if (local === undefined) { return false; }
 	const s8 = Uint8Array.from(local);
 	const s32 = Uint32Array.from(local);
@@ -29,7 +61,7 @@ export function getStorage(type: string) {
 }
 
 export function deleteStorage(type: string) {
-	localStorage.removeItem(`save${type}`);
+	storage.removeItem(`save${type}`);
 }
 
 export function clearLocalStorage(remove: boolean) {

@@ -1,3 +1,4 @@
+import { checkLocalStorageAvailable } from "./dataManager";
 import { randomRange, squarePolynomial } from "./math";
 import { sym } from "@/images";
 
@@ -9,8 +10,12 @@ function determineTimePercentage() {
 
 export function setBackground() {
 	const randomPick = Math.random() > determineTimePercentage();
-	const saveLight = localStorage.getItem("savelight") === null;
-	const saves = localStorage.getItem("saveuint8") === null && localStorage.getItem("saveuint32") === null;
+
+	let saveLight, saves;
+	if (checkLocalStorageAvailable()) {
+		saveLight = localStorage.getItem("savelight") === null;
+		saves = localStorage.getItem("saveuint8") === null && localStorage.getItem("saveuint32") === null;
+	}
 
 	let background;
 	if (saveLight && saves) {
