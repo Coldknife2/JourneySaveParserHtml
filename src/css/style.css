@@ -44,5 +44,21 @@ body {
 
 .cursorPointer:hover {
 	cursor: pointer;
-  }
-  
+}
+
+.enableSelection {
+	-khtml-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	-webkit-user-select: text;
+	user-select: text;
+}
+
+html {
+	/* https://stackoverflow.com/a/4407335 */
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}

@@ -26,7 +26,7 @@ defineProps({
 		<div class="glyphDisplay">
 			{{ String.fromCharCode(playerSymbol) }}
 		</div>
-		<div class="playerDisplay">
+		<div class="playerDisplay enableSelection">
 			{{ playerName }}
 		</div>
 	</a>

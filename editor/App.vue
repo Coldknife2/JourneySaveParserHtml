@@ -44,12 +44,4 @@ export default defineComponent({
 
 <style>
 @import "@/css/style.css";
-html {
-	/* https://stackoverflow.com/a/4407335 */
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-webkit-user-select: none;
-	user-select: none;
-}
 </style>
