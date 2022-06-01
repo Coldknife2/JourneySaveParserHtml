@@ -6,15 +6,17 @@ import { clamp } from "@/ts/math";
 
 <template>
 	<div class="container">
-		<div>{{ scarfValue }}</div>
-		<div class="container">
+		<div>Scarf Length - {{ scarfValue }}</div>
+		<div class="scarfContainer">
+			<div ref="activeScarf" class="scarf activeScarf" />
+			<div ref="inactiveScarf" class="scarf inactiveScarf" />
 			<input
 				type="range"
 				min="0"
 				max="30"
 				:value="scarfValue"
 				class="cursorPointer"
-				@input="updateScarf($event)"
+				@input="updateScarf(parseInt(($event.target as HTMLInputElement).value))"
 			>
 		</div>
 		<div class="recommendation">
@@ -30,27 +32,38 @@ export default defineComponent({
 	data() {
 		return {
 			robeColor: readData("uint8", offsets.robe_value) as number > 3 ? "White" : "Red",
+			levelValue: clamp(readData("uint8", offsets.level_value) as number-1, 0, 11),
 			scarfValue: readData("uint8", offsets.scarf_value) as number,
+			scarfRule: readData("uint8", offsets.symbol_amount) as number % 2,
 			redScarfRecommendations1: [7, 12, 18, 22, 28, 30], // +1 row; values by nathanj
 			redScarfRecommendations2: [7, 11, 17, 22, 28, 30], // +2 row; +6 for white scarf
-			recommendation: 0,
-			levelValue: 0
+			recommendation: 0
 		};
 	},
 	mounted() {
-		this.levelValue = clamp(readData("uint8", offsets.level_value) as number-1, 0, 11);
+		this.adjustScarfColor();
 		this.updateRecommendation();
+		this.updateScarf(this.scarfValue);
 	},
 	methods: {
-		updateScarf(ev: Event) {
-			const value = parseInt((ev.target as HTMLInputElement).value);
-			this.scarfValue = value;
-			writeData("uint8", offsets.scarf_value, value);
+		adjustScarfColor() {
+			let toAdd;
+			if (this.robeColor === "Red") {
+				toAdd = "red";
+			} else {
+				toAdd = "white";
+			}
+			(this.$refs.activeScarf as HTMLElement).classList.add(toAdd);
+			(this.$refs.inactiveScarf as HTMLElement).classList.add(toAdd);
+		},
+		updateScarf(val: number) {
+			(this.$refs.activeScarf as HTMLElement).style.width = (val / 30 * 100) + "%";
+			this.scarfValue = val;
+			writeData("uint8", offsets.scarf_value, val);
 			this.updateRecommendation();
 		},
 		updateRecommendation() {
-			const scarfRule = readData("uint8", offsets.symbol_amount) as number % 2;
-			const recommendationsToUse = scarfRule === 0 ? this.redScarfRecommendations1 : this.redScarfRecommendations2;
+			const recommendationsToUse = this.scarfRule === 0 ? this.redScarfRecommendations1 : this.redScarfRecommendations2;
 			const lvl = this.levelValue > recommendationsToUse.length ? recommendationsToUse.length - 1 : this.levelValue;
 			const suggestedScarfLength = recommendationsToUse[lvl] + (this.robeColor === "Red" ? 0 : 6);
 			this.recommendation = clamp(suggestedScarfLength, 0, 30);
@@ -60,25 +73,73 @@ export default defineComponent({
 </script>
 
 <style scoped>
-input {
-	-webkit-appearance: none;
-	appearance: none;
-	background: linear-gradient(to right, #d1160d 10%, #ffe7a4 90%);
-	height: 1vh;
-	width: 20vw;
-}
-
-input::-webkit-slider-thumb {
-	-webkit-appearance: none;
-	appearance: none;
-	background: url('@/images/symbols/0.svg');
-	height: 2vw;
-	width: 2vw;
-}
 .container {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
+}
+
+.scarfContainer {
+	margin-top: 6vh;
+	margin-bottom: 3vh;
+	width: 60vw;
+	height: 94px;
+	position: relative;
+}
+
+.scarf {
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-size: cover;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.red {
+	background-image: url("@/images/scarf/red.png");
+}
+
+.white {
+	background-image: url("@/images/scarf/white.png");
+}
+
+.activeScarf {
+	z-index: 2;
+	width: 00%;
+}
+
+.inactiveScarf {
+	z-index: 1;
+	filter: grayscale();
+	width: 100%;
+}
+
+input {
+	z-index: 4;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	position: absolute;
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+}
+
+input::-moz-range-thumb {
+	width: 6px;
+	height: 120px;
+	background-color: white;
+}
+
+input::-webkit-slider-thumb {
+	width: 6px;
+	height: 120px;
+	background-color: white;
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
 }
 
 .recommendation {
@@ -89,5 +150,4 @@ input::-webkit-slider-thumb {
 	width: 90vw;
 	text-align: center;
 }
-
 </style>
