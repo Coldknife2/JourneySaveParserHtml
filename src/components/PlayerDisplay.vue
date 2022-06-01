@@ -57,7 +57,6 @@ defineProps({
 </template>
 
 <style scoped>
-
 .resultZone {
 	margin-bottom: 10px;
 	margin-left: 16%;
@@ -73,6 +72,4 @@ defineProps({
 	height: 100%;
 	width: 100%;
 }
-
-
 </style>

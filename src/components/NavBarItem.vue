@@ -49,7 +49,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 div {
 	flex-basis: 100%;
 	overflow: hidden;
@@ -63,5 +62,4 @@ a:visited {
 	font-size: 3vh;
 	text-decoration: none;
 }
-
 </style>

@@ -60,11 +60,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 div {
 	margin-top: 2vh;
 	display: flex;
 	justify-content: center;
 }
-
 </style>

@@ -47,7 +47,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 div {
 	display: flex;
 	justify-content: center;
@@ -58,5 +57,4 @@ img {
 	border: 4px dashed #ffffff;
 	width: 30vw;
 }
-
 </style>

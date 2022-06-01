@@ -51,7 +51,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 .block {
   display: flex;
   flex-direction: column;
@@ -69,5 +68,4 @@ export default defineComponent({
   justify-content: space-evenly;
   width: 100vw;
 }
-
 </style>

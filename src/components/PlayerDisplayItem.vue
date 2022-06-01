@@ -33,7 +33,6 @@ defineProps({
 </template>
 
 <style scoped>
-
 a {
 	color: #ffffff;
 	display: flex;
@@ -46,5 +45,4 @@ a {
 	margin: 10px;
 	width: 29vw;
 }
-
 </style>

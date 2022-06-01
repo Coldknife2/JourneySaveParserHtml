@@ -56,7 +56,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 img {
 	transform: rotate(270deg);
 	transition: transform 0.3s;
@@ -90,5 +89,4 @@ img {
 	justify-content: space-evenly;
 	text-align: center;
 }
-
 </style>
