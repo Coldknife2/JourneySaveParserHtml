@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import EditorLayout from "./EditorLayout.vue";
+import { lightBackground } from "@/ts/visualManager";
 import { writeData, readData } from "@/ts/dataManager";
 import { offsets } from "@/ts/offsets";
+import { randomRange } from "@/ts/math";
 </script>
 
 <template>
@@ -13,6 +15,9 @@ import { offsets } from "@/ts/offsets";
 			</div>
 		</template>
 	</EditorLayout>
+	<div :class="lightBackground + ' cursorPointer'" @click="randomSymbol">
+		Random Symbol
+	</div>
 </template>
 
 <script lang="ts">
@@ -42,13 +47,22 @@ export default defineComponent({
 		},
 		updateSymbol() {
 			this.symbolIndex = readData("uint8", offsets.symbol_value) as number;
+		},
+		randomSymbol() {
+			const symbolData = readData("uint8", offsets.symbol_value) as number;
+			let randomData = randomRange(0, 20);
+			while (symbolData === randomData) {
+				randomData = randomRange(0, 20);
+			}
+			writeData("uint8", offsets.symbol_value, randomData);
+			this.updateSymbol();
+
 		}
 	}
 });
 </script>
 
 <style scoped>
-
 div {
 	display: flex;
 	justify-content: center;
