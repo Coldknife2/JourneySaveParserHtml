@@ -2,7 +2,7 @@
 import NavBar from "@/components/NavBar.vue";
 import PlayerDisplay from "@/components/PlayerDisplay.vue";
 import PlayerDisplayHeading from "@/components/PlayerDisplayHeading.vue";
-import DropZone from "./src/components/DropZone.vue";
+import DropZone from "@/components/DropZone.vue";
 import { setBackground, setIcon } from "@/ts/visualManager";
 import { initializeSaves, clearLocalStorage, readData } from "@/ts/dataManager";
 import { offsets } from "@/ts/offsets";
@@ -48,7 +48,7 @@ export default defineComponent({
 				const nameBuffer = tempNameBuffer.subarray(0, tempNameBuffer.indexOf(0x00));
 				const name = new TextDecoder().decode(nameBuffer);
 
-				const steamIdV3int32 = readData("uint32", offsets.companion_name_offset+32*i+24);
+				const steamIdV3int32 = readData("uint32", offsets.companion_name_offset+32*i+24) as number;
 				const steamIdV3 = `[U:1:${steamIdV3int32}]`;
 				const safeHtmlSteamIdV3 = encodeURIComponent(steamIdV3);
 				const steamLink = "https://steamcommunity.com/profiles/" + safeHtmlSteamIdV3;
@@ -57,7 +57,7 @@ export default defineComponent({
 				const symbol = 0xE001 + symbolNumber;
 
 				const companionData = { l: steamLink, n: name, s: symbol };
-				if (steamIdV3int32 != 0) {
+				if (steamIdV3int32 !== 0) {
 					(i < companionNumber) ? this.companions.push(companionData) : this.pastCompanions.push(companionData);
 				} else {
 					break;
