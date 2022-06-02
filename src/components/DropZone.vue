@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import { lightBackground } from "@/ts/visualManager";
+import { setStorage, getStorage } from "@/ts/dataManager";
+</script>
+
 <template>
 	<div class="dropZoneContainer">
 		<div
@@ -8,12 +13,23 @@
 		>
 			Drop your Journey Save.bin here
 		</div>
+		<div class="toolTip">
+			Where can I find my Save.bin?
+			<span class="toolTipContent enableSelection">
+				<div :class="lightBackground">
+					C:/Users/*/AppData/Local/Annapurna Interactive/Journey/Steam
+					<br>and<br>
+					%steamInstallDirectory%/steamapps/common/638230/remote
+					<br>
+					See <a href="https://journey.fandom.com/wiki/Guide:_PC_version_-_Companions_Met_Along_the_Way_Problems#Steam_-_SAVE.BIN" target="_blank">here.</a>
+				</div>
+			</span>
+		</div>
 	</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { setStorage, getStorage } from "@/ts/dataManager";
 
 export default defineComponent({
 	emits: ["displayContent"],
@@ -57,6 +73,8 @@ export default defineComponent({
 .dropZoneContainer {
 	display: flex;
 	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 	width: 100%;
 }
 
@@ -71,5 +89,33 @@ export default defineComponent({
 	margin-bottom: 10px;
 	margin-top: 18%;
 	width: 95%;
+}
+
+.toolTip {
+	font-size: 2vh;
+	margin-top: 1em;
+}
+
+.toolTipContent {
+	font-size: 2vh;
+	width: 40vw;
+	display: none;
+	position: absolute;
+	overflow: hidden;
+	text-align: center;
+	padding-top: 1rem;
+	margin-left: -20vw;
+	left: 50%;
+}
+
+.toolTip:hover .toolTipContent,
+.toolTipContent:hover {
+	display: block;
+}
+
+a,
+a:visited {
+	color: #cf1515;
+	text-decoration: none;
 }
 </style>
