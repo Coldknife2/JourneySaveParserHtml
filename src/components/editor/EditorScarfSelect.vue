@@ -64,7 +64,7 @@ export default defineComponent({
 		},
 		updateRecommendation() {
 			const recommendationsToUse = this.scarfRule === 0 ? this.redScarfRecommendations1 : this.redScarfRecommendations2;
-			const lvl = this.levelValue > recommendationsToUse.length ? recommendationsToUse.length - 1 : this.levelValue;
+			const lvl = this.levelValue >= recommendationsToUse.length ? recommendationsToUse.length - 1 : this.levelValue;
 			const suggestedScarfLength = recommendationsToUse[lvl] + (this.robeColor === "Red" ? 0 : 6);
 			this.recommendation = clamp(suggestedScarfLength, 0, 30);
 		}
