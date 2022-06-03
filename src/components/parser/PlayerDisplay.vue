@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import PlayerDisplayItem from "@/components/PlayerDisplayItem.vue";
-import PlayerDisplayHeading from "@/components/PlayerDisplayHeading.vue";
+import PlayerDisplayItem from "@/components/parser/PlayerDisplayItem.vue";
+import PlayerDisplayHeading from "@/components/parser/PlayerDisplayHeading.vue";
 defineProps({
 	headingName: {
 		type: String,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import EditorLayout from "./EditorLayout.vue";
+import EditorLayout from "@/components/editor/EditorLayout.vue";
 import { writeData, readData } from "@/ts/dataManager";
 import { offsets, level_names } from "@/ts/offsets";
 import { level } from "@/images";

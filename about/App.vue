@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NavBar from "@/components/NavBar.vue";
-import PlayerDisplay from "@/components/PlayerDisplay.vue";
+import PlayerDisplay from "@/components/parser/PlayerDisplay.vue";
 import { setBackground, setIcon } from "@/ts/visualManager";
 </script>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import NavBar from "@/components/NavBar.vue";
-import PlayerDisplay from "@/components/PlayerDisplay.vue";
-import PlayerDisplayHeading from "@/components/PlayerDisplayHeading.vue";
+import PlayerDisplay from "@/components/parser/PlayerDisplay.vue";
+import PlayerDisplayHeading from "@/components/parser/PlayerDisplayHeading.vue";
 import DropZone from "@/components/DropZone.vue";
 import { setBackground, setIcon } from "@/ts/visualManager";
 import { initializeSaves, clearLocalStorage, readData } from "@/ts/dataManager";
