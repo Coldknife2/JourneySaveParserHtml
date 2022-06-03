@@ -85,7 +85,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import "@/css/style.css";
 .editZone {
   font-size: 5vh;
   left: 50%;

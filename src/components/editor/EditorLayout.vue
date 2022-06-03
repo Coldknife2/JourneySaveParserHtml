@@ -53,7 +53,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import "@/css/style.css";
 img:hover {
 	transform: scale(1.15);
 	transition: transform 0.2s;
