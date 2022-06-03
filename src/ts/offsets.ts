@@ -1,18 +1,23 @@
 export const offsets = {
-	robe_value: 0x008,
-	symbol_value: 0x00C,
-	scarf_value: 0x0010,
-	level_value: 0x0018,
-	symbol_amount: 0x0020,
-	journey_amount: 0x004C,
-	companion_amount: 0x1588,
-	companion_amount_total: 0x198C,
-	companion_name_offset: 0x19A8,
-	companion_ID_offset: 0x19C0,
-	companion_symbol_offset: 0x1200
+	robeValue: 0x008,
+	symbolValue: 0x00C,
+	scarfValue: 0x0010,
+	levelValue: 0x0018,
+	symbolAmount: 0x0020,
+	journeyAmount: 0x004C,
+	glyphValue: 0x0054,
+	glyphOffset: 0x0158,
+	companionAmount: 0x1588,
+	companionAmountTotal: 0x198C,
+	companionName: 0x19A8,
+	companionID: 0x19C0,
+	companionOffset: 0x0020,
+	companionSymbol: 0x1200,
+	companionSymbolOffset: 0x003C
 };
 
-export const level_names = [
+export const levelNames = [
+	"Chapter Select",
 	"Broken Bridge",
 	"Pink Desert",
 	"Sunken City",

@@ -11,7 +11,7 @@ import { offsets } from "@/ts/offsets";
 
 <template>
 	<div class="editZone">
-		<div v-if="active.every(e=>e===0)">
+		<div v-if="active.every((e: number)=>e===0)">
 			<EditorOverview
 				@enable-level="setActive(0)"
 				@enable-robe="setActive(1)"
@@ -32,7 +32,7 @@ import { offsets } from "@/ts/offsets";
 			<EditorSymbolSelect />
 		</div>
 		<div class="flex-container">
-			<div v-if="active.some(e=>e>0)" :class="lightBackground + ' flex-item cursorPointer'" @click="returnToOverview">
+			<div v-if="active.some((e: number)=>e>0)" :class="lightBackground + ' flex-item cursorPointer'" @click="returnToOverview">
 				Back
 			</div>
 			<div :class="lightBackground + ' flex-item cursorPointer'" @click="download">
@@ -56,9 +56,9 @@ export default defineComponent({
 	},
 	methods: {
 		checkLevel() {
-			const levelData = readData("uint8", offsets.level_value);
+			const levelData = readData("uint8", offsets.levelValue);
 			if (levelData === 0) {
-				writeData("uint8", offsets.level_value, 1);
+				writeData("uint8", offsets.levelValue, 1);
 			}
 		},
 		setActive(index: number) {

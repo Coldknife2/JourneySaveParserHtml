@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { writeData, readData } from "@/ts/dataManager";
-import { offsets, level_names } from "@/ts/offsets";
+import { offsets, levelNames } from "@/ts/offsets";
 import { clamp } from "@/ts/math";
 </script>
 
@@ -20,7 +20,7 @@ import { clamp } from "@/ts/math";
 			>
 		</div>
 		<div class="recommendation">
-			Recommended scarf length for {{ robeColor }} Robe in {{ level_names[levelValue] }} is {{ recommendation }}
+			Recommended scarf length for {{ robeColor }} Robe in {{ levelNames[levelValue] }} is {{ recommendation }}
 		</div>
 	</div>
 </template>
@@ -31,10 +31,10 @@ import { defineComponent } from "vue";
 export default defineComponent({
 	data() {
 		return {
-			robeColor: readData("uint8", offsets.robe_value) as number > 3 ? "White" : "Red",
-			levelValue: clamp(readData("uint8", offsets.level_value) as number-1, 0, 11),
-			scarfValue: readData("uint8", offsets.scarf_value) as number,
-			scarfRule: readData("uint8", offsets.symbol_amount) as number % 2,
+			robeColor: readData("uint8", offsets.robeValue) as number > 3 ? "White" : "Red",
+			levelValue: clamp(readData("uint8", offsets.levelValue) as number-1, 0, 11),
+			scarfValue: readData("uint8", offsets.scarfValue) as number,
+			scarfRule: readData("uint8", offsets.symbolAmount) as number % 2,
 			redScarfRecommendations1: [7, 12, 18, 22, 28, 30], // +1 row; values by nathanj
 			redScarfRecommendations2: [7, 11, 17, 22, 28, 30], // +2 row; +6 for white scarf
 			recommendation: 0
@@ -59,7 +59,7 @@ export default defineComponent({
 		updateScarf(val: number) {
 			(this.$refs.activeScarf as HTMLElement).style.width = (val / 30 * 100) + "%";
 			this.scarfValue = val;
-			writeData("uint8", offsets.scarf_value, val);
+			writeData("uint8", offsets.scarfValue, val);
 			this.updateRecommendation();
 		},
 		updateRecommendation() {

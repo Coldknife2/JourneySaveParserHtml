@@ -34,27 +34,27 @@ export default defineComponent({
 	},
 	methods: {
 		decrementSymbol() {
-			let symbolData = readData("uint8", offsets.symbol_value) as number;
+			let symbolData = readData("uint8", offsets.symbolValue) as number;
 			symbolData = symbolData - 1 < 0 ? 20 : symbolData - 1;
-			writeData("uint8", offsets.symbol_value, symbolData);
+			writeData("uint8", offsets.symbolValue, symbolData);
 			this.updateSymbol();
 		},
 		incrementSymbol() {
-			let symbolData = readData("uint8", offsets.symbol_value) as number;
+			let symbolData = readData("uint8", offsets.symbolValue) as number;
 			symbolData = (symbolData+1) % 21;
-			writeData("uint8", offsets.symbol_value, symbolData);
+			writeData("uint8", offsets.symbolValue, symbolData);
 			this.updateSymbol();
 		},
 		updateSymbol() {
-			this.symbolIndex = readData("uint8", offsets.symbol_value) as number;
+			this.symbolIndex = readData("uint8", offsets.symbolValue) as number;
 		},
 		randomSymbol() {
-			const symbolData = readData("uint8", offsets.symbol_value) as number;
-			let randomData = randomRange(0, 20);
-			while (symbolData === randomData) {
+			const symbolData = readData("uint8", offsets.symbolValue) as number;
+			let randomData = symbolData;
+			do {
 				randomData = randomRange(0, 20);
-			}
-			writeData("uint8", offsets.symbol_value, randomData);
+			} while (symbolData === randomData);
+			writeData("uint8", offsets.symbolValue, randomData);
 			this.updateSymbol();
 
 		}
