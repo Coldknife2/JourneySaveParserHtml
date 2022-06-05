@@ -59,10 +59,10 @@ export default defineComponent({
 		},
 		callback(callbackEvent: ProgressEvent) {
 			const buffer = (callbackEvent.target as FileReader).result as ArrayBuffer;
-			const saveFile8 = new Uint8Array(buffer);
-			const saveFile32 = new Uint32Array(buffer);
-			setStorage("uint8", saveFile8);
-			setStorage("uint32", saveFile32);
+			setStorage("uint8", new Uint8Array(buffer));
+			setStorage("uint16", new Uint16Array(buffer));
+			setStorage("uint32", new Uint32Array(buffer));
+			setStorage("uint64", new BigUint64Array(buffer));
 			this.$emit("displayContent");
 		}
 	}
