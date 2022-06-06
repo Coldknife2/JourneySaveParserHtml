@@ -20,7 +20,7 @@ defineProps({
 			/>
 			<NavBarItem
 				link="/"
-				display-name="Journey Parser"
+				display-name="Parser"
 				:path="path"
 				@dragstart.prevent
 			/>

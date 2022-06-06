@@ -12,7 +12,7 @@ import { initializeSaves, clearLocalStorage } from "@/ts/dataManager";
 		<template #editorLink>
 			<NavBarItem
 				link="editor/"
-				display-name="Journey Editor"
+				display-name="Editor"
 				path="editor/"
 				@dragstart.prevent
 			/>
