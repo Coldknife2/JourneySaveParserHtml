@@ -13,6 +13,12 @@ defineProps({
 		<div class="flex">
 			<slot name="editorLink" />
 			<NavBarItem
+				link="stats/"
+				display-name="Statistics"
+				:path="path"
+				@dragstart.prevent
+			/>
+			<NavBarItem
 				link="/"
 				display-name="Journey Parser"
 				:path="path"
