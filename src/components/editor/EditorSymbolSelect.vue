@@ -10,7 +10,7 @@ import { randomRange } from "@/ts/math";
 	<div>Symbol {{ symbolIndex }}</div>
 	<EditorLayout @left-arrow="decrementSymbol" @right-arrow="incrementSymbol">
 		<template #innerEditorContent>
-			<div class="glyphDisplay bigGlyph">
+			<div ref="symbol" class="glyphDisplay bigGlyph">
 				{{ String.fromCharCode(0xE001+symbolIndex) }}
 			</div>
 		</template>
@@ -24,6 +24,7 @@ import { randomRange } from "@/ts/math";
 import { defineComponent } from "vue";
 
 export default defineComponent({
+	emits: ["returnToOverview"],
 	data() {
 		return {
 			symbolIndex: 0
@@ -55,14 +56,19 @@ export default defineComponent({
 				randomData = randomRange(0, 20);
 			} while (symbolData === randomData);
 			writeData("uint8", offsets.symbolValue, randomData);
-			this.updateSymbol();
-
+			(this.$refs.symbol as HTMLElement).classList.add("fade");
+			setTimeout(() => this.$emit("returnToOverview"), 500);
 		}
 	}
 });
 </script>
 
 <style scoped>
+@keyframes fade-out {
+	0% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
 div {
 	display: flex;
 	justify-content: center;
@@ -71,5 +77,10 @@ div {
 
 .bigGlyph {
   font-size: 3.5em;
+}
+
+.fade {
+	animation: fade-out .5s;
+	opacity: 0;
 }
 </style>

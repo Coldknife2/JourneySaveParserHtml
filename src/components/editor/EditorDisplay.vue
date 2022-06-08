@@ -29,7 +29,7 @@ import { offsets } from "@/ts/offsets";
 			<EditorScarfSelect />
 		</div>
 		<div v-if="active[3]===1">
-			<EditorSymbolSelect />
+			<EditorSymbolSelect @return-to-overview="returnToOverview" />
 		</div>
 		<div class="flex-container">
 			<div v-if="active.some((e: number)=>e>0)" :class="lightBackground + ' flex-item cursorPointer'" @click="returnToOverview">
