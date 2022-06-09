@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import StatsSectionHeading from "@/components/stats//StatsSectionHeading.vue";
-import StatsItemRow from "@/components/stats/StatsItemRow.vue";
-import StatsHoverItem from "@/components/stats/StatsHoverItem.vue";
-import StatsSectionItem from "@/components/stats/StatsSectionItem.vue";
+import StatsSectionHeading from "./StatsSectionHeading.vue";
+import StatsItemRow from "./StatsItemRow.vue";
+import StatsHoverItem from "./StatsHoverItem.vue";
+import StatsSectionItem from "./StatsSectionItem.vue";
 import { readData } from "@/ts/dataManager";
 import { offsets, levelNames } from "@/ts/offsets";
 </script>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import StatsSectionHeading from "@/components/stats//StatsSectionHeading.vue";
-import StatsSectionItem from "@/components/stats/StatsSectionItem.vue";
-import StatsValueItem from "@/components/stats/StatsValueItem.vue";
+import StatsSectionHeading from "./StatsSectionHeading.vue";
+import StatsSectionItem from "./StatsSectionItem.vue";
+import StatsValueItem from "./StatsValueItem.vue";
 import { readData } from "@/ts/dataManager";
 import { offsets } from "@/ts/offsets";
 </script>

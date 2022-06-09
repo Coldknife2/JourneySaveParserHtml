@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NavBarItem from "@/components/NavBarItem.vue";
+import NavBarItem from "./NavBarItem.vue";
 defineProps({
 	path: {
 		type: String,

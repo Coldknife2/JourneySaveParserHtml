@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import StatsGeneralDisplay from "@/components/stats/StatsGeneralDisplay.vue";
-import StatsJourneyDisplay from "@/components/stats/StatsJourneyDisplay.vue";
-import StatsMiscDisplay from "@/components/stats/StatsMiscDisplay.vue";
-import StatsSymbolDisplay from "@/components/stats/StatsSymbolDisplay.vue";
-import StatsMuralDisplay from "@/components/stats/StatsMuralDisplay.vue";
+import StatsGeneralDisplay from "./StatsGeneralDisplay.vue";
+import StatsJourneyDisplay from "./StatsJourneyDisplay.vue";
+import StatsMiscDisplay from "./StatsMiscDisplay.vue";
+import StatsSymbolDisplay from "./StatsSymbolDisplay.vue";
+import StatsMuralDisplay from "./StatsMuralDisplay.vue";
 </script>
 
 <template>

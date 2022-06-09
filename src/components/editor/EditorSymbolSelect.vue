@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import EditorLayout from "@/components/editor/EditorLayout.vue";
+import EditorLayout from "./EditorLayout.vue";
 import { lightBackground } from "@/ts/visualManager";
 import { writeData, readData } from "@/ts/dataManager";
 import { offsets } from "@/ts/offsets";
@@ -57,7 +57,7 @@ export default defineComponent({
 			} while (symbolData === randomData);
 			writeData("uint8", offsets.symbolValue, randomData);
 			(this.$refs.symbol as HTMLElement).classList.add("fade");
-			setTimeout(() => this.$emit("returnToOverview"), 500);
+			setTimeout(() => this.$emit("returnToOverview"), 300);
 		}
 	}
 });
@@ -80,7 +80,7 @@ div {
 }
 
 .fade {
-	animation: fade-out .5s;
+	animation: fade-out .3s;
 	opacity: 0;
 }
 </style>
