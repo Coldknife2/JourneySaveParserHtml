@@ -26,7 +26,7 @@ export default defineComponent({
 		return {
 			journeyNumber: readData("uint8", offsets.journeyAmount) as number,
 			level: readData("uint8", offsets.levelValue) as number,
-			whiteRobeUnlocked: readData("uint8", offsets.whiteRobeValue) as number === 21,
+			whiteRobeUnlocked: readData("uint8", offsets.uniqueSymbolAmount) as number >= 21,
 			lastPlayed: new Date(
 				(readData("uint64", offsets.lastPlayedValue) as number) / 10000 - 11644473600000
 			).toLocaleDateString(undefined, {

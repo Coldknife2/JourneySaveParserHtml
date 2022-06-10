@@ -4,7 +4,7 @@ export const offsets = {
 	scarfValue: 0x0010,
 	levelValue: 0x0018,
 	symbolAmount: 0x0020,
-	whiteRobeValue: 0x0024,
+	uniqueSymbolAmount: 0x0024,
 	muralValue: 0x0028,
 	muralValueSnow: 0x0029,
 	lastPlayedValue: 0x0040,
