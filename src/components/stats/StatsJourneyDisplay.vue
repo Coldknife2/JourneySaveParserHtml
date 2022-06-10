@@ -37,7 +37,7 @@ export default defineComponent({
 	mounted() {
 		const robeData = readData("uint8", offsets.robeValue) as number;
 		this.robeColor = robeData > 3 ? "White" : "Red";
-		this.robeTier = (robeData > 3 ? robeData - 4 : robeData).toString();
+		this.robeTier = (robeData > 3 ? robeData - 2 : robeData + 1).toString();
 	}
 });
 </script>
