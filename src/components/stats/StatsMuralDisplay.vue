@@ -15,7 +15,6 @@ import { offsets, levelNames } from "@/ts/offsets";
 				v-for="lvl in muralData.length"
 				:key="lvl"
 				:row-name="levelNames[lvl-1]"
-				:use-space-around="true"
 			>
 				<template #rowContent>
 					<StatsHoverItem

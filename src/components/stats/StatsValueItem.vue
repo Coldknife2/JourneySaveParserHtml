@@ -35,12 +35,11 @@ defineProps({
 }
 
 .name {
-	flex-basis: 60%;
 	white-space: nowrap;
 }
 
 .value {
-	flex-basis: 40%;
+	flex-basis: 100%;
 	text-align: right;
 	margin-right: 8vw;
 }

@@ -3,10 +3,6 @@ defineProps({
 	rowName: {
 		type: String,
 		required: true
-	},
-	useSpaceAround: {
-		type: Boolean,
-		default: false
 	}
 });
 </script>
@@ -16,7 +12,7 @@ defineProps({
 		<div class="name">
 			{{ rowName }}
 		</div>
-		<div :class="'content ' + (useSpaceAround ? 'around' : 'between') ">
+		<div class="content">
 			<slot name="rowContent" />
 		</div>
 	</div>
@@ -37,13 +33,6 @@ defineProps({
 .content {
 	display: flex;
 	flex-basis: 60%;
-}
-
-.around {
-	justify-content: space-around;
-}
-
-.between {
-	justify-content: space-between;
+	justify-content: left;
 }
 </style>
