@@ -1,6 +1,5 @@
 # Journey Save Parser
 
----
 
 ## Official Links
 <ul>
@@ -10,7 +9,6 @@
 	<li><a href="https://journey.coldknife2.ninja/about/">About</a></li>
 </ul>
 
----
 ## Parser
 
 [Journey](https://thatgamecompany.com/journey/) is a video game made by [ThatGameCompany](https://thatgamecompany.com/).
@@ -27,8 +25,6 @@ This works by extracting the necessary values from the save file of the game (SA
 The parser also differentiates between past and current Journeys and groups companions accordingly.
 
 ![CMATW project](./cmatw.png)
-
----
 
 ## Editor and Statistics
 
