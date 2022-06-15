@@ -1,17 +1,25 @@
 <script setup lang="ts">
 import { lightBackground } from "@/ts/visualManager";
-import { setStorage, getStorage } from "@/ts/dataManager";
+import { setStorage, getStorage, clearLocalStorage } from "@/ts/dataManager";
 </script>
 
 <template>
 	<div class="dropZoneContainer">
 		<div
 			class="dropZone"
+			@click="clickInput"
 			@dragenter.prevent
 			@dragover.prevent
 			@drop.prevent="dropHandler($event)"
 		>
-			Drop your Journey Save.bin here
+			Click or Drop your Journey Save.bin here
+			<input
+				ref="input"
+				type="file"
+				style="display: none;"
+				accept=".bin"
+				@change="inputHandler()"
+			>
 		</div>
 		<div class="toolTip">
 			Where can I find my Save.bin?
@@ -40,16 +48,25 @@ export default defineComponent({
 	},
 	mounted() {
 		const saveFile8 = getStorage("uint8");
+		const saveFile16 = getStorage("uint16");
 		const saveFile32 = getStorage("uint32");
-		if (saveFile8 && saveFile32) { this.$emit("displayContent"); }
+		const saveFile64 = getStorage("uint64");
+		if (saveFile8 && saveFile16 && saveFile32 && saveFile64) { this.$emit("displayContent"); } else { clearLocalStorage(true); }
+		this.fileReader.onload = (callbackEvent) => this.callback(callbackEvent);
 	},
 	methods: {
+		clickInput() {
+			(this.$refs.input as HTMLInputElement).click();
+		},
+		inputHandler() {
+			this.fileReader.readAsArrayBuffer(((this.$refs.input as HTMLInputElement).files as FileList)[0]);
+		},
 		dropHandler(ev: DragEvent) {
 			// Moz wiki https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop
 			this.fileReader.onload = (callbackEvent) => this.callback(callbackEvent);
 			ev.preventDefault();
 			if (ev.dataTransfer?.items) {
-				if (ev.dataTransfer?.items[0].kind === "file") {
+				if (ev.dataTransfer.items[0].kind === "file") {
 					const file = ev.dataTransfer.items[0].getAsFile() as File;
 					this.fileReader.readAsArrayBuffer(file);
 				}
