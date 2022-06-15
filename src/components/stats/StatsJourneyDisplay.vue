@@ -13,7 +13,7 @@ import { offsets, levelNames } from "@/ts/offsets";
 			<StatsValueItem item-name="Current Level" :item-value="levelNames[level]" />
 			<StatsValueItem item-name="Companions met (this Journey)" :item-value="companionNumber" />
 			<StatsValueItem item-name="Scarf length" :item-value="scarfValue" />
-			<StatsValueItem item-name="Symbol" :item-value="String.fromCharCode(0xE001 + symbolValue)" :use-glyph="true" />
+			<StatsValueItem item-name="Symbol" :item-value="String.fromCharCode(0xF101 + symbolValue)" :use-glyph="true" />
 			<StatsValueItem item-name="Robe Tier" :item-value="robeTier" />
 			<StatsValueItem item-name="Robe Color" :item-value="robeColor" />
 		</template>

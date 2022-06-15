@@ -54,7 +54,7 @@ export default defineComponent({
 				const steamLink = "https://steamcommunity.com/profiles/" + safeHtmlSteamIdV3;
 
 				const symbolNumber = readData("uint8", offsets.companionSymbol+offsets.companionSymbolOffset*i) as number;
-				const symbol = 0xE001 + symbolNumber;
+				const symbol = 0xF101 + symbolNumber;
 
 				const companionData = { l: steamLink, n: name, s: symbol };
 				if (steamIdV3int32 !== 0) {

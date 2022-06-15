@@ -24,7 +24,7 @@ import { offsets, levelNames } from "@/ts/offsets";
 						:unlocked="muralData[lvl-1][mural-1]"
 						:index="[1, lvl-1, mural-1]"
 						:use-up="true"
-						:text="[1, 1]"
+						:text="[1, 21]"
 					/>
 				</template>
 			</StatsItemRow>

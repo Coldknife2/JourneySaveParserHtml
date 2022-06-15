@@ -11,7 +11,7 @@ import { randomRange } from "@/ts/math";
 	<EditorLayout @left-arrow="decrementSymbol" @right-arrow="incrementSymbol">
 		<template #innerEditorContent>
 			<div ref="symbol" class="glyphDisplay bigGlyph">
-				{{ String.fromCharCode(0xE001+symbolIndex) }}
+				{{ String.fromCharCode(0xF101+symbolIndex) }}
 			</div>
 		</template>
 	</EditorLayout>

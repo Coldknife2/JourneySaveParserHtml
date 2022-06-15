@@ -26,8 +26,8 @@ defineProps({
 <template>
 	<div class="item">
 		<div class="imageContainer">
-			<div :style="{ opacity: unlocked ? 1 : 0.5 }">
-				{{ String.fromCharCode(0xE001 + (!text[0] ? randomRange(0, 20) : text[1])) }}
+			<div :style="{ opacity: unlocked ? 1 : 0.35 }">
+				{{ String.fromCharCode(0xF101 + (!text[0] ? randomRange(0, 20) : text[1])) }}
 			</div>
 			<div ref="img" :class="'imageDisplay ' + (useUp ? 'above' : 'below')" :style="{ backgroundImage: `url(${locations[index[0]][index[1]][index[2]]})` }" />
 		</div>
