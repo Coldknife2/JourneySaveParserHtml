@@ -5,6 +5,7 @@ import StatsHoverItem from "./StatsHoverItem.vue";
 import StatsSectionItem from "./StatsSectionItem.vue";
 import { readData } from "@/ts/dataManager";
 import { offsets, levelNames } from "@/ts/offsets";
+import { randomRange, shuffle } from "@/ts/math";
 </script>
 
 <template>
@@ -22,6 +23,7 @@ import { offsets, levelNames } from "@/ts/offsets";
 						:key="glyph"
 						:unlocked="symbolData[lvl-1][glyph-1]"
 						:index="[0, lvl-1, glyph-1]"
+						:symbol="0xF101+randomSymbol()"
 					/>
 				</template>
 			</StatsItemRow>
@@ -35,11 +37,13 @@ import { defineComponent } from "vue";
 export default defineComponent({
 	data() {
 		return {
-			symbolData: new Array<Array<boolean>>()
+			symbolData: new Array<Array<boolean>>(),
+			symbols: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 		};
 	},
 	mounted() {
 		this.extractSymbolData();
+		this.symbols = shuffle(this.symbols);
 	},
 	methods: {
 		extractSymbolData() {
@@ -51,6 +55,13 @@ export default defineComponent({
 					dataSplit.unshift(false);
 				}
 				this.symbolData.push(dataSplit);
+			}
+		},
+		randomSymbol() {
+			if (this.symbols.length > 0) {
+				return this.symbols.pop() as number;
+			} else {
+				return randomRange(0, 20);
 			}
 		}
 	}

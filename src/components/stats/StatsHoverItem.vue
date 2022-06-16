@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { randomRange } from "@/ts/math";
 import { locations } from "@/images";
 defineProps({
 	unlocked: {
@@ -14,11 +13,9 @@ defineProps({
 		type: [Object],
 		required: true
 	},
-	text: {
-		type: [Object],
-		default() {
-			return [0, 0];
-		}
+	symbol: {
+		type: Number,
+		required: true
 	}
 });
 </script>
@@ -27,7 +24,7 @@ defineProps({
 	<div class="item">
 		<div class="imageContainer">
 			<div :style="{ opacity: unlocked ? 1 : 0.35 }">
-				{{ String.fromCharCode(0xF101 + (!text[0] ? randomRange(0, 20) : text[1])) }}
+				{{ String.fromCharCode(symbol) }}
 			</div>
 			<div ref="img" :class="'imageDisplay ' + (useUp ? 'above' : 'below')" :style="{ backgroundImage: `url(${locations[index[0]][index[1]][index[2]]})` }" />
 		</div>
@@ -50,14 +47,16 @@ defineProps({
 	z-index: 2;
 	opacity: 0;
 	border: 3px solid #ffffff;
-	border-radius: 50%;
+	border-radius: 25%;
 	height: 15vh;
 	width: 15vh;
 	display: contents;
+	object-fit: contain;
+	background-size: 15vh;
 	position: absolute;
 	overflow: hidden;
 	margin-left: -6.3vh;
-	transition: opacity 0.5s;
+	transition: opacity 0.3s;
 }
 
 .above {
