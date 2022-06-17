@@ -11,7 +11,7 @@ export function clamp(num: number, min: number, max: number) {
 	return num <= min ? min : num >= max ? max : num;
 }
 
+// https://stackoverflow.com/a/46545530/12203337
 export function shuffle(a: Array<number>) {
-	// https://stackoverflow.com/a/46545530/12203337
 	return a.map(v => ({ v, sort: Math.random() })).sort((q, s) => q.sort - s.sort).map(({ v }) => v);
 }
