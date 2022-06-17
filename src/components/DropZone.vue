@@ -21,13 +21,13 @@ import { setStorage, getStorage, clearLocalStorage } from "@/ts/dataManager";
 				@change="inputHandler()"
 			>
 		</div>
-		<div class="toolTip">
+		<div ref="tooltip" :class="'toolTip cursorPointer ' + lightBackground" @click="tooltipEnabled = !tooltipEnabled">
 			Where can I find my Save.bin?
-			<span class="toolTipContent enableSelection">
-				<div :class="lightBackground">
+			<span :class="'toolTipContent '+ (tooltipEnabled ? 'reveal' : '')">
+				<div>
 					C:/Users/*/AppData/Local/Annapurna Interactive/Journey/Steam
 					<br>and<br>
-					%steamInstallDirectory%/steamapps/common/638230/remote
+					%steamInstallDirectory%/userdata/*/638230/remote
 					<br>
 					See <a href="https://journey.fandom.com/wiki/Guide:_PC_version_-_Companions_Met_Along_the_Way_Problems#Steam_-_SAVE.BIN" target="_blank">here.</a>
 				</div>
@@ -43,7 +43,8 @@ export default defineComponent({
 	emits: ["displayContent"],
 	data() {
 		return {
-			fileReader: new FileReader()
+			fileReader: new FileReader(),
+			tooltipEnabled: false
 		};
 	},
 	mounted() {
@@ -56,6 +57,7 @@ export default defineComponent({
 	},
 	methods: {
 		clickInput() {
+			this.tooltipEnabled = true;
 			(this.$refs.input as HTMLInputElement).click();
 		},
 		inputHandler() {
@@ -125,8 +127,7 @@ export default defineComponent({
 	left: 50%;
 }
 
-.toolTip:hover .toolTipContent,
-.toolTipContent:hover {
+.reveal {
 	display: block;
 }
 
