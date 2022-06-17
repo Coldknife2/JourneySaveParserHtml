@@ -37,55 +37,55 @@ import white2 from "./robes/white2.png";
 import white3 from "./robes/white3.png";
 import white4 from "./robes/white4.png";
 
-import level1 from "./levels/1.png";
-import level2 from "./levels/2.png";
-import level3 from "./levels/3.png";
-import level4 from "./levels/4.png";
-import level5 from "./levels/5.png";
-import level6 from "./levels/6.png";
-import level7 from "./levels/7.png";
-import level8 from "./levels/8.png";
-import level9 from "./levels/9.png";
-import level10 from "./levels/10.png";
-import level11 from "./levels/11.png";
+import level1 from "./levels/1.webp";
+import level2 from "./levels/2.webp";
+import level3 from "./levels/3.webp";
+import level4 from "./levels/4.webp";
+import level5 from "./levels/5.webp";
+import level6 from "./levels/6.webp";
+import level7 from "./levels/7.webp";
+import level8 from "./levels/8.webp";
+import level9 from "./levels/9.webp";
+import level10 from "./levels/10.webp";
+import level11 from "./levels/11.webp";
 
-import CSS0 from "./locations/CS/S0.png";
-import CSS1 from "./locations/CS/S1.png";
-import CSS2 from "./locations/CS/S2.png";
-import CSM0 from "./locations/CS/M0.png";
+import CSS0 from "./locations/CS/S0.webp";
+import CSS1 from "./locations/CS/S1.webp";
+import CSS2 from "./locations/CS/S2.webp";
+import CSM0 from "./locations/CS/M0.webp";
 
-import BBS0 from "./locations/BB/S0.png";
-import BBS1 from "./locations/BB/S1.png";
-import BBS2 from "./locations/BB/S2.png";
-import BBM0 from "./locations/BB/M0.png";
+import BBS0 from "./locations/BB/S0.webp";
+import BBS1 from "./locations/BB/S1.webp";
+import BBS2 from "./locations/BB/S2.webp";
+import BBM0 from "./locations/BB/M0.webp";
 
-import PDS0 from "./locations/PD/S0.png";
-import PDS1 from "./locations/PD/S1.png";
-import PDS2 from "./locations/PD/S2.png";
-import PDS3 from "./locations/PD/S3.png";
-import PDM0 from "./locations/PD/M0.png";
-import PDM1 from "./locations/PD/M1.png";
+import PDS0 from "./locations/PD/S0.webp";
+import PDS1 from "./locations/PD/S1.webp";
+import PDS2 from "./locations/PD/S2.webp";
+import PDS3 from "./locations/PD/S3.webp";
+import PDM0 from "./locations/PD/M0.webp";
+import PDM1 from "./locations/PD/M1.webp";
 
-import SCS0 from "./locations/SC/S0.png";
-import SCS1 from "./locations/SC/S1.png";
-import SCS2 from "./locations/SC/S2.png";
-import SCM0 from "./locations/SC/M0.png";
-import SCM1 from "./locations/SC/M1.png";
+import SCS0 from "./locations/SC/S0.webp";
+import SCS1 from "./locations/SC/S1.webp";
+import SCS2 from "./locations/SC/S2.webp";
+import SCM0 from "./locations/SC/M0.webp";
+import SCM1 from "./locations/SC/M1.webp";
 
-import UGS0 from "./locations/UG/S0.png";
-import UGS1 from "./locations/UG/S1.png";
-import UGS2 from "./locations/UG/S2.png";
-import UGS3 from "./locations/UG/S3.png";
-import UGM0 from "./locations/UG/M0.png";
+import UGS0 from "./locations/UG/S0.webp";
+import UGS1 from "./locations/UG/S1.webp";
+import UGS2 from "./locations/UG/S2.webp";
+import UGS3 from "./locations/UG/S3.webp";
+import UGM0 from "./locations/UG/M0.webp";
 
-import TOS0 from "./locations/TO/S0.png";
-import TOS1 from "./locations/TO/S1.png";
-import TOS2 from "./locations/TO/S2.png";
-import TOS3 from "./locations/TO/S3.png";
-import TOM0 from "./locations/TO/M0.png";
+import TOS0 from "./locations/TO/S0.webp";
+import TOS1 from "./locations/TO/S1.webp";
+import TOS2 from "./locations/TO/S2.webp";
+import TOS3 from "./locations/TO/S3.webp";
+import TOM0 from "./locations/TO/M0.webp";
 
-import SNM0 from "./locations/SN/M0.png";
-import SNM1 from "./locations/SN/M1.png";
+import SNM0 from "./locations/SN/M0.webp";
+import SNM1 from "./locations/SN/M1.webp";
 
 export const sym = [sym0, sym1, sym2, sym3, sym4, sym5, sym6, sym7, sym8, sym9, sym10, sym11, sym12, sym13, sym14, sym15, sym16, sym17, sym18, sym19, sym20];
 export const level = [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11];
