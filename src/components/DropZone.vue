@@ -94,7 +94,8 @@ export default defineComponent({
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	width: 100%;
+	width: 100vw;
+	height: 100vh;
 }
 
 .dropZone {
@@ -106,7 +107,6 @@ export default defineComponent({
 	height: 33vh;
 	justify-content: center;
 	margin-bottom: 10px;
-	margin-top: 18%;
 	width: 95%;
 }
 
