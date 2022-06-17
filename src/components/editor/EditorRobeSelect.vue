@@ -32,25 +32,25 @@ export default defineComponent({
 	},
 	methods: {
 		decrementRobe() {
-			const robeData = readData("uint8", offsets.robe_value) as number;
+			const robeData = readData("uint8", offsets.robeValue) as number;
 			const newTier = robeData > 3 ? robeData - 1 < 4 ? 6 : clamp(robeData - 1, 4, 6) : robeData - 1 < 0 ? 3 : clamp(robeData - 1, 0, 3);
-			writeData("uint8", offsets.robe_value, newTier);
+			writeData("uint8", offsets.robeValue, newTier);
 			this.updateRobe();
 		},
 		incrementRobe() {
-			const robeData = readData("uint8", offsets.robe_value) as number;
+			const robeData = readData("uint8", offsets.robeValue) as number;
 			const newTier = robeData > 3 ? clamp(clamp(robeData + 1, 4, 7) % 7, 4, 6) : clamp(robeData + 1, 0, 4) % 4;
-			writeData("uint8", offsets.robe_value, newTier);
+			writeData("uint8", offsets.robeValue, newTier);
 			this.updateRobe();
 		},
 		toggleColor() {
-			const robeData = readData("uint8", offsets.robe_value) as number;
+			const robeData = readData("uint8", offsets.robeValue) as number;
 			const newColor = robeData ? robeData > 3 ? robeData - 3 : robeData + 3 : 4;
-			writeData("uint8", offsets.robe_value, newColor);
+			writeData("uint8", offsets.robeValue, newColor);
 			this.updateRobe();
 		},
 		updateRobe() {
-			const robeData = readData("uint8", offsets.robe_value) as number;
+			const robeData = readData("uint8", offsets.robeValue) as number;
 			const color = robeData > 3 ? 1 : 0;
 			const tier = robeData > 3 ? robeData - 4 : robeData;
 			this.robeDisplay = robe[color][tier];
@@ -60,11 +60,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 div {
 	margin-top: 2vh;
 	display: flex;
 	justify-content: center;
 }
-
 </style>

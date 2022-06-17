@@ -17,9 +17,7 @@ defineProps({
 	</div>
 </template>
 
-
 <style scoped>
-
 div {
 	font-size: 5vh;
 	font-weight: normal;
@@ -33,5 +31,4 @@ div {
 .cmatwPast {
 	padding: 5vh 0 2vh 10px;
 }
-
 </style>

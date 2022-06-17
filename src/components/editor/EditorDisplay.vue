@@ -11,7 +11,7 @@ import { offsets } from "@/ts/offsets";
 
 <template>
 	<div class="editZone">
-		<div v-if="active.every(e=>e===0)">
+		<div v-if="active.every((e: number)=>e===0)">
 			<EditorOverview
 				@enable-level="setActive(0)"
 				@enable-robe="setActive(1)"
@@ -29,13 +29,13 @@ import { offsets } from "@/ts/offsets";
 			<EditorScarfSelect />
 		</div>
 		<div v-if="active[3]===1">
-			<EditorSymbolSelect />
+			<EditorSymbolSelect @return-to-overview="returnToOverview" />
 		</div>
 		<div class="flex-container">
-			<div v-if="active.some(e=>e>0)" :class="lightBackground + ' flex-item'" @click="returnToOverview">
+			<div v-if="active.some((e: number)=>e>0)" :class="lightBackground + ' flex-item cursorPointer'" @click="returnToOverview">
 				Back
 			</div>
-			<div :class="lightBackground + ' flex-item'" @click="download">
+			<div :class="lightBackground + ' flex-item cursorPointer'" @click="download">
 				Download
 			</div>
 		</div>
@@ -56,9 +56,9 @@ export default defineComponent({
 	},
 	methods: {
 		checkLevel() {
-			const levelData = readData("uint8", offsets.level_value);
+			const levelData = readData("uint8", offsets.levelValue);
 			if (levelData === 0) {
-				writeData("uint8", offsets.level_value, 1);
+				writeData("uint8", offsets.levelValue, 1);
 			}
 		},
 		setActive(index: number) {
@@ -85,8 +85,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import "@/css/style.css";
-
 .editZone {
   font-size: 5vh;
   left: 50%;
@@ -110,7 +108,4 @@ export default defineComponent({
   margin: 20px 50px;
   text-align: center;
 }
-
-
 </style>
-

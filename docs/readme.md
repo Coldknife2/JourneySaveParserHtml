@@ -1,31 +1,34 @@
-# Journey Parser
+# Journey Save Parser
 
-The official website can be found [here](https://www.coldknife2.ninja/Journey/journeyParser.html).
 
-___
-## CMATW
+## Official Links
+<ul>
+	<li><a href="https://journey.coldknife2.ninja/">Parser</a></li>
+	<li><a href="https://journey.coldknife2.ninja/stats/">Statistics</a></li>
+	<li><a href="https://journey.coldknife2.ninja/editor/">Editor</a></li>
+	<li><a href="https://journey.coldknife2.ninja/about/">About</a></li>
+</ul>
+
+## Parser
+
 [Journey](https://thatgamecompany.com/journey/) is a video game made by [ThatGameCompany](https://thatgamecompany.com/).
 
-In this game, during your adventure, you are matched with players from around the world without knowing who they are.
+This game does not contain any conventional communication means, instead players have to rely on their movement and [chirps](https://journey.fandom.com/wiki/Chirp) alone. 
 
-You cannot communicate via speech or text as there is only what is called a [Chirp](https://journey.fandom.com/wiki/Chirp), but the adventure is a shared experience and you can often grow fond of your partner(s).
-
-At the end of the game, a screen appears that reveals the names of everyone you have met during your adventure. This screen is called "Companions Met Along The Way" or CMATW for short.
+At the end of a playthrough the game reveals the companions a player has been traveling with in form of the CMATW (Companions Met Along The Way) screen.
 
 ![imageOfTheCmatwScreen](./visualGuide.png)
 
-This project aims to give you the ability to look up the names of companions you have met, in a manner similar to what the game does. It currently works with the [Steam](https://store.steampowered.com/app/638230/Journey) version only.
+This project emulates said CMATW screen to give players the ability to look up their companions mid-Journey in order to enable greater cooperation.
+This works by extracting the necessary values from the save file of the game (SAVE.BIN) and parsing it. An explanation of the SAVE.BIN file can be found [here](https://journey.fandom.com/wiki/Guide:_PC_version_-_Companions_Met_Along_the_Way_Problems#Steam_-_SAVE.BIN).
 
-This is how the project looks:
+The parser also differentiates between past and current Journeys and groups companions accordingly.
+
 ![CMATW project](./cmatw.png)
 
-To understand what the "SAVE.BIN" you are asked to drop is, please take a look at [The Journey Wiki](https://journey.fandom.com/wiki/Guide:_PC_version_-_Companions_Met_Along_the_Way_Problems).
+## Editor and Statistics
 
-___
-## Save editor
+The project also contains an editor, that allows players to edit certain values in their save file for greater freedom when playing. Players are asked to show consideration towards fellow companions and should not abuse the editor or attempt to ruin the game for others.
+The editor has drawn inspiration as well as offsets from [this](https://github.com/zackmichaels5/Journey-Save-Editor) project.
 
-Recently, a new functionality was added that has been around in the Journey community for a while in the form of an [Executable](https://github.com/zackmichaels5/Journey-Save-Editor).
-
-But now it is also available [online](https://www.coldknife2.ninja/Journey/journeyEditor.html)!
-
-With this editor, you are able to choose multiple parameters concerning your Journey save, such as scarf length, symbol used, robe color and selected level.
+The Statistics page displays all currently known information that can be extracted from a given SAVE.BIN (Companion data is not included, as it is already shown in the Parser).

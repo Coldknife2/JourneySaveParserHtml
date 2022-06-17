@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NavBarItem from "@/components/NavBarItem.vue";
+import NavBarItem from "./NavBarItem.vue";
 defineProps({
 	path: {
 		type: String,
@@ -13,8 +13,14 @@ defineProps({
 		<div class="flex">
 			<slot name="editorLink" />
 			<NavBarItem
+				link="stats/"
+				display-name="Statistics"
+				:path="path"
+				@dragstart.prevent
+			/>
+			<NavBarItem
 				link="/"
-				display-name="Journey Parser"
+				display-name="Parser"
 				:path="path"
 				@dragstart.prevent
 			/>
@@ -56,7 +62,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 img {
 	transform: rotate(270deg);
 	transition: transform 0.3s;
@@ -90,5 +95,4 @@ img {
 	justify-content: space-evenly;
 	text-align: center;
 }
-
 </style>

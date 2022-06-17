@@ -1,7 +1,8 @@
+import { checkLocalStorageAvailable, getStorage } from "./dataManager";
 import { randomRange, squarePolynomial } from "./math";
 import { sym } from "@/images";
 
-export let lightBackground = "";
+export let lightBackground = "hov";
 
 function determineTimePercentage() {
 	return 1 - squarePolynomial(new Date().getHours(), -0.00694444, 0.1666666);
@@ -9,8 +10,12 @@ function determineTimePercentage() {
 
 export function setBackground() {
 	const randomPick = Math.random() > determineTimePercentage();
-	const saveLight = localStorage.getItem("savelight") === null;
-	const saves = localStorage.getItem("saveuint8") === null && localStorage.getItem("saveuint32") === null;
+
+	let saveLight = true, saves = true;
+	if (checkLocalStorageAvailable()) {
+		saveLight = localStorage.getItem("savelight") === null;
+		saves = !(getStorage("uint8") && getStorage("uint16") && getStorage("uint32") && getStorage("uint64"));
+	}
 
 	let background;
 	if (saveLight && saves) {
@@ -21,9 +26,7 @@ export function setBackground() {
 		background = "dark";
 	}
 	if (background === "light") {
-		lightBackground = "hov hovLight";
-	} else {
-		lightBackground = "hov";
+		lightBackground += " hovLight";
 	}
 	document.body.className = background;
 }

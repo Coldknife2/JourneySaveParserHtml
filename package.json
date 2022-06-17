@@ -8,10 +8,10 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore",
     "lint:fix": "npm run lint -- --fix",
-    "generateFont": "icon-font-generator src/images/symbols/*.svg -o dist -n glyphsFont"
+    "generateFont": "fantasticon"
   },
   "dependencies": {
-    "icon-font-generator": "^2.1.11",
+    "fantasticon": "^1.2.3",
     "vue": "^3.2.25"
   },
   "devDependencies": {

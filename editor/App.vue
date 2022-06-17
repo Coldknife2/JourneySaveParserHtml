@@ -2,7 +2,7 @@
 import NavBar from "@/components/NavBar.vue";
 import NavBarItem from "@/components/NavBarItem.vue";
 import DropZone from "@/components/DropZone.vue";
-import EditorDisplay from "@/components/EditorDisplay.vue";
+import EditorDisplay from "@/components/editor/EditorDisplay.vue";
 import { setBackground, setIcon } from "@/ts/visualManager";
 import { initializeSaves, clearLocalStorage } from "@/ts/dataManager";
 </script>
@@ -12,7 +12,7 @@ import { initializeSaves, clearLocalStorage } from "@/ts/dataManager";
 		<template #editorLink>
 			<NavBarItem
 				link="editor/"
-				display-name="Journey Editor"
+				display-name="Editor"
 				path="editor/"
 				@dragstart.prevent
 			/>
@@ -37,19 +37,10 @@ export default defineComponent({
 	},
 	mounted() {
 		window.onbeforeunload = () => clearLocalStorage(this.clearData);
-
 	}
 });
 </script>
 
 <style>
 @import "@/css/style.css";
-html {
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-webkit-user-select: none;
-	/* https://stackoverflow.com/a/4407335 */
-	user-select: none;
-}
 </style>
