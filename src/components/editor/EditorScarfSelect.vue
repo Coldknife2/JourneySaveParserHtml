@@ -20,7 +20,7 @@ import { clamp } from "@/ts/math";
 			>
 		</div>
 		<div class="recommendation">
-			Recommended scarf length for {{ robeColor }} Robe in {{ levelNames[levelValue] }} is {{ recommendation }}
+			Recommended scarf length for {{ robeColor }} Robe in {{ levelNames[levelValue+1] }} is {{ recommendation }}
 		</div>
 	</div>
 </template>
