@@ -35,8 +35,8 @@ export default defineComponent({
 			levelValue: clamp(readData("uint8", offsets.levelValue) as number-1, 0, 11),
 			scarfValue: readData("uint8", offsets.scarfValue) as number,
 			scarfRule: readData("uint8", offsets.symbolAmount) as number % 2,
-			redScarfRecommendations1: [7, 12, 18, 22, 28, 30], // +1 row; values by nathanj
-			redScarfRecommendations2: [7, 11, 17, 22, 28, 30], // +2 row; +6 for white scarf
+			redScarfRecommendations1: [7, 12, 18, 22, 28, 30, 30, 30, 12, 30], // +1 row; values by nathanj
+			redScarfRecommendations2: [7, 11, 17, 22, 28, 30, 30, 30, 11, 30], // +2 row; +6 for white scarf
 			recommendation: 0
 		};
 	},
