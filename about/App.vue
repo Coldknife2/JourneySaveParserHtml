@@ -6,7 +6,7 @@ import { setBackground, setIcon } from "@/ts/visualManager";
 
 <template>
 	<NavBar path="about/" />
-	<PlayerDisplay :companions="companions" heading-name="Contributors" />
+	<PlayerDisplay :companions="companions" heading-name="Contributors" :slice-position="Math.ceil(companions.length/2)" />
 </template>
 
 <script lang="ts">
@@ -25,7 +25,8 @@ export default defineComponent({
 				{ l:"https://www.twitch.tv/lovelyflight", n:"Lovely Flight", s:0xF111 },
 				{ l:"https://www.youtube.com/channel/UCEPMlDvuIcrHHGaEeakKkZA/featured", n:"Paleologos", s:0xF101 },
 				{ l:"https://www.twitch.tv/nathanj29", n:"nathanj", s:0xF110 },
-				{ l:"https://www.twitch.tv/aravshetikolava", n:"aravshetikolava", s:0xF10B }
+				{ l:"https://www.twitch.tv/aravshetikolava", n:"aravshetikolava", s:0xF10B },
+				{ l:"https://steamcommunity.com/profiles/76561198144512124", n:"Lain", s:0xF112 }
 			],
 		};
 	}
