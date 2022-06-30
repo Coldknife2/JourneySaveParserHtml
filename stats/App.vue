@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import NavBar from "@/components/NavBar.vue";
-import DropZone from "@/components/DropZone.vue";
-import StatsDisplay from "@/components/stats/StatsDisplay.vue";
 import { setBackground, setIcon } from "@/ts/visualManager";
 import { initializeSaves, clearLocalStorage } from "@/ts/dataManager";
 </script>

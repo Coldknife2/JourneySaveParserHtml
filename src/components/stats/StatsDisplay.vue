@@ -1,11 +1,3 @@
-<script setup lang="ts">
-import StatsGeneralDisplay from "./StatsGeneralDisplay.vue";
-import StatsJourneyDisplay from "./StatsJourneyDisplay.vue";
-import StatsMiscDisplay from "./StatsMiscDisplay.vue";
-import StatsSymbolDisplay from "./StatsSymbolDisplay.vue";
-import StatsMuralDisplay from "./StatsMuralDisplay.vue";
-</script>
-
 <template>
 	<div class="wrapper">
 		<div class="column">

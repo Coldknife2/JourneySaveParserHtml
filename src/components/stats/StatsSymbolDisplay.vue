@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import StatsSectionHeading from "./StatsSectionHeading.vue";
-import StatsItemRow from "./StatsItemRow.vue";
-import StatsHoverItem from "./StatsHoverItem.vue";
-import StatsSectionItem from "./StatsSectionItem.vue";
 import { readData } from "@/ts/dataManager";
 import { offsets, levelNames } from "@/ts/offsets";
 import { randomRange, shuffle } from "@/ts/math";
@@ -38,7 +34,7 @@ export default defineComponent({
 	data() {
 		return {
 			symbolData: new Array<Array<boolean>>(),
-			symbols: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+			symbols: [...Array(21).keys()]
 		};
 	},
 	mounted() {

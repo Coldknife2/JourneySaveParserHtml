@@ -22,7 +22,7 @@ module.exports = {
 	"plugins": [
 		"vue",
 	],
-	"ignorePatterns": ["**/dist/"],
+	"ignorePatterns": ["**/dist/", "*.d.ts"],
 	"rules": {
 		"vue/max-attributes-per-line": ["error", {
 			"singleline": { "max": 3 },

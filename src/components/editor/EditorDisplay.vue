@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import EditorOverview from "./EditorOverview.vue";
-import EditorLevelSelect from "./EditorLevelSelect.vue";
-import EditorRobeSelect from "./EditorRobeSelect.vue";
-import EditorScarfSelect from "./EditorScarfSelect.vue";
-import EditorSymbolSelect from "./EditorSymbolSelect.vue";
 import { lightBackground } from "@/ts/visualManager";
 import { getStorage, writeData, readData } from "@/ts/dataManager";
 import { offsets } from "@/ts/offsets";

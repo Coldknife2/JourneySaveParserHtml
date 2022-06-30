@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import EditorLayout from "./EditorLayout.vue";
 import { lightBackground } from "@/ts/visualManager";
 import { writeData, readData } from "@/ts/dataManager";
 import { offsets } from "@/ts/offsets";
