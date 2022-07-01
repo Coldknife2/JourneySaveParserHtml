@@ -8,7 +8,8 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore",
     "lint:fix": "npm run lint -- --fix",
-    "generateFont": "fantasticon"
+    "generateFont": "fantasticon",
+    "compress": "node ./scripts/webpCompression.js"
   },
   "dependencies": {
     "fantasticon": "^1.2.3",
@@ -22,9 +23,11 @@
     "@vue/eslint-config-typescript": "^10.0.0",
     "eslint": "^8.15.0",
     "eslint-plugin-vue": "^8.7.1",
+    "minimist": "^1.2.6",
     "typescript": "^4.5.4",
     "unplugin-vue-components": "^0.20.1",
     "vite": "^2.9.9",
-    "vue-tsc": "^0.34.7"
+    "vue-tsc": "^0.34.7",
+    "walk": "^2.3.15"
   }
 }
