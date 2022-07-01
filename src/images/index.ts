@@ -29,13 +29,13 @@ import arrow2R from "./arrows/arrow2R.svg";
 import arrow3R from "./arrows/arrow3R.svg";
 import arrow4R from "./arrows/arrow4R.svg";
 
-import red1 from "./robes/red1.png";
-import red2 from "./robes/red2.png";
-import red3 from "./robes/red3.png";
-import red4 from "./robes/red4.png";
-import white2 from "./robes/white2.png";
-import white3 from "./robes/white3.png";
-import white4 from "./robes/white4.png";
+import red1 from "./robes/red1.webp";
+import red2 from "./robes/red2.webp";
+import red3 from "./robes/red3.webp";
+import red4 from "./robes/red4.webp";
+import white2 from "./robes/white2.webp";
+import white3 from "./robes/white3.webp";
+import white4 from "./robes/white4.webp";
 
 import level1 from "./levels/1.webp";
 import level2 from "./levels/2.webp";
