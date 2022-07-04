@@ -47,12 +47,7 @@ export default defineComponent({
 	},
 	methods: {
 		adjustScarfColor() {
-			let toAdd;
-			if (this.robeColor === "Red") {
-				toAdd = "red";
-			} else {
-				toAdd = "white";
-			}
+			let toAdd = this.robeColor === "Red" ? "red" : "white";
 			(this.$refs.activeScarf as HTMLElement).classList.add(toAdd);
 			(this.$refs.inactiveScarf as HTMLElement).classList.add(toAdd);
 		},
@@ -107,7 +102,7 @@ export default defineComponent({
 
 .activeScarf {
 	z-index: 2;
-	width: 00%;
+	width: 0%;
 }
 
 .inactiveScarf {
