@@ -5,36 +5,40 @@ import { offsets } from "@/ts/offsets";
 </script>
 
 <template>
-	<div class="editZone">
-		<div v-if="active.every((e: number)=>e===0)">
-			<EditorOverview
-				@enable-level="setActive(0)"
-				@enable-robe="setActive(1)"
-				@enable-scarf="setActive(2)"
-				@enable-symbol="setActive(3)"
-			/>
-		</div>
-		<div v-if="active[0]===1">
-			<EditorLevelSelect />
-		</div>
-		<div v-if="active[1]===1">
-			<EditorRobeSelect />
-		</div>
-		<div v-if="active[2]===1">
-			<EditorScarfSelect />
-		</div>
-		<div v-if="active[3]===1">
-			<EditorSymbolSelect @return-to-overview="returnToOverview" />
-		</div>
-		<div class="flex-container">
-			<div v-if="active.some((e: number)=>e>0)" :class="lightBackground + ' flex-item cursorPointer'" @click="returnToOverview">
-				Back
+	<CurtainWrapper>
+		<template #content>
+			<div class="editZone">
+				<div v-if="active.every((e: number)=>e===0)">
+					<EditorOverview
+						@enable-level="setActive(0)"
+						@enable-robe="setActive(1)"
+						@enable-scarf="setActive(2)"
+						@enable-symbol="setActive(3)"
+					/>
+				</div>
+				<div v-if="active[0]===1">
+					<EditorLevelSelect />
+				</div>
+				<div v-if="active[1]===1">
+					<EditorRobeSelect />
+				</div>
+				<div v-if="active[2]===1">
+					<EditorScarfSelect />
+				</div>
+				<div v-if="active[3]===1">
+					<EditorSymbolSelect @return-to-overview="returnToOverview" />
+				</div>
+				<div class="flex-container">
+					<div v-if="active.some((e: number)=>e>0)" :class="lightBackground + ' flex-item cursorPointer'" @click="returnToOverview">
+						Back
+					</div>
+					<div :class="lightBackground + ' flex-item cursorPointer'" @click="download">
+						Download
+					</div>
+				</div>
 			</div>
-			<div :class="lightBackground + ' flex-item cursorPointer'" @click="download">
-				Download
-			</div>
-		</div>
-	</div>
+		</template>
+	</CurtainWrapper>
 </template>
 
 <script lang="ts">

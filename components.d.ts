@@ -5,6 +5,7 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    CurtainWrapper: typeof import('./src/components/curtains/CurtainWrapper.vue')['default']
     DropZone: typeof import('./src/components/DropZone.vue')['default']
     EditorDisplay: typeof import('./src/components/editor/EditorDisplay.vue')['default']
     EditorLayout: typeof import('./src/components/editor/EditorLayout.vue')['default']
@@ -18,6 +19,7 @@ declare module '@vue/runtime-core' {
     PlayerDisplay: typeof import('./src/components/parser/PlayerDisplay.vue')['default']
     PlayerDisplayHeading: typeof import('./src/components/parser/PlayerDisplayHeading.vue')['default']
     PlayerDisplayItem: typeof import('./src/components/parser/PlayerDisplayItem.vue')['default']
+    RobeClothAnim: typeof import('./src/components/curtains/RobeClothAnim.vue')['default']
     StatsDisplay: typeof import('./src/components/stats/StatsDisplay.vue')['default']
     StatsGeneralDisplay: typeof import('./src/components/stats/sections/StatsGeneralDisplay.vue')['default']
     StatsHoverItem: typeof import('./src/components/stats/sectionItems/StatsHoverItem.vue')['default']

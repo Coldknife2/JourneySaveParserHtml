@@ -38,6 +38,7 @@ export default defineConfig({
 				about: resolve(__dirname, "about/index.html")
 			}
 		},
-		emptyOutDir: true
+		emptyOutDir: true,
+		assetsInlineLimit: 3072
 	}
 });

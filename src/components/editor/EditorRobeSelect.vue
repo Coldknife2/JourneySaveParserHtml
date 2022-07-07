@@ -9,7 +9,13 @@ import { robe } from "@/images";
 <template>
 	<EditorLayout @left-arrow="decrementRobe" @right-arrow="incrementRobe">
 		<template #innerEditorContent>
-			<img :src="robeDisplay" alt="The currently selected Robe" @dragstart.prevent>
+			<RobeClothAnim v-if="checkCurtain()" :robe-data="robeData" />
+			<img
+				v-else
+				:src="robeDisplay"
+				alt="The currently selected Robe"
+				@dragstart.prevent
+			>
 		</template>
 	</EditorLayout>
 	<div :class="lightBackground + ' cursorPointer'" @click="toggleColor">
@@ -23,7 +29,8 @@ import { defineComponent } from "vue";
 export default defineComponent({
 	data() {
 		return {
-			robeDisplay: robe[0][0]
+			robeDisplay: robe[0][0],
+			robeData: 0
 		};
 	},
 	mounted() {
@@ -53,6 +60,10 @@ export default defineComponent({
 			const color = robeData > 3 ? 1 : 0;
 			const tier = robeData > 3 ? robeData - 4 : robeData;
 			this.robeDisplay = robe[color][tier];
+			this.robeData = robeData;
+		},
+		checkCurtain() {
+			return !document.body.classList.contains("no-curtains");
 		}
 	}
 });
@@ -63,5 +74,9 @@ div {
 	margin-top: 2vh;
 	display: flex;
 	justify-content: center;
+}
+img {
+	width: 20vh;
+	height: 40vh;
 }
 </style>
