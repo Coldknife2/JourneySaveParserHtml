@@ -2,7 +2,7 @@
 import { lightBackground } from "@/ts/visualManager";
 import { writeData, readData } from "@/ts/dataManager";
 import { offsets } from "@/ts/offsets";
-import { randomRange } from "@/ts/math";
+import { randomInt } from "@/ts/math";
 </script>
 
 <template>
@@ -52,7 +52,7 @@ export default defineComponent({
 			const symbolData = readData("uint8", offsets.symbolValue) as number;
 			let randomData = symbolData;
 			do {
-				randomData = randomRange(0, 20);
+				randomData = randomInt(0, 20);
 			} while (symbolData === randomData);
 			writeData("uint8", offsets.symbolValue, randomData);
 			(this.$refs.symbol as HTMLElement).classList.add("fade");

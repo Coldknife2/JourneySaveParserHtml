@@ -1,5 +1,5 @@
 import { checkLocalStorageAvailable, getStorage } from "./dataManager";
-import { randomRange, squarePolynomial } from "./math";
+import { randomInt, squarePolynomial } from "./math";
 import { sym } from "@/images";
 
 export let lightBackground = "hov";
@@ -32,5 +32,5 @@ export function setBackground() {
 }
 
 export function setIcon() {
-	(document.querySelector("link[rel*='icon']") as HTMLAnchorElement).href = sym[randomRange(0, 20)];
+	(document.querySelector("link[rel*='icon']") as HTMLAnchorElement).href = sym[randomInt(0, 20)];
 }
