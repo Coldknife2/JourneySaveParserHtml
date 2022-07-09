@@ -19,7 +19,15 @@ defineProps({
 		:params="planeProps"
 		@render="onRender"
 		@ready="onReady"
-	/>
+	>
+		<img :src="robe[0][0]">
+		<img :src="robe[0][1]">
+		<img :src="robe[0][2]">
+		<img :src="robe[0][3]">
+		<img :src="robe[1][0]">
+		<img :src="robe[1][1]">
+		<img :src="robe[1][2]">
+	</Plane>
 </template>
 
 <script lang="ts">
@@ -78,25 +86,21 @@ export default defineComponent({
 	},
 	methods: {
 		onRender(plane: typeof Plane) {
+			if (!this.ready) {
+				plane.visible = false;
+			}
 			this.textureSwap(plane);
 			this.handleTransition(plane);
 			plane.uniforms.time.value++;
 		},
-		onReady(plane: typeof Plane) { // FIXME: flashes to white if the initial robe is a red one
+		onReady(plane: typeof Plane) {
 			this.plane = plane;
-			let cnt = 0;
-			const allRobes = [...robe[0]];
-			allRobes.push(...robe[1]);
-			plane.loadSources(allRobes, {}, () => {
-				cnt += 1;
-				if (cnt === allRobes.length) {
-					this.activeTexture = plane.createTexture({
-						sampler: "uTexture",
-						fromTexture: plane.textures[this.robeData]
-					});
-					this.ready = true;
-				}
+			this.activeTexture = plane.createTexture({
+				sampler: "uTexture",
+				fromTexture: plane.textures[this.currentTextureIndex]
 			});
+			this.ready = true;
+			plane.visible = true;
 		},
 		textureSwap(plane: typeof Plane) {
 			if (this.ready && this.robeData !== this.currentTextureIndex) {
