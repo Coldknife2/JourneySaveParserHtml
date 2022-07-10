@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { randomRange } from "@/ts/math";
+import { randomInt } from "@/ts/math";
 import { arrow } from "@/images";
 </script>
 
@@ -37,7 +37,7 @@ export default defineComponent({
 	},
 	methods: {
 		randomArrows() {
-			const randomIndex = randomRange(0, 3);
+			const randomIndex = randomInt(0, 3);
 			this.arrowL = arrow[0][randomIndex];
 			this.arrowR = arrow[1][randomIndex];
 		},

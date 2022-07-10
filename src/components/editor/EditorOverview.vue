@@ -24,11 +24,6 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
 	emits: ["enableLevel", "enableRobe", "enableScarf", "enableSymbol"],
-	data() {
-		return {
-
-		};
-	},
 	methods: {
 		emitChange(type: string) {
 			switch(type) {
