@@ -6,12 +6,12 @@ import { offsets } from "@/ts/offsets";
 
 <template>
 	<CurtainWrapper>
-		<template #content>
+		<template #content="{ renderCallback }">
 			<div class="editZone">
 				<div v-if="active.every((e: number)=>e===0)">
 					<EditorOverview
 						@enable-level="setActive(0)"
-						@enable-robe="setActive(1)"
+						@enable-robe="setActive(1); renderCallback()"
 						@enable-scarf="setActive(2)"
 						@enable-symbol="setActive(3)"
 					/>
@@ -29,7 +29,7 @@ import { offsets } from "@/ts/offsets";
 					<EditorSymbolSelect @return-to-overview="returnToOverview" />
 				</div>
 				<div class="flex-container">
-					<div v-if="active.some((e: number)=>e>0)" :class="lightBackground + ' flex-item cursorPointer'" @click="returnToOverview">
+					<div v-if="active.some((e: number)=>e>0)" :class="lightBackground + ' flex-item cursorPointer'" @click="if (active[1]) renderCallback(); returnToOverview()">
 						Back
 					</div>
 					<div :class="lightBackground + ' flex-item cursorPointer'" @click="download">
