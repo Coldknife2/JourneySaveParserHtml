@@ -12,30 +12,48 @@ export default `
 	varying vec2 vTextureCoord;
 
 	uniform float uTime;
-	uniform float uMovScaleLeft;
-	uniform float uMovScaleRight;
+	uniform float uSeed;
+
+	float speed = 0.0035;
+	float strength = .7;
+
+	// https://gist.github.com/patriciogonzalezvivo/670c22f3966e662d2f83#simplex-noise
+	vec3 permute(vec3 x) {
+		return mod(((x*34.0)+1.0)*x, 289.0);
+	}
+
+	float simplex(vec2 v){
+		const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+		vec2 i  = floor(v + dot(v, C.yy) );
+		vec2 x0 = v -   i + dot(i, C.xx);
+		vec2 i1;
+		i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+		vec4 x12 = x0.xyxy + C.xxzz;
+		x12.xy -= i1;
+		i = mod(i, 289.0);
+		vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 )) + i.x + vec3(0.0, i1.x, 1.0 ));
+		vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+		m = m*m;
+		m = m*m;
+		vec3 x = 2.0 * fract(p * C.www) - 1.0;
+		vec3 h = abs(x) - 0.5;
+		vec3 ox = floor(x + 0.5);
+		vec3 a0 = x - ox;
+		m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+		vec3 g;
+		g.x  = a0.x  * x0.x  + h.x  * x0.y;
+		g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+		return 130.0 * dot(m, g);
+	}
 
 	void main() {
-
 		vec3 vertexPosition = aVertexPosition;
+		float scaledTime = speed * uTime + uSeed;
+		float yCoordRatio = vertexPosition.y - 1.0;
+		vec2 noisePosition = vec2(vertexPosition.x / 3.0, vertexPosition.y / 3.5) + scaledTime;
+		float noise = simplex(noisePosition) / 10.0;
 
-		float yCoordRatio = vertexPosition.y - .0;
-
-		float xOffsetLeft = distance(vec2(vertexPosition.x, 1.5), vec2(vertexPosition.y, 0)); 
-		float xOffsetRight = distance(-vec2(vertexPosition.x, 1.5), vec2(vertexPosition.y, 0));
-		float zOffset = distance(vec2(vertexPosition.z, 1.9), vec2(vertexPosition.y, 0));
-
-		float xMovementLeft = uMovScaleLeft * cos(30. * ((1. / (cos(xOffsetLeft) - 2.)) - uTime * 0.001));
-		float xMovementRight = uMovScaleRight * cos(40. * ((1. / (cos(xOffsetRight) - 2.)) - uTime * 0.0005));
-		float zMovement = 1. * cos(35. * ((1. / (cos(zOffset) - 2.)) - uTime * 0.0005));
-		float yAttenuation = -.4 * vertexPosition.y;
-		yAttenuation = clamp(yAttenuation, 0., 1.);
-
-		float windEffect = yCoordRatio * (xMovementLeft + xMovementRight + zMovement) * yAttenuation;
-		float xDisplacement = abs(yCoordRatio) * sign(vertexPosition.x);
-
-		vertexPosition.z +=  windEffect / 30.0;
-		vertexPosition.x +=  windEffect * 1.5 * xDisplacement / 240.0;
+		vertexPosition.z += noise * yCoordRatio * strength;
 
 		gl_Position = uPMatrix * uMVMatrix * vec4(vertexPosition, 1.0);
 

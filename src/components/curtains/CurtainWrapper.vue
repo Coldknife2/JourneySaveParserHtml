@@ -8,8 +8,9 @@ import { Curtains } from "vue-curtains";
 		:params="curtainsParams"
 		@context-lost="onContextLost"
 		@error="onError"
+		@success="bufferCurtain"
 	>
-		<slot name="content" />
+		<slot name="content" :render-callback="callback" />
 	</Curtains>
 </template>
 
@@ -24,15 +25,29 @@ export default defineComponent({
 				watchScroll: false,
 				premultipliedAlpha: true,
 				failIfMajorPerformanceCaveat: true
-			}
+			},
+			curtain: Curtains,
+			drawing: false
 		};
 	},
 	methods: {
+		bufferCurtain(curtain: typeof Curtains) {
+			this.curtain = curtain;
+			curtain.disableDrawing();
+		},
 		onContextLost(curtain: typeof Curtains) {
 			curtain.restoreContext();
 		},
 		onError() {
 			document.body.classList.add("no-curtains");
+		},
+		callback() {
+			this.drawing = !this.drawing;
+			if (this.drawing) {
+				this.curtain.enableDrawing();
+			} else {
+				this.curtain.disableDrawing();
+			}
 		}
 	}
 });
@@ -41,8 +56,10 @@ export default defineComponent({
 <style>
 .canvasWrapper {
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  top: 20vh;
+  left: 30vw;
+  width: 40vw;
+  height: 60vh;
   pointer-events: none;
 }
 </style>
