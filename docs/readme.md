@@ -32,3 +32,7 @@ The project also contains an editor, that allows players to edit certain values 
 The editor has drawn inspiration as well as offsets from [this](https://github.com/zackmichaels5/Journey-Save-Editor) project.
 
 The Statistics page displays all currently known information that can be extracted from a given SAVE.BIN (Companion data is not included, as it is already shown in the Parser).
+
+## Development
+
+This project uses [unplugin-vue-components](https://www.npmjs.com/package/unplugin-vue-components) for imports. As such, you should never import any `.vue` file directly. Before committing make sure to execute `npm run build`, as the [components.d.ts](/components.d.ts) file does not update on its own.

@@ -73,15 +73,25 @@ function parsePresets(set) {
 function checkArguments(p, s, w) {
 	let e;
 	if (p && s) {
-		e = "31mPath and file are mutually exclusive.";
+		e = "Path and file are mutually exclusive.";
 	} else if (!p && !s) {
 		e = "Either a path or a file need to be specified.";
 	} else if (s && w) {
-		e = "31mCannot walk a single file.";
+		e = "Cannot walk a single file.";
 	}
 	if (e) {
 		throwError(e, 9);
 	}
+}
+
+function checkWebP() {
+	exec("cwebp", (err) => {
+		if (err) {
+			throwError(`cwebp not found. Please install the binaries from
+http://downloads.webmproject.org/releases/webp/index.html
+and add them to your PATH.`, 1);
+		}
+	});
 }
 
 function makeWebP(inFile, outFile) {
@@ -123,6 +133,7 @@ function showHelp() {
 
 const argv = minimist(process.argv.slice(2));
 showHelp();
+checkWebP();
 const walkDir = "w" in argv ? parseBool(argv["w"]) : false;
 const deleteInFile = "d" in argv ? parseBool(argv["d"]) : false;
 const pathToDir = parsePath("p", "Path (-p)", false);
