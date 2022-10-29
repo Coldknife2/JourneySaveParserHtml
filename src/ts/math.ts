@@ -3,7 +3,7 @@ export function randomInt(min: number, max: number) {
 }
 
 export function randomFloat(min: number, max: number) {
-	return Math.random() * (max - min ) + min;
+	return Math.random() * (max - min) + min;
 }
 
 export function squarePolynomial(x: number, a=1, b=1, c=0) {
