@@ -3,8 +3,8 @@ import { randomFloat } from "@/ts/math";
 import { robe } from "@/images";
 import { Plane } from "vue-curtains";
 import { Texture } from "curtainsjs";
-import vertexShader from "./shaders/vertex";
-import fragmentShader from "./shaders/fragment";
+import vertexShader from "./shaders/vertex.glsl?raw";
+import fragmentShader from "./shaders/fragment.glsl?raw";
 defineProps({
 	robeData: {
 		type: Number,
