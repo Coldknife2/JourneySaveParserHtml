@@ -2,8 +2,8 @@
 import { robe } from "images";
 import { Plane } from "vue-curtains";
 import { Texture } from "curtainsjs";
-import vertexShader from "./shaders/vertex.glsl?raw";
-import fragmentShader from "./shaders/fragment.glsl?raw";
+import vertexShader from "assets/shaders/vertex.glsl?raw";
+import fragmentShader from "assets/shaders/fragment.glsl?raw";
 defineProps({
 	robeData: {
 		type: Number,
