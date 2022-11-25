@@ -1,6 +1,5 @@
 <script setup lang="ts">
-// import { lightBackground } from "@/ts/visualManager";
-// import { setStorage, getStorage, clearLocalStorage } from "@/ts/dataManager";
+const lightBackground = useState("lightBackground");
 </script>
 
 <template>

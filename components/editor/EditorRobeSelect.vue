@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { robe } from "images";
+const lightBackground = useState("lightBackground");
 </script>
 
 <template>
