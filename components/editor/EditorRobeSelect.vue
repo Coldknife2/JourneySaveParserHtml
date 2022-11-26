@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { robe } from "images";
-const lightBackground = useState("lightBackground");
+const lightBackground = useLightBackground();
 </script>
 
 <template>
@@ -21,13 +21,12 @@ const lightBackground = useState("lightBackground");
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
 export default defineComponent({
 	data() {
 		return {
 			robeDisplay: robe[0][0],
-			robeData: 0
+			robeData: 0,
+			saves: useSaves()
 		};
 	},
 	mounted() {
@@ -35,25 +34,25 @@ export default defineComponent({
 	},
 	methods: {
 		decrementRobe() {
-			const robeData = readData("uint8", offsets.robeValue) as number;
+			const robeData = readData(this.saves, "u8", offsets.robeValue) as number;
 			const newTier = robeData > 3 ? robeData - 1 < 4 ? 6 : clamp(robeData - 1, 4, 6) : robeData - 1 < 0 ? 3 : clamp(robeData - 1, 0, 3);
-			writeData("uint8", offsets.robeValue, newTier);
+			writeData(this.saves, "u8", offsets.robeValue, newTier);
 			this.updateRobe();
 		},
 		incrementRobe() {
-			const robeData = readData("uint8", offsets.robeValue) as number;
+			const robeData = readData(this.saves, "u8", offsets.robeValue) as number;
 			const newTier = robeData > 3 ? clamp(clamp(robeData + 1, 4, 7) % 7, 4, 6) : clamp(robeData + 1, 0, 4) % 4;
-			writeData("uint8", offsets.robeValue, newTier);
+			writeData(this.saves, "u8", offsets.robeValue, newTier);
 			this.updateRobe();
 		},
 		toggleColor() {
-			const robeData = readData("uint8", offsets.robeValue) as number;
+			const robeData = readData(this.saves, "u8", offsets.robeValue) as number;
 			const newColor = robeData ? robeData > 3 ? robeData - 3 : robeData + 3 : 4;
-			writeData("uint8", offsets.robeValue, newColor);
+			writeData(this.saves, "u8", offsets.robeValue, newColor);
 			this.updateRobe();
 		},
 		updateRobe() {
-			const robeData = readData("uint8", offsets.robeValue) as number;
+			const robeData = readData(this.saves, "u8", offsets.robeValue) as number;
 			const color = robeData > 3 ? 1 : 0;
 			const tier = robeData > 3 ? robeData - 4 : robeData;
 			this.robeDisplay = robe[color][tier];

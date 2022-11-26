@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const lightBackground = useState("lightBackground");
+const lightBackground = useLightBackground();
 defineProps({
 	playerLink: {
 		type: String,

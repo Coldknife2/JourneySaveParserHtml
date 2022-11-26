@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const lightBackground = useState("lightBackground");
+const lightBackground = useLightBackground();
 </script>
 
 <template>
@@ -20,8 +20,6 @@ const lightBackground = useState("lightBackground");
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
 export default defineComponent({
 	emits: ["enableLevel", "enableRobe", "enableScarf", "enableSymbol"],
 	methods: {

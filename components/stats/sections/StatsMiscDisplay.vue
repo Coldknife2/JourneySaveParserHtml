@@ -1,5 +1,18 @@
 <script setup lang="ts">
-
+const saves = useSaves().value;
+const journeyNumber = readData(saves, "u8", offsets.journeyAmount);
+const level = readData(saves, "u8", offsets.levelValue);
+const whiteRobeUnlocked = readData(saves, "u8", offsets.uniqueSymbolAmount) >= 21;
+const lastPlayed = new Date(
+	(readData(saves, "u64", offsets.lastPlayedValue) as number) / 10000 - 11644473600000
+).toLocaleDateString(undefined, {
+	day:"2-digit",
+	month:"2-digit",
+	year: "numeric",
+	hour:"2-digit",
+	minute: "2-digit",
+	second:"2-digit"
+});
 </script>
 
 <template>
@@ -13,27 +26,3 @@
 		</template>
 	</StatsSectionItem>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-	data() {
-		return {
-			journeyNumber: readData("uint8", offsets.journeyAmount) as number,
-			level: readData("uint8", offsets.levelValue) as number,
-			whiteRobeUnlocked: readData("uint8", offsets.uniqueSymbolAmount) as number >= 21,
-			lastPlayed: new Date(
-				(readData("uint64", offsets.lastPlayedValue) as number) / 10000 - 11644473600000
-			).toLocaleDateString(undefined, {
-				day:"2-digit",
-				month:"2-digit",
-				year: "numeric",
-				hour:"2-digit",
-				minute: "2-digit",
-				second:"2-digit"
-			})
-		};
-	}
-});
-</script>

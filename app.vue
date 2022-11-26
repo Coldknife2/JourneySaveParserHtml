@@ -13,7 +13,6 @@ function setBackground() {
 	}
 }
 
-initializeSaves();
 useHead({
 	bodyAttrs: {
 		class: setBackground()
@@ -22,13 +21,13 @@ useHead({
 
 	],
 	link: [
-		{ rel: "icon", type: "image/svg+xml", href: sym[randomInt(0, 20)] }
+		{ rel: "icon", type: "image/svg+xml", href: sym }
 	]
 });
 </script>
 
 <template>
 	<NavBar />
-	<DropZone v-if="displayDropZone" />
-	<NuxtPage v-else />
+	<NuxtPage v-if="$route.path === '/about/' || !displayDropZone" />
+	<DropZone v-else />
 </template>

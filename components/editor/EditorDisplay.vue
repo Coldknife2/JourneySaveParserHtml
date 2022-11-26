@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const lightBackground = useState("lightBackground");
+const lightBackground = useLightBackground();
 </script>
 
 <template>
@@ -40,12 +40,11 @@ const lightBackground = useState("lightBackground");
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
 export default defineComponent({
 	data() {
 		return {
-			active: [0, 0, 0, 0]
+			active: [0, 0, 0, 0],
+			saves: useSaves()
 		};
 	},
 	mounted() {
@@ -53,9 +52,9 @@ export default defineComponent({
 	},
 	methods: {
 		checkLevel() {
-			const levelData = readData("uint8", offsets.levelValue);
+			const levelData = readData(this.saves, "u8", offsets.levelValue);
 			if (levelData === 0) {
-				writeData("uint8", offsets.levelValue, 1);
+				writeData(this.saves, "u8", offsets.levelValue, 1);
 			}
 		},
 		setActive(index: number) {
@@ -66,7 +65,7 @@ export default defineComponent({
 		},
 		download() {
 			// https://stackoverflow.com/a/30832210
-			let file = new Blob([getStorage("uint8") as Uint8Array]);
+			let file = new Blob([this.saves.u8 as Uint8Array]);
 			let a = document.createElement("a"), url = URL.createObjectURL(file);
 			a.href = url;
 			a.download = "SAVE.BIN";

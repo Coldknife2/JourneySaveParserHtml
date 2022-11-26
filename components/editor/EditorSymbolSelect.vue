@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const lightBackground = useState("lightBackground");
+const lightBackground = useLightBackground();
 </script>
 
 <template>
@@ -17,13 +17,12 @@ const lightBackground = useState("lightBackground");
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
 export default defineComponent({
 	emits: ["returnToOverview"],
 	data() {
 		return {
-			symbolIndex: 0
+			symbolIndex: 0,
+			saves: useSaves()
 		};
 	},
 	mounted() {
@@ -31,27 +30,27 @@ export default defineComponent({
 	},
 	methods: {
 		decrementSymbol() {
-			let symbolData = readData("uint8", offsets.symbolValue) as number;
+			let symbolData = readData(this.saves, "u8", offsets.symbolValue) as number;
 			symbolData = symbolData - 1 < 0 ? 20 : symbolData - 1;
-			writeData("uint8", offsets.symbolValue, symbolData);
+			writeData(this.saves, "u8", offsets.symbolValue, symbolData);
 			this.updateSymbol();
 		},
 		incrementSymbol() {
-			let symbolData = readData("uint8", offsets.symbolValue) as number;
+			let symbolData = readData(this.saves, "u8", offsets.symbolValue) as number;
 			symbolData = (symbolData+1) % 21;
-			writeData("uint8", offsets.symbolValue, symbolData);
+			writeData(this.saves, "u8", offsets.symbolValue, symbolData);
 			this.updateSymbol();
 		},
 		updateSymbol() {
-			this.symbolIndex = readData("uint8", offsets.symbolValue) as number;
+			this.symbolIndex = readData(this.saves, "u8", offsets.symbolValue) as number;
 		},
 		randomSymbol() {
-			const symbolData = readData("uint8", offsets.symbolValue) as number;
+			const symbolData = readData(this.saves, "u8", offsets.symbolValue) as number;
 			let randomData = symbolData;
 			do {
 				randomData = randomInt(0, 20);
 			} while (symbolData === randomData);
-			writeData("uint8", offsets.symbolValue, randomData);
+			writeData(this.saves, "u8", offsets.symbolValue, randomData);
 			(this.$refs.symbol as HTMLElement).classList.add("fade");
 			setTimeout(() => this.$emit("returnToOverview"), 300);
 		}

@@ -1,7 +1,3 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
 	<StatsSectionItem>
 		<template #innerSectionContent>
@@ -27,12 +23,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
 export default defineComponent({
 	data() {
 		return {
-			muralData: new Array<Array<boolean>>()
+			muralData: new Array<Array<boolean>>(),
+			saves: useSaves()
 		};
 	},
 	mounted() {
@@ -41,8 +36,8 @@ export default defineComponent({
 	methods: {
 		extractMuralData() {
 			const lengths = [1, 1, 2, 2, 1, 1, 2];
-			const murals = (readData("uint8", offsets.muralValue) as number).toString(2).padStart(8, "0");
-			const muralsSnow = (readData("uint8", offsets.muralValueSnow) as number).toString(2).padStart(2, "0");
+			const murals = (readData(this.saves, "u8", offsets.muralValue) as number).toString(2).padStart(8, "0");
+			const muralsSnow = (readData(this.saves, "u8", offsets.muralValueSnow) as number).toString(2).padStart(2, "0");
 			const allMurals = (muralsSnow + murals).split("").map(Number).map(Boolean).reverse();
 			let index = 0;
 			for (let i=0; i<7; i++) {

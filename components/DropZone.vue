@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const lightBackground = useState("lightBackground");
+const lightBackground = useLightBackground();
 </script>
 
 <template>
@@ -36,22 +36,16 @@ const lightBackground = useState("lightBackground");
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
 export default defineComponent({
-	emits: ["displayContent"],
 	data() {
 		return {
 			fileReader: new FileReader(),
-			tooltipEnabled: false
+			tooltipEnabled: false,
+			saves: useSaves(),
+			displayDropZone: useDisplayDropZone()
 		};
 	},
-	mounted() {
-		const saveFile8 = getStorage("uint8");
-		const saveFile16 = getStorage("uint16");
-		const saveFile32 = getStorage("uint32");
-		const saveFile64 = getStorage("uint64");
-		if (saveFile8 && saveFile16 && saveFile32 && saveFile64) { this.$emit("displayContent"); } else { clearLocalStorage(true); }
+	mounted() { // todo with the extra input handler this can be completely removed
 		this.fileReader.onload = (callbackEvent) => this.callback(callbackEvent);
 	},
 	methods: {
@@ -77,11 +71,14 @@ export default defineComponent({
 		},
 		callback(callbackEvent: ProgressEvent) {
 			const buffer = (callbackEvent.target as FileReader).result as ArrayBuffer;
-			setStorage("uint8", new Uint8Array(buffer));
-			setStorage("uint16", new Uint16Array(buffer));
-			setStorage("uint32", new Uint32Array(buffer));
-			setStorage("uint64", new BigUint64Array(buffer));
-			this.$emit("displayContent");
+			this.saves.u8 = new Uint8Array(buffer);
+			this.saves.u32 = new Uint32Array(buffer);
+			this.saves.u64 = new BigUint64Array(buffer);
+			// setStorage("uint8", new Uint8Array(buffer));
+			// setStorage("uint16", new Uint16Array(buffer));
+			// setStorage("uint32", new Uint32Array(buffer));
+			// setStorage("uint64", new BigUint64Array(buffer));
+			this.displayDropZone = false;
 		}
 	}
 });

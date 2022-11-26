@@ -12,12 +12,11 @@ import { level } from "images";
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
 export default defineComponent({
 	data() {
 		return {
-			levelIndex: 0
+			levelIndex: 0,
+			saves: useSaves()
 		};
 	},
 	mounted() {
@@ -25,19 +24,19 @@ export default defineComponent({
 	},
 	methods: {
 		decrementLevel() {
-			let levelData = readData("uint8", offsets.levelValue) as number - 1;
+			let levelData = readData(this.saves, "u8", offsets.levelValue) as number - 1;
 			levelData = levelData < 1 ? 11 : levelData;
-			writeData("uint8", offsets.levelValue, levelData);
+			writeData(this.saves, "u8", offsets.levelValue, levelData);
 			this.updateLevel();
 		},
 		incrementLevel() {
-			let levelData = readData("uint8", offsets.levelValue) as number + 1;
+			let levelData = readData(this.saves, "u8", offsets.levelValue) as number + 1;
 			levelData = levelData % 12 === 0 ? 1 : levelData;
-			writeData("uint8", offsets.levelValue, levelData);
+			writeData(this.saves, "u8", offsets.levelValue, levelData);
 			this.updateLevel();
 		},
 		updateLevel() {
-			this.levelIndex = readData("uint8", offsets.levelValue) as number - 1;
+			this.levelIndex = readData(this.saves, "u8", offsets.levelValue) as number - 1;
 		}
 	}
 });

@@ -1,5 +1,12 @@
 <script setup lang="ts">
-
+const saves = useSaves().value;
+const level = readData(saves, "u8", offsets.levelValue) as number;
+const companionNumber = readData(saves, "u8", offsets.companionAmount).toString();
+const scarfValue = readData(saves, "u8", offsets.scarfValue).toString();
+const symbolValue = readData(saves, "u8", offsets.symbolValue)as number;
+const robeData = readData(saves, "u8", offsets.robeValue) as number;
+const robeColor = robeData > 3 ? "White" : "Red";
+const robeTier = (robeData > 3 ? robeData - 2 : robeData + 1).toString();
 </script>
 
 <template>
@@ -15,25 +22,3 @@
 		</template>
 	</StatsSectionItem>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-	data() {
-		return {
-			level: readData("uint8", offsets.levelValue) as number,
-			companionNumber: (readData("uint8", offsets.companionAmount) as number).toString(),
-			scarfValue: (readData("uint8", offsets.scarfValue) as number).toString(),
-			symbolValue: readData("uint8", offsets.symbolValue) as number,
-			robeTier: "",
-			robeColor: ""
-		};
-	},
-	mounted() {
-		const robeData = readData("uint8", offsets.robeValue) as number;
-		this.robeColor = robeData > 3 ? "White" : "Red";
-		this.robeTier = (robeData > 3 ? robeData - 2 : robeData + 1).toString();
-	}
-});
-</script>

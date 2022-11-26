@@ -18,14 +18,17 @@ defineProps({
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
 export default defineComponent({
 	emits: ["retract"],
+	data() {
+		return {
+			displayDropZone: useDisplayDropZone()
+		};
+	},
 	methods: {
-		clear() { // todo
-			if (this.$route.path === this.link) {
-				// clear the current useState, or set ready to false
+		clear() {
+			if (this.$route.path === this.link && this.$route.path !== "/about/") {
+				this.displayDropZone = true;
 			}
 			this.$emit("retract"); // todo retract with timeout?
 		}

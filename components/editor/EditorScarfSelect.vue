@@ -23,21 +23,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
 export default defineComponent({
 	data() {
 		return {
-			robeColor: readData("uint8", offsets.robeValue) as number > 3 ? "White" : "Red",
-			levelValue: clamp(readData("uint8", offsets.levelValue) as number-1, 0, 11),
-			scarfValue: readData("uint8", offsets.scarfValue) as number,
-			scarfRule: readData("uint8", offsets.symbolAmount) as number % 2,
+			robeColor: "Red",
+			levelValue: 1,
+			scarfValue: 0,
+			scarfRule: 0,
 			redScarfRecommendations1: [7, 12, 18, 22, 28, 30, 30, 30, 12, 30], // +1 row; values by nathanj
 			redScarfRecommendations2: [7, 11, 17, 22, 28, 30, 30, 30, 11, 30], // +2 row; +6 for white scarf
-			recommendation: 0
+			recommendation: 0,
+			saves: useSaves()
 		};
 	},
 	mounted() {
+		this.robeColor = readData(this.saves, "u8", offsets.robeValue) as number > 3 ? "White" : "Red";
+		this.levelValue = clamp(readData(this.saves, "u8", offsets.levelValue) as number-1, 0, 11);
+		this.scarfValue = readData(this.saves, "u8", offsets.scarfValue) as number;
+		this.scarfRule = readData(this.saves, "u8", offsets.symbolAmount) as number % 2;
 		this.adjustScarfColor();
 		this.updateRecommendation();
 		this.updateScarf(this.scarfValue);
@@ -51,7 +54,7 @@ export default defineComponent({
 		updateScarf(val: number) {
 			(this.$refs.activeScarf as HTMLElement).style.width = (val / 30 * 100) + "%";
 			this.scarfValue = val;
-			writeData("uint8", offsets.scarfValue, val);
+			writeData(this.saves, "u8", offsets.scarfValue, val);
 			this.updateRecommendation();
 		},
 		updateRecommendation() {

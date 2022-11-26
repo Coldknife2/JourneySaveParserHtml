@@ -1,5 +1,8 @@
 <script setup lang="ts">
-
+const saves = useSaves().value;
+const journeyNumber = readData(saves, "u8", offsets.journeyAmount).toString();
+const companionNumber = readData(saves, "u8", offsets.companionAmountTotal).toString();
+const symbolNumber = readData(saves, "u8", offsets.symbolAmount).toString();
 </script>
 
 <template>
@@ -12,17 +15,3 @@
 		</template>
 	</StatsSectionItem>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-	data() {
-		return {
-			journeyNumber: (readData("uint8", offsets.journeyAmount) as number).toString(),
-			companionNumber: (readData("uint8", offsets.companionAmountTotal) as number).toString(),
-			symbolNumber: (readData("uint8", offsets.symbolAmount) as number).toString(),
-		};
-	}
-});
-</script>
