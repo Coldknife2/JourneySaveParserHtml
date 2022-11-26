@@ -7,17 +7,13 @@ defineProps({
 	displayName : {
 		type: String,
 		required: true
-	},
-	path: {
-		type: String,
-		required: true
 	}
 });
 </script>
 
 <template>
 	<div>
-		<NuxtLink :to="link">{{ displayName }}</NuxtLink>
+		<NuxtLink :to="link" @click="clear" @dragstart.prevent>{{ displayName }}</NuxtLink>
 	</div>
 </template>
 
@@ -25,24 +21,13 @@ defineProps({
 import { defineComponent } from "vue";
 
 export default defineComponent({
-	emits: ["preserveData"],
+	emits: ["retract"],
 	methods: {
-		parseLink() {
-			if (this.link === this.path) {
-				return "./";
-			} else if (this.path.length === 1) {
-				return this.link;
-			} else {
-				if (this.link.length === 1) {
-					return "./../";
-				}
-				return `./../${this.link}`;
+		clear() { // todo
+			if (this.$route.path === this.link) {
+				// clear the current useState, or set ready to false
 			}
-		},
-		emitPreserve() {
-			if (!(this.link === this.path)) {
-				this.$parent?.$emit("preserveData");
-			}
+			this.$emit("retract"); // todo retract with timeout?
 		}
 	}
 });

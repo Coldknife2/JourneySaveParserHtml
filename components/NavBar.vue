@@ -1,38 +1,11 @@
-<script setup lang="ts">
-defineProps({
-	path: {
-		type: String,
-		default: "null"
-	}
-});
-</script>
-
 <template>
 	<div class="navbar" :class="{ navbarOffsetRetracted: !isDisplayed, navbarOffsetExpanded: isDisplayed }">
 		<div class="flex">
 			<NavBarItem
-				link="/editor/"
-				display-name="Editor"
-				:path="path"
-				@dragstart.prevent
-			/>
-			<NavBarItem
-				link="/stats/"
-				display-name="Statistics"
-				:path="path"
-				@dragstart.prevent
-			/>
-			<NavBarItem
-				link="/"
-				display-name="Parser"
-				:path="path"
-				@dragstart.prevent
-			/>
-			<NavBarItem
-				link="/about/"
-				display-name="About"
-				:path="path"
-				@dragstart.prevent
+				v-for="path in paths" :key="path.n"
+				:link="path.p"
+				:display-name="path.n"
+				@retract="isDisplayed = false"
 			/>
 		</div>
 		<div class="center">
@@ -40,7 +13,7 @@ defineProps({
 				:style="{ transform: (isDisplayed ? 'rotate(90deg)' : 'rotate(270deg)') }"
 				src="~images/arrows/arrow1L.svg"
 				alt="Expand Navigation Bar"
-				@click="toggleNavbar"
+				@click="isDisplayed = !isDisplayed"
 				@dragstart.prevent
 			>
 		</div>
@@ -51,16 +24,16 @@ defineProps({
 import { defineComponent } from "vue";
 
 export default defineComponent({
-	emits: ["preserveData"],
 	data() {
 		return {
-			isDisplayed: false
+			isDisplayed: false,
+			paths: [
+				{ p: "/editor/", n: "Editor" },
+				{ p: "/stats/",  n: "Statistics" },
+				{ p: "/",        n: "Parser" },
+				{ p: "/about/",  n: "About" },
+			]
 		};
-	},
-	methods: {
-		toggleNavbar() {
-			this.isDisplayed = !this.isDisplayed;
-		}
 	}
 });
 </script>
