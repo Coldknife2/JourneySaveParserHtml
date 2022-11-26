@@ -15,8 +15,6 @@ import { Curtains } from "vue-curtains";
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
 export default defineComponent({
 	data() {
 		return {

@@ -21,8 +21,6 @@ import { arrow } from "images";
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
 export default defineComponent({
 	emits: ["leftArrow", "rightArrow"],
 	data() {

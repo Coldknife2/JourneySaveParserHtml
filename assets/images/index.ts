@@ -1,24 +1,4 @@
 import sym0 from "./symbols/0.svg";
-import sym1 from "./symbols/1.svg";
-import sym2 from "./symbols/2.svg";
-import sym3 from "./symbols/3.svg";
-import sym4 from "./symbols/4.svg";
-import sym5 from "./symbols/5.svg";
-import sym6 from "./symbols/6.svg";
-import sym7 from "./symbols/7.svg";
-import sym8 from "./symbols/8.svg";
-import sym9 from "./symbols/9.svg";
-import sym10 from "./symbols/10.svg";
-import sym11 from "./symbols/11.svg";
-import sym12 from "./symbols/12.svg";
-import sym13 from "./symbols/13.svg";
-import sym14 from "./symbols/14.svg";
-import sym15 from "./symbols/15.svg";
-import sym16 from "./symbols/16.svg";
-import sym17 from "./symbols/17.svg";
-import sym18 from "./symbols/18.svg";
-import sym19 from "./symbols/19.svg";
-import sym20 from "./symbols/20.svg";
 
 import arrow1L from "./arrows/arrow1L.svg";
 import arrow2L from "./arrows/arrow2L.svg";
@@ -87,7 +67,7 @@ import TOM0 from "./locations/TO/M0.webp";
 import SNM0 from "./locations/SN/M0.webp";
 import SNM1 from "./locations/SN/M1.webp";
 
-export const sym = [sym0, sym1, sym2, sym3, sym4, sym5, sym6, sym7, sym8, sym9, sym10, sym11, sym12, sym13, sym14, sym15, sym16, sym17, sym18, sym19, sym20];
+export const sym = sym0;
 export const level = [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11];
 export const arrow = [
 	[arrow1L, arrow2L, arrow3L, arrow4L],
