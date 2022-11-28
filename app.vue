@@ -13,6 +13,19 @@ function setBackground() {
 	}
 }
 
+function routeToTitle(route: string) {
+	switch(route) {
+		case "/about/":
+			return "About";
+		case "/":
+			return "Journey Parser";
+		case "/stats/":
+			return "Journey Statistics";
+		case "/editor/":
+			return "Journey Editor";
+	}
+}
+
 useHead({
 	bodyAttrs: {
 		class: setBackground()
@@ -27,6 +40,7 @@ useHead({
 </script>
 
 <template>
+	<Title>{{ routeToTitle($route.path)}}</Title>
 	<NavBar />
 	<NuxtPage v-if="$route.path === '/about/' || !displayDropZone" />
 	<DropZone v-else />
