@@ -13,9 +13,8 @@
 						:key="glyph"
 						:unlocked="symbolData[lvl-1][glyph-1]"
 						:index="[0, lvl-1, glyph-1]"
-						:symbol="0xF101+randomSymbol()"
+						:symbol="0xF101+randomSymbols[lvl-1][glyph-1]"
 					/>
-					<!-- todo randomSymbol is called twice? -->
 				</template>
 			</StatsItemRow>
 		</template>
@@ -27,13 +26,13 @@ export default defineComponent({
 	data() {
 		return {
 			symbolData: new Array<Array<boolean>>(),
-			symbols: [...Array(21).keys()],
+			randomSymbols: new Array<Array<number>>(),
 			saves: useSaves()
 		};
 	},
 	mounted() {
 		this.extractSymbolData();
-		this.symbols = shuffle(this.symbols);
+		this.makeRandomSymbols();
 	},
 	methods: {
 		extractSymbolData() {
@@ -47,12 +46,15 @@ export default defineComponent({
 				this.symbolData.push(dataSplit);
 			}
 		},
-		randomSymbol() {
-			console.log(this.symbols.length);
-			if (this.symbols.length > 0) {
-				return this.symbols.pop() as number;
-			} else {
-				return randomInt(0, 20);
+		makeRandomSymbols() {
+			const symbols = shuffle([...Array(21).keys()]);
+			for (let i=0; i<6; i++) {
+				let k = i > 3 || i == 2 ? 4 : 3;
+				let l = [];
+				for (let j = 0; j<k; j++) {
+					l.push(symbols.pop());
+				}
+				this.randomSymbols.push(l);
 			}
 		}
 	}
