@@ -26,7 +26,11 @@ defineProps({
 			<div :style="{ opacity: unlocked ? 1 : 0.35 }">
 				{{ String.fromCharCode(symbol) }}
 			</div>
-			<div ref="img" :class="'imageDisplay ' + (useUp ? 'above' : 'below')" :style="{ backgroundImage: `url(${locations[index[0]][index[1]][index[2]]})` }" />
+			<img :class="'imageDisplay ' + (useUp ? 'above' : 'below')"
+				:src="locations[index[0]][index[1]][index[2]]"
+				loading="lazy"
+				alt="In-game position of the symbol."
+			/>
 		</div>
 	</div>
 </template>
