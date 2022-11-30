@@ -1,25 +1,20 @@
 <template>
-	<StatsSectionItem>
-		<template #innerSectionContent>
-			<StatsSectionHeading section-heading="Murals" />
-			<StatsItemRow
-				v-for="lvl in muralData.length"
-				:key="lvl"
-				:row-name="levelNames[lvl-1]"
-			>
-				<template #rowContent>
-					<StatsHoverItem
-						v-for="mural in muralData[lvl-1].length"
-						:key="mural"
-						:unlocked="muralData[lvl-1][mural-1]"
-						:index="[1, lvl-1, mural-1]"
-						:use-up="true"
-						:symbol="0xF116"
-					/>
-				</template>
-			</StatsItemRow>
+	<StatsItemRow
+		v-for="lvl in muralData.length"
+		:key="lvl"
+		:row-name="levelNames[lvl-1]"
+	>
+		<template #rowContent>
+			<StatsHoverItem
+				v-for="mural in muralData[lvl-1].length"
+				:key="mural"
+				:unlocked="muralData[lvl-1][mural-1]"
+				:index="[1, lvl-1, mural-1]"
+				:use-up="true"
+				:symbol="0xF116"
+			/>
 		</template>
-	</StatsSectionItem>
+	</StatsItemRow>
 </template>
 
 <script lang="ts">

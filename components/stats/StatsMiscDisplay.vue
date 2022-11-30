@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const saves = useSaves().value;
-const journeyNumber = readData(saves, "u8", offsets.journeyAmount);
-const level = readData(saves, "u8", offsets.levelValue);
-const whiteRobeUnlocked = readData(saves, "u8", offsets.uniqueSymbolAmount) >= 21;
+const csUnlocked = readData(saves, "u8", offsets.journeyAmount) > 0 ? "Yes" : "No";
+const continueOption = readData(saves, "u8", offsets.levelValue) > 0 ? "Yes" : "No";
+const whiteRobeUnlocked = readData(saves, "u8", offsets.uniqueSymbolAmount) >= 21 ? "Yes" : "No";
 const lastPlayed = new Date(
 	(readData(saves, "u64", offsets.lastPlayedValue) as number) / 10000 - 11644473600000
 ).toLocaleDateString(undefined, {
@@ -13,16 +13,16 @@ const lastPlayed = new Date(
 	minute: "2-digit",
 	second:"2-digit"
 });
+
+const names = ["Chapter Select (CS) unlocked", "Continue Option", "White Robe (WR) unlocked", "Last played:"];
+const values = [csUnlocked, continueOption, whiteRobeUnlocked, lastPlayed];
 </script>
 
 <template>
-	<StatsSectionItem>
-		<template #innerSectionContent>
-			<StatsSectionHeading section-heading="Miscellaneous" />
-			<StatsValueItem item-name="Chapter Select (CS) unlocked" :item-value="journeyNumber > 0 ? 'Yes' : 'No'" />
-			<StatsValueItem item-name="Continue Option" :item-value="level > 0 ? 'Yes' : 'No'" />
-			<StatsValueItem item-name="White Robe (WR) unlocked" :item-value="whiteRobeUnlocked ? 'Yes' : 'No'" />
-			<StatsValueItem item-name="Last played:" :item-value="lastPlayed" />
-		</template>
-	</StatsSectionItem>
+	<StatsValueItem
+		v-for="i in 4"
+		:key="i"
+		:item-name="names[i-1]"
+		:item-value="values[i-1]"
+	/>
 </template>

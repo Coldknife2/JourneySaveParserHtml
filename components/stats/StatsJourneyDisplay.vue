@@ -7,18 +7,17 @@ const symbolValue = readData(saves, "u8", offsets.symbolValue)as number;
 const robeData = readData(saves, "u8", offsets.robeValue) as number;
 const robeColor = robeData > 3 ? "White" : "Red";
 const robeTier = (robeData > 3 ? robeData - 2 : robeData + 1).toString();
+
+const names = ["Current Level", "Companions met (this Journey)", "Scarf length", "Symbol", "Robe Tier", "Robe Color"];
+const values = [levelNames[level], companionNumber, scarfValue, String.fromCharCode(0xF101 + symbolValue), robeTier, robeColor];
 </script>
 
 <template>
-	<StatsSectionItem>
-		<template #innerSectionContent>
-			<StatsSectionHeading section-heading="Journey" />
-			<StatsValueItem item-name="Current Level" :item-value="levelNames[level]" />
-			<StatsValueItem item-name="Companions met (this Journey)" :item-value="companionNumber" />
-			<StatsValueItem item-name="Scarf length" :item-value="scarfValue" />
-			<StatsValueItem item-name="Symbol" :item-value="String.fromCharCode(0xF101 + symbolValue)" :use-glyph="true" />
-			<StatsValueItem item-name="Robe Tier" :item-value="robeTier" />
-			<StatsValueItem item-name="Robe Color" :item-value="robeColor" />
-		</template>
-	</StatsSectionItem>
+	<StatsValueItem
+		v-for="i in 6"
+		:key="i"
+		:item-name="names[i-1]"
+		:item-value="values[i-1]"
+		:use-glyph="(i==4) ? true : false"
+	/>
 </template>

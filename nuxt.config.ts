@@ -9,7 +9,8 @@ export default defineNuxtConfig({
 	alias: {
 		"utils": fileURLToPath(new URL("./utils", import.meta.url)),
 		"css": fileURLToPath(new URL("./assets/css", import.meta.url)),
-		"images": fileURLToPath(new URL("./assets/images", import.meta.url))
+		"images": fileURLToPath(new URL("./assets/images", import.meta.url)),
+		"components": fileURLToPath(new URL("./components", import.meta.url))
 	},
 	css: [
 		"css/style.css"
