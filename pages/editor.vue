@@ -7,25 +7,12 @@ const lightBackground = useLightBackground();
 		<template #content="{ renderCallback }">
 			<div class="editZone">
 				<div v-if="active.every((e: number)=>e===0)">
-					<EditorOverview
-						@enable-level="setActive(0)"
-						@enable-robe="setActive(1); renderCallback()"
-						@enable-scarf="setActive(2)"
-						@enable-symbol="setActive(3)"
-					/>
+					<EditorOverview :enable="setActive" :callback="renderCallback" />
 				</div>
-				<div v-if="active[0]===1">
-					<EditorLevelSelect />
-				</div>
-				<div v-if="active[1]===1">
-					<EditorRobeSelect />
-				</div>
-				<div v-if="active[2]===1">
-					<EditorScarfSelect />
-				</div>
-				<div v-if="active[3]===1">
-					<EditorSymbolSelect @return-to-overview="returnToOverview" />
-				</div>
+				<EditorLevelSelect v-if="active[0]===1"/>
+				<EditorRobeSelect v-if="active[1]===1"/>
+				<EditorScarfSelect v-if="active[2]===1"/>
+				<EditorSymbolSelect v-if="active[3]===1" @return-to-overview="returnToOverview" />
 				<div class="flex-container">
 					<div v-if="active.some((e: number)=>e>0)" :class="lightBackground + ' flex-item cursorPointer'" @click="if (active[1]) renderCallback(); returnToOverview()">
 						Back
