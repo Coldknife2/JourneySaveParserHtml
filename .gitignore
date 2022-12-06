@@ -1,4 +1,11 @@
+node_modules
+*.log*
+.nuxt
+.nitro
+.cache
+.output
+.env
 dist
-node_modules/
-.vscode
+.vscode/*
+!.vscode/extensions.json
 *.BIN

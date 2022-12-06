@@ -1,0 +1,83 @@
+@font-face {
+	font-family: Eyeglass Condensed Bold;
+	src: url(css/fonts/EyeglassCondensedBold.ttf);
+}
+
+@font-face {
+	font-family: Glyphs;
+	src: url(css/fonts/glyphsFont.ttf);
+}
+
+body {
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background: url(images/cmatw_sunny.webp) no-repeat center center fixed;
+	color: #ffffff;
+	font-family: 'Eyeglass Condensed Bold', sans-serif;
+	margin: 0px;
+}
+
+@media (max-aspect-ratio: 20/9) {
+	.light {
+		background: url(images/cmatw_sunny.webp) no-repeat center center fixed;
+		background-color: #000000;
+		background-size: cover;
+	}
+	.dark {
+		background: url(images/cmatw_dark.webp) no-repeat center center fixed;
+		background-color: #000000;
+		background-size: cover;
+	}
+}
+
+@media (min-aspect-ratio: 20/9) {
+	.light {
+		background: url(images/cmatw_sunny_wide.webp) no-repeat center center fixed;
+		background-color: #000000;
+		background-size: cover;
+	}
+	.dark {
+		background: url(images/cmatw_dark_wide.webp) no-repeat center center fixed;
+		background-color: #000000;
+		background-size: cover;
+	}
+}
+
+.hov:hover {
+	border-radius: 7px;
+	text-shadow: -2px 0px 20px #ada27ecc
+}
+
+.hovLight:hover {
+	background-color: #eff2f51f;
+}
+
+.glyphDisplay {
+	font-family: 'Glyphs', sans-serif;
+	margin: 10px;
+}
+
+.cursorPointer:hover {
+	cursor: pointer;
+}
+
+.enableSelection {
+	-khtml-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	-webkit-user-select: text;
+	user-select: text;
+}
+
+html {
+	overflow-x: hidden;
+	overflow-y: hidden;
+	/* https://stackoverflow.com/a/4407335 */
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}

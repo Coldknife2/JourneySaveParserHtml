@@ -1,6 +1,6 @@
 module.exports = {
-	inputDir: "./src/images/symbols",
-	outputDir: "./src/css/fonts",
+	inputDir: "./assets/images/symbols",
+	outputDir: "./assets/css/fonts",
 	name: "glyphsFont",
 	fontTypes: ["ttf"],
 	assetTypes: [],

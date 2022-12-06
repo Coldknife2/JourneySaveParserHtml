@@ -1,28 +1,26 @@
-require("@rushstack/eslint-patch/modern-module-resolution");
-
+// eslint-disable-next-line
 module.exports = {
-	"root": true,
-	"parser": "vue-eslint-parser",
 	"env": {
 		"browser": true,
-		"es2021": true,
-		"node" : true,
-		"vue/setup-compiler-macros": true
+		"es2021": true
 	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:vue/vue3-essential",
+		"plugin:@typescript-eslint/recommended"
+	],
+	"overrides": [
+	],
+	"parser": "vue-eslint-parser",
 	"parserOptions": {
 		"parser": "@typescript-eslint/parser",
 		"ecmaVersion": "latest",
 		"sourceType" : "module"
 	},
-	"extends": [
-		"@vue/eslint-config-typescript/recommended",
-		"plugin:vue/vue3-recommended",
-		"eslint:recommended",
-	],
 	"plugins": [
 		"vue",
+		"@typescript-eslint"
 	],
-	"ignorePatterns": ["**/dist/", "*.d.ts"],
 	"rules": {
 		"vue/max-attributes-per-line": ["error", {
 			"singleline": { "max": 3 },
@@ -35,6 +33,12 @@ module.exports = {
 			"alignAttributesVertically": true,
 			"ignores": []
 		}],
+		"vue/multi-word-component-names": ["error", {
+			"ignores": ["index", "stats", "editor", "about"]
+		}],
+		"no-undef" : [
+			"off"
+		],
 		"indent": [
 			"error",
 			"tab",
@@ -42,7 +46,7 @@ module.exports = {
 		],
 		"linebreak-style": [
 			"error",
-			"windows"
+			"unix"
 		],
 		"brace-style": [
 			"error",
