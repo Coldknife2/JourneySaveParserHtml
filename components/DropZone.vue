@@ -45,7 +45,7 @@ export default defineComponent({
 			displayDropZone: useDisplayDropZone()
 		};
 	},
-	mounted() { // todo with the extra input handler this can be completely removed
+	mounted() {
 		this.fileReader.onload = (callbackEvent) => this.callback(callbackEvent);
 	},
 	methods: {
@@ -74,10 +74,6 @@ export default defineComponent({
 			this.saves.u8 = new Uint8Array(buffer);
 			this.saves.u32 = new Uint32Array(buffer);
 			this.saves.u64 = new BigUint64Array(buffer);
-			// setStorage("uint8", new Uint8Array(buffer));
-			// setStorage("uint16", new Uint16Array(buffer));
-			// setStorage("uint32", new Uint32Array(buffer));
-			// setStorage("uint64", new BigUint64Array(buffer));
 			this.displayDropZone = false;
 		}
 	}
