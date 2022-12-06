@@ -3,15 +3,21 @@ const lightBackground = useLightBackground();
 </script>
 
 <template>
-	<CurtainsCurtainWrapper>
+	<div v-if="!consented" class="consentZone">
+		The editor should be used with caution.<br />
+		Use common sense to not ruin the experience for other players. <br />
+		Please acknowledge these responsibilities before proceeding.
+		<div class="consentButton cursorPointer" @click="setConsent">I understand.</div>
+	</div>
+	<CurtainsCurtainWrapper v-else>
 		<template #content="{ renderCallback }">
 			<div class="editZone">
 				<div v-if="active.every((e: number)=>e===0)">
 					<EditorOverview :enable="setActive" :callback="renderCallback" />
 				</div>
-				<EditorLevelSelect v-if="active[0]===1"/>
-				<EditorRobeSelect v-if="active[1]===1"/>
-				<EditorScarfSelect v-if="active[2]===1"/>
+				<EditorLevelSelect  v-if="active[0]===1"/>
+				<EditorRobeSelect   v-if="active[1]===1"/>
+				<EditorScarfSelect  v-if="active[2]===1"/>
 				<EditorSymbolSelect v-if="active[3]===1" @return-to-overview="returnToOverview" />
 				<div class="flex-container">
 					<div v-if="active.some((e: number)=>e>0)" :class="lightBackground + ' flex-item cursorPointer'" @click="if (active[1]) renderCallback(); returnToOverview()">
@@ -31,13 +37,25 @@ export default defineComponent({
 	data() {
 		return {
 			active: [0, 0, 0, 0],
-			saves: useSaves()
+			saves: useSaves(),
+			consented: false,
+			cookie: useEditorConsent()
 		};
 	},
 	mounted() {
+		this.checkConsent();
 		this.checkLevel();
 	},
 	methods: {
+		setConsent() {
+			this.cookie = "true";
+			this.consented = true;
+		},
+		checkConsent()  {
+			if (this.cookie !== "false") {
+				this.consented = true;
+			}
+		},
 		checkLevel() {
 			const levelData = readData(this.saves, "u8", offsets.levelValue);
 			if (levelData === 0) {
@@ -68,6 +86,26 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.consentZone {
+	left: 50%;
+	font-size: 4vh;
+	top: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.consentButton {
+	margin-top: 4vh;
+	padding: 10px 20px 10px 20px;
+	border: 4px dashed #ffffff;
+	width: fit-content;
+	display: flex;
+}
+
 .editZone {
   font-size: 5vh;
   left: 50%;
@@ -90,5 +128,6 @@ export default defineComponent({
   min-width: fit-content;
   margin: 20px 50px;
   text-align: center;
+  padding: 5px 10px;
 }
 </style>
