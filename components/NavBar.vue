@@ -8,7 +8,7 @@
 				@retract="isDisplayed = false"
 			/>
 		</div>
-		<div class="center">
+		<div class="center" :class="bounce ? 'bounce' : ''" @click="stopBounce">
 			<img
 				:style="{ transform: (isDisplayed ? 'rotate(90deg)' : 'rotate(270deg)') }"
 				src="~images/arrows/arrow1L.svg"
@@ -30,8 +30,23 @@ export default defineComponent({
 				{ p: "/stats/",  n: "Statistics" },
 				{ p: "/",        n: "Parser" },
 				{ p: "/about/",  n: "About" },
-			]
+			],
+			navBarClicked: useNavBarClicked(),
+			bounce: true
 		};
+	},
+	mounted() {
+		if (this.navBarClicked !== "false") {
+			this.bounce = false;
+		}
+	},
+	methods: {
+		stopBounce() {
+			if (this.navBarClicked === "false") {
+				this.navBarClicked = "true";
+				this.bounce = false;
+			}
+		}
 	}
 });
 </script>
@@ -70,4 +85,33 @@ img {
 	justify-content: space-evenly;
 	text-align: center;
 }
+
+.bounce {
+	animation: 5s infinite arrowBounce;
+}
+
+@keyframes arrowBounce {
+	5% {
+		transform: translateY(0vh);
+	}
+	10% {
+		transform: translateY(1vh);
+	}
+	15% {
+		transform: translateY(0vh);
+	}
+	25% {
+		transform: translateY(0vh);
+	}
+	30% {
+		transform: translateY(1vh);
+	}
+	35% {
+		transform: translateY(0vh);
+	}
+	100% {
+		transform: translateY(0vh);
+	}
+}
+
 </style>
