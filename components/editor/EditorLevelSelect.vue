@@ -4,7 +4,7 @@ import { level } from "images";
 
 <template>
 	<div>{{ levelIndex+1 + " - " + levelNames[levelIndex+1] }}</div>
-	<EditorLayout @left-arrow="decrementLevel" @right-arrow="incrementLevel">
+	<EditorLayout @left-arrow="changeLevel(0)" @right-arrow="changeLevel(1)">
 		<template #innerEditorContent>
 			<img :src="level[levelIndex]"
 				alt="The currently selected Level"
@@ -27,15 +27,10 @@ export default defineComponent({
 		this.updateLevel();
 	},
 	methods: {
-		decrementLevel() {
-			let levelData = readData(this.saves, "u8", offsets.levelValue) as number - 1;
-			levelData = levelData < 1 ? 11 : levelData;
-			writeData(this.saves, "u8", offsets.levelValue, levelData);
-			this.updateLevel();
-		},
-		incrementLevel() {
-			let levelData = readData(this.saves, "u8", offsets.levelValue) as number + 1;
-			levelData = levelData % 12 === 0 ? 1 : levelData;
+		changeLevel(mode: number) {
+			let levelData = readData(this.saves, "u8", offsets.levelValue) as number;
+			levelData = mode === 0 ? --levelData : ++levelData;
+			levelData = wrap(1, 11, levelData);
 			writeData(this.saves, "u8", offsets.levelValue, levelData);
 			this.updateLevel();
 		},

@@ -4,7 +4,7 @@ const lightBackground = useLightBackground();
 
 <template>
 	<div>Symbol {{ symbolIndex }}</div>
-	<EditorLayout @left-arrow="decrementSymbol" @right-arrow="incrementSymbol">
+	<EditorLayout @left-arrow="changeSymbol(0)" @right-arrow="changeSymbol(1)">
 		<template #innerEditorContent>
 			<div ref="symbol" class="glyphDisplay bigGlyph">
 				{{ String.fromCharCode(0xF101+symbolIndex) }}
@@ -29,15 +29,10 @@ export default defineComponent({
 		this.updateSymbol();
 	},
 	methods: {
-		decrementSymbol() {
+		changeSymbol(mode: number) {
 			let symbolData = readData(this.saves, "u8", offsets.symbolValue) as number;
-			symbolData = symbolData - 1 < 0 ? 20 : symbolData - 1;
-			writeData(this.saves, "u8", offsets.symbolValue, symbolData);
-			this.updateSymbol();
-		},
-		incrementSymbol() {
-			let symbolData = readData(this.saves, "u8", offsets.symbolValue) as number;
-			symbolData = (symbolData+1) % 21;
+			symbolData = mode === 0 ? --symbolData : ++symbolData;
+			symbolData = wrap(0, 20, symbolData);
 			writeData(this.saves, "u8", offsets.symbolValue, symbolData);
 			this.updateSymbol();
 		},

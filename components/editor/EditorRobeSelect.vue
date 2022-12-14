@@ -4,7 +4,7 @@ const lightBackground = useLightBackground();
 </script>
 
 <template>
-	<EditorLayout @left-arrow="decrementRobe" @right-arrow="incrementRobe">
+	<EditorLayout @left-arrow="changeRobe(0)" @right-arrow="changeRobe(1)">
 		<template #innerEditorContent>
 			<CurtainsRobeClothAnim v-if="checkCurtain()" :robe-data="robeData" />
 			<img
@@ -15,7 +15,7 @@ const lightBackground = useLightBackground();
 			>
 		</template>
 	</EditorLayout>
-	<div :class="lightBackground + ' cursorPointer'" @click="toggleColor">
+	<div :class="lightBackground + ' cursorPointer'" @click="changeRobe(2)">
 		Toggle Color
 	</div>
 </template>
@@ -33,22 +33,15 @@ export default defineComponent({
 		this.updateRobe();
 	},
 	methods: {
-		decrementRobe() {
-			const robeData = readData(this.saves, "u8", offsets.robeValue) as number;
-			const newTier = robeData > 3 ? robeData - 1 < 4 ? 6 : clamp(robeData - 1, 4, 6) : robeData - 1 < 0 ? 3 : clamp(robeData - 1, 0, 3);
-			writeData(this.saves, "u8", offsets.robeValue, newTier);
-			this.updateRobe();
-		},
-		incrementRobe() {
-			const robeData = readData(this.saves, "u8", offsets.robeValue) as number;
-			const newTier = robeData > 3 ? clamp(clamp(robeData + 1, 4, 7) % 7, 4, 6) : clamp(robeData + 1, 0, 4) % 4;
-			writeData(this.saves, "u8", offsets.robeValue, newTier);
-			this.updateRobe();
-		},
-		toggleColor() {
-			const robeData = readData(this.saves, "u8", offsets.robeValue) as number;
-			const newColor = robeData ? robeData > 3 ? robeData - 3 : robeData + 3 : 4;
-			writeData(this.saves, "u8", offsets.robeValue, newColor);
+		changeRobe(mode: number) {
+			let robeData = readData(this.saves, "u8", offsets.robeValue) as number;
+			if (mode !== 2) {
+				let newRobeData = mode === 0 ? robeData-1 : robeData+1;
+				robeData = robeData > 3 ? wrap(4, 6, newRobeData) : wrap(0, 3, newRobeData);
+			} else {
+				robeData = robeData ? robeData > 3 ? robeData - 3 : robeData + 3 : 4;
+			}
+			writeData(this.saves, "u8", offsets.robeValue, robeData);
 			this.updateRobe();
 		},
 		updateRobe() {
