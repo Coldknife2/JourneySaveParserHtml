@@ -1,17 +1,12 @@
 <script setup lang="ts">
-defineProps({
-	itemName: {
-		type: String,
-		required: true
-	},
-	itemValue: {
-		type: String,
-		required: true
-	},
-	useGlyph: {
-		type: Boolean,
-		default: false
-	}
+interface Props {
+	itemName: string
+	itemValue: string
+	useGlyph: boolean
+}
+
+withDefaults(defineProps<Props>(), {
+	useGlyph: false
 });
 </script>
 

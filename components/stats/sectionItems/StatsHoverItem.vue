@@ -1,22 +1,15 @@
 <script setup lang="ts">
 import { locations } from "images";
-defineProps({
-	unlocked: {
-		type: Boolean,
-		required: true
-	},
-	useUp: {
-		type: Boolean,
-		default: false
-	},
-	index: {
-		type: [Object],
-		required: true
-	},
-	symbol: {
-		type: Number,
-		required: true
-	}
+
+interface Props {
+	unlocked: boolean
+	useUp: boolean
+	index: [number, number, number]
+	symbol: number
+}
+
+withDefaults(defineProps<Props>(), {
+	useUp: false
 });
 </script>
 

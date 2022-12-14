@@ -1,15 +1,10 @@
 <script setup lang="ts">
 const lightBackground = useLightBackground();
-defineProps({
-	callback : {
-		type: Function,
-		required: true
-	},
-	enable : {
-		type: Function,
-		required: true
-	}
-});
+
+defineProps<{
+	callback: () => void
+	enable: (i: number) => void
+}>();
 const lvlNames = ["Level Select", "Robe Select", "Scarf Length Select", "Symbol Select"];
 </script>
 

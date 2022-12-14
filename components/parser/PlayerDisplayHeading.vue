@@ -1,13 +1,12 @@
 <script setup lang="ts">
-defineProps({
-	playerType: {
-		type: String,
-		default: "Companions"
-	},
-	usePastCmatw: {
-		type: Boolean,
-		default: false
-	}
+interface Props {
+	playerType: string
+	usePastCmatw: boolean
+}
+
+withDefaults(defineProps<Props>(), {
+	playerType: "Companions",
+	usePastCmatw: false
 });
 </script>
 

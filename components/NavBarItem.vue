@@ -1,14 +1,8 @@
 <script setup lang="ts">
-defineProps({
-	link : {
-		type: String,
-		required: true
-	},
-	displayName : {
-		type: String,
-		required: true
-	}
-});
+defineProps<{
+	link: string
+	displayName: string
+}>();
 </script>
 
 <template>
@@ -30,7 +24,7 @@ export default defineComponent({
 			if (this.$route.path === this.link && this.$route.path !== "/about/") {
 				this.displayDropZone = true;
 			}
-			this.$emit("retract"); // todo retract with timeout?
+			this.$emit("retract");
 		}
 	}
 });

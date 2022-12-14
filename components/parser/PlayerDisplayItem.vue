@@ -1,19 +1,11 @@
 <script setup lang="ts">
 const lightBackground = useLightBackground();
-defineProps({
-	playerLink: {
-		type: String,
-		required: true
-	},
-	playerSymbol: {
-		type: Number,
-		required: true
-	},
-	playerName: {
-		type: String,
-		required: true
-	}
-});
+
+defineProps<{
+	playerLink: string
+	playerSymbol: number
+	playerName: string
+}>();
 </script>
 
 <template>

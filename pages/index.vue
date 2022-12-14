@@ -10,12 +10,14 @@
 </template>
 
 <script lang="ts">
+import { Companions } from "utils/interfaces";
+
 export default defineComponent({
 	data() {
 		return {
 			clearData: true,
-			companions: new Array<object>(),
-			pastCompanions: new Array<object>(),
+			companions: new Array<Companions>(),
+			pastCompanions: new Array<Companions>(),
 			saves: useSaves()
 		};
 	},

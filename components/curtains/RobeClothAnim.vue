@@ -4,12 +4,10 @@ import { Plane } from "vue-curtains";
 import { Texture } from "curtainsjs";
 import vertexShader from "assets/shaders/vertex.glsl?raw";
 import fragmentShader from "assets/shaders/fragment.glsl?raw";
-defineProps({
-	robeData: {
-		type: Number,
-		required: true
-	}
-});
+
+defineProps<{
+	robeData: number
+}>();
 </script>
 
 <template>

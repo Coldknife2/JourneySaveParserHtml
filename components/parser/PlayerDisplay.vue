@@ -1,25 +1,18 @@
 <script setup lang="ts">
-defineProps({
-	headingName: {
-		type: String,
-		default: "Companions"
-	},
-	companions: {
-		type: [Object],
-		default() {
-			return [];
-		}
-	},
-	pastCompanions: {
-		type: [Object],
-		default() {
-			return [];
-		}
-	},
-	slicePosition: {
-		type: Number,
-		default: 4
-	}
+import { Companions } from "utils/interfaces";
+
+interface Props {
+	headingName: string
+	companions: Array<Companions>
+	pastCompanions: Array<Companions>
+	slicePosition: number
+}
+
+withDefaults(defineProps<Props>(), {
+	headingName: "Companions",
+	companions: () => new Array<Companions>(),
+	pastCompanions: () => new Array<Companions>(),
+	slicePosition: 4
 });
 </script>
 

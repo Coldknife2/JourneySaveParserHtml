@@ -1,10 +1,7 @@
 <script setup lang="ts">
-defineProps({
-	rowName: {
-		type: String,
-		required: true
-	}
-});
+defineProps<{
+	rowName: string
+}>();
 </script>
 
 <template>
