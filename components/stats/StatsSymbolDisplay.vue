@@ -1,3 +1,31 @@
+<script setup lang="ts">
+const saves = useSaves().value;
+const symbolData = new Array<Array<boolean>>();
+const randomSymbols = new Array<Array<number>>();
+
+function sectionLength(idx: number) {
+	return idx > 3 || idx == 2 ? 4 : 3;
+}
+
+for (let i=0; i<6; i++) {
+	const data = readData(saves, "u8", offsets.glyphValue+offsets.glyphOffset*i).toString(2);
+	const dataSplit = data.split("").map(Number).map(Boolean);
+	while (dataSplit.length < sectionLength(i)) {
+		dataSplit.unshift(false);
+	}
+	symbolData.push(dataSplit);
+}
+
+const symbols = shuffle([...Array(21).keys()]);
+for (let i=0; i<6; i++) {
+	let sym = [];
+	for (let j=0; j<sectionLength(i); j++) {
+		sym.push(symbols.pop());
+	}
+	randomSymbols.push(sym);
+}
+</script>
+
 <template>
 	<StatsItemRow
 		v-for="lvl in symbolData.length"
@@ -15,42 +43,3 @@
 		</template>
 	</StatsItemRow>
 </template>
-
-<script lang="ts">
-export default defineComponent({
-	data() {
-		return {
-			symbolData: new Array<Array<boolean>>(),
-			randomSymbols: new Array<Array<number>>(),
-			saves: useSaves(),
-			k: (i: number) => i > 3 || i == 2 ? 4 : 3
-		};
-	},
-	mounted() {
-		this.makeRandomSymbols();
-		this.extractSymbolData();
-	},
-	methods: {
-		extractSymbolData() {
-			for (let i=0; i<6; i++) {
-				const data = (readData(this.saves, "u8", offsets.glyphValue+offsets.glyphOffset*i) as number).toString(2);
-				const dataSplit = data.split("").map(Number).map(Boolean);
-				while (dataSplit.length < this.k(i)) {
-					dataSplit.unshift(false);
-				}
-				this.symbolData.push(dataSplit);
-			}
-		},
-		makeRandomSymbols() {
-			const symbols = shuffle([...Array(21).keys()]);
-			for (let i=0; i<6; i++) {
-				let l = [];
-				for (let j = 0; j<this.k(i); j++) {
-					l.push(symbols.pop());
-				}
-				this.randomSymbols.push(l);
-			}
-		}
-	}
-});
-</script>
