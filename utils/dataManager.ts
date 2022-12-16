@@ -6,6 +6,7 @@ export function writeData(
 ) {
 	const divisor = type === "u8" ? 1 : type === "u32" ? 4 : 8;
 	saves[type][offset/divisor] = data;
+	synchronizeSaves(saves, saves[type].buffer);
 }
 
 export function readData(
@@ -19,4 +20,13 @@ export function readData(
 	} else {
 		return saves[type].slice(offset, offset+until);
 	}
+}
+
+function synchronizeSaves(
+	saves: { u8: Uint8Array, u32: Uint32Array, u64: BigUint64Array },
+	buffer: ArrayBuffer
+) {
+	saves.u8 = new Uint8Array(buffer);
+	saves.u32 = new Uint32Array(buffer);
+	saves.u64 = new BigUint64Array(buffer);
 }
