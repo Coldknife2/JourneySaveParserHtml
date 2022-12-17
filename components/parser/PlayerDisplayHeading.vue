@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface Props {
-	playerType: string
-	usePastCmatw: boolean
+	playerType?: string
+	usePastCmatw?: boolean
 }
 
 withDefaults(defineProps<Props>(), {

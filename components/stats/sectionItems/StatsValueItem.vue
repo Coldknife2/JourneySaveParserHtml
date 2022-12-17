@@ -2,7 +2,7 @@
 interface Props {
 	itemName: string
 	itemValue: string
-	useGlyph: boolean
+	useGlyph?: boolean
 }
 
 withDefaults(defineProps<Props>(), {

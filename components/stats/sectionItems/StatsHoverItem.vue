@@ -3,7 +3,7 @@ import { locations } from "images";
 
 interface Props {
 	unlocked: boolean
-	useUp: boolean
+	useUp?: boolean
 	index: [number, number, number]
 	symbol: number
 }

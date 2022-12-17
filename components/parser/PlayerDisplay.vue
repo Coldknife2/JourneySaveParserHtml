@@ -2,10 +2,10 @@
 import { Companions } from "utils/interfaces";
 
 interface Props {
-	headingName: string
-	companions: Array<Companions>
-	pastCompanions: Array<Companions>
-	slicePosition: number
+	headingName?: string
+	companions?: Array<Companions>
+	pastCompanions?: Array<Companions>
+	slicePosition?: number
 }
 
 withDefaults(defineProps<Props>(), {
