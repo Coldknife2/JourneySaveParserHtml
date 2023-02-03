@@ -9,11 +9,11 @@
 }
 
 body {
+	background: url(images/cmatw_sunny.webp) no-repeat center center fixed;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	-webkit-background-size: cover;
 	background-size: cover;
-	background: url(images/cmatw_sunny.webp) no-repeat center center fixed;
 	color: #ffffff;
 	font-family: 'Eyeglass Condensed Bold', sans-serif;
 	margin: 0px;
@@ -47,7 +47,7 @@ body {
 
 .hov:hover {
 	border-radius: 7px;
-	text-shadow: -2px 0px 20px #ada27ecc
+	text-shadow: -2px 0px 20px #ada27ecc;
 }
 
 .hovLight:hover {
