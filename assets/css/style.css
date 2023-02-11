@@ -73,7 +73,6 @@ body {
 
 html {
 	overflow-x: hidden;
-	overflow-y: hidden;
 	/* https://stackoverflow.com/a/4407335 */
 	-khtml-user-select: none;
 	-moz-user-select: none;

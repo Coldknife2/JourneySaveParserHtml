@@ -23,12 +23,22 @@ const components = [[StatsGeneralDisplay, StatsJourneyDisplay, StatsMiscDisplay]
 </template>
 
 <style scoped>
+@media only screen and (max-width : 1550px)  {
+	.wrapper {
+		flex-direction: column;
+	}
+	.symbols,
+	.murals {
+		margin-left: 3vw;
+	}
+}
+
 .wrapper {
 	display: flex;
 }
 
 .column {
-  flex: 50%
+	flex: 50%;
 }
 
 .general,
