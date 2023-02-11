@@ -13,7 +13,7 @@ for (let i=0; i<6; i++) {
 	while (dataSplit.length < sectionLength(i)) {
 		dataSplit.unshift(false);
 	}
-	symbolData.push(dataSplit);
+	symbolData.push(dataSplit.reverse());
 }
 
 const symbols = shuffle([...Array(21).keys()]);
