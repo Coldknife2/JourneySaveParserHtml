@@ -1,7 +1,7 @@
 export default function() {
-	const navBarClicked = useCookie("navBarClicked", { "maxAge": 31536000 });
-	if (!navBarClicked.value) {
-		navBarClicked.value = "false";
-	}
+	const navBarClicked = useCookie("navBarClicked", {
+		maxAge: 31536000,
+		default: () => "false"
+	});
 	return navBarClicked;
 }

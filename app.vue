@@ -40,7 +40,7 @@ useHead({
 </script>
 
 <template>
-	<Title>{{ routeToTitle($route.path)}}</Title>
+	<Title>{{ routeToTitle($route.path) }}</Title>
 	<NavBar />
 	<NuxtPage v-if="$route.path === '/about/' || !displayDropZone" />
 	<DropZone v-else />
