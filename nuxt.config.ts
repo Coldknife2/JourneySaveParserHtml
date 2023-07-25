@@ -29,5 +29,13 @@ export default defineNuxtConfig({
 				lang: "en"
 			}
 		}
+	},
+	generate: {
+		routes: [
+			"/",
+			"/about",
+			"/stats",
+			"/editor"
+		]
 	}
 });
