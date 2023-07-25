@@ -34,7 +34,7 @@ module.exports = {
 			"ignores": []
 		}],
 		"vue/multi-word-component-names": ["error", {
-			"ignores": ["index", "stats", "editor", "about"]
+			"ignores": ["index", "stats", "editor", "about", "error"]
 		}],
 		"no-undef" : [
 			"off"
