@@ -55,7 +55,7 @@ export default defineComponent({
 img {
 	transform: rotate(270deg);
 	transition: transform 0.3s;
-	width: 4vh;
+	width: 70px;
 }
 
 .center {
@@ -66,17 +66,17 @@ img {
 
 .navbar {
 	position: fixed;
-	min-width: 100vw;
-	width: 100vw;
+	min-width: 100%;
+	width: 100%;
 }
 
 .navbarOffsetExpanded {
-	top: 0vh;
+	top: 10px;
 	transition: top 0.6s;
 }
 
 .navbarOffsetRetracted {
-	top: -4vh;
+	top: -50px;
 	transition: top 0.6s;
 }
 
@@ -92,25 +92,25 @@ img {
 
 @keyframes arrowBounce {
 	5% {
-		transform: translateY(0vh);
+		transform: translateY(0px);
 	}
 	10% {
-		transform: translateY(1vh);
+		transform: translateY(20px);
 	}
 	15% {
-		transform: translateY(0vh);
+		transform: translateY(0px);
 	}
 	25% {
-		transform: translateY(0vh);
+		transform: translateY(0px);
 	}
 	30% {
-		transform: translateY(1vh);
+		transform: translateY(20px);
 	}
 	35% {
-		transform: translateY(0vh);
+		transform: translateY(0px);
 	}
 	100% {
-		transform: translateY(0vh);
+		transform: translateY(0px);
 	}
 }
 

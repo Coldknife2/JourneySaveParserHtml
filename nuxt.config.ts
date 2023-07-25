@@ -15,5 +15,19 @@ export default defineNuxtConfig({
 	css: [
 		"css/style.css"
 	],
-	ssr: false
+	ssr: false,
+	app: {
+		head: {
+			link: [
+				{ rel: "icon", type: "icon/ico", href: "/favicon.ico" }
+			],
+			meta: [{
+				name: "robots",
+				content: "all"
+			}],
+			htmlAttrs: {
+				lang: "en"
+			}
+		}
+	}
 });

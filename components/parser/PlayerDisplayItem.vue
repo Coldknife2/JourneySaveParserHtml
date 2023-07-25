@@ -28,13 +28,14 @@ defineProps<{
 a {
 	color: #ffffff;
 	display: flex;
-	margin-bottom: 1vh;
+	margin-right: 40px;
+	margin-bottom: 15px;
 	text-decoration: unset;
+	width: fit-content
 }
 
 .playerDisplay {
 	display: inline-block;
 	margin: 10px;
-	width: 29vw;
 }
 </style>

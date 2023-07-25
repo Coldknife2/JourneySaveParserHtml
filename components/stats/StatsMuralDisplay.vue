@@ -10,7 +10,6 @@
 				:key="mural"
 				:unlocked="muralData[lvl-1][mural-1]"
 				:index="[1, lvl-1, mural-1]"
-				:use-up="true"
 				:symbol="0xF116"
 			/>
 		</template>

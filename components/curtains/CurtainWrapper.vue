@@ -53,11 +53,11 @@ export default defineComponent({
 
 <style>
 .canvasWrapper {
-  position: fixed;
-  top: 20vh;
-  left: 30vw;
-  width: 40vw;
-  height: 60vh;
-  pointer-events: none;
+	position: fixed;
+	top: 20vh;
+	left: 30%;
+	width: 40%;
+	height: 60vh;
+	pointer-events: none;
 }
 </style>

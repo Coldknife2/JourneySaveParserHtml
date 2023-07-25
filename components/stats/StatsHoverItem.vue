@@ -1,16 +1,11 @@
 <script setup lang="ts">
 import { locations } from "images";
 
-interface Props {
+defineProps<{
 	unlocked: boolean
-	useUp?: boolean
 	index: [number, number, number]
 	symbol: number
-}
-
-withDefaults(defineProps<Props>(), {
-	useUp: false
-});
+}>();
 </script>
 
 <template>
@@ -19,7 +14,7 @@ withDefaults(defineProps<Props>(), {
 			<div :style="{ opacity: unlocked ? 1 : 0.35 }">
 				{{ String.fromCharCode(symbol) }}
 			</div>
-			<img :class="'imageDisplay ' + (useUp ? 'above' : 'below')"
+			<img class="imageDisplay"
 				:src="locations[index[0]][index[1]][index[2]]"
 				loading="lazy"
 				alt="In-game position of the symbol."
@@ -45,23 +40,16 @@ withDefaults(defineProps<Props>(), {
 	opacity: 0;
 	border: 3px solid #ffffff;
 	border-radius: 25%;
-	height: 15vh;
-	width: 15vh;
+	height: 200px;
+	width: 200px;
 	display: contents;
 	object-fit: contain;
-	background-size: 15vh;
+	background-size: 200px;
 	position: absolute;
 	overflow: hidden;
-	margin-left: -6.3vh;
+	margin-top: -280px;
+	margin-left: -83px;
 	transition: opacity 0.3s;
-}
-
-.above {
-	margin-top: -20vh;
-}
-
-.below {
-	margin-top: 1vh;
 }
 
 .imageContainer:hover .imageDisplay,

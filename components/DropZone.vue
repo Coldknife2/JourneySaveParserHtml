@@ -86,7 +86,7 @@ export default defineComponent({
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	width: 100vw;
+	width: 100%;
 	height: 100vh;
 }
 
@@ -95,27 +95,28 @@ export default defineComponent({
 	border-radius: 5px;
 	border: 4px dashed #ffffff;
 	display: flex;
-	font-size: 3.5vh;
-	height: 33vh;
+	font-size: var(--font-size--section);
+	height: 33%;
 	justify-content: center;
 	margin-bottom: 10px;
 	width: 95%;
 }
 
 .toolTip {
-	font-size: 2vh;
-	margin-top: 1em;
+	font-size: var(--font-size--subscript);
+	margin-top: 20px;
+	padding: 5px 10px;
 }
 
 .toolTipContent {
-	font-size: 2vh;
-	width: 40vw;
+	font-size: var(--font-size--subscript);
+	width: 40%;
 	display: none;
 	position: absolute;
 	overflow: hidden;
 	text-align: center;
-	padding-top: 1rem;
-	margin-left: -20vw;
+	padding-top: 16px;
+	margin-left: -20%;
 	left: 50%;
 }
 

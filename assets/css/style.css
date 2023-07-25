@@ -1,3 +1,10 @@
+:root {
+	--font-size--default: 40px;
+	--font-size--subscript: 30px;
+	--font-size--section: 50px;
+	--font-size--heading: 65px;
+}
+
 @font-face {
 	font-family: Eyeglass Condensed Bold;
 	src: url(css/fonts/EyeglassCondensedBold.ttf);

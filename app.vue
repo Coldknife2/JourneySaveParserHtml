@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { sym } from "images";
-
 const lightBackground = useLightBackground();
 const displayDropZone = useDisplayDropZone();
 
@@ -29,13 +27,7 @@ function routeToTitle(route: string) {
 useHead({
 	bodyAttrs: {
 		class: setBackground()
-	},
-	meta: [
-
-	],
-	link: [
-		{ rel: "icon", type: "image/svg+xml", href: sym }
-	]
+	}
 });
 </script>
 

@@ -17,13 +17,11 @@ defineProps<{
 		@render="onRender"
 		@ready="onReady"
 	>
-		<img :src="robe[0][0]">
-		<img :src="robe[0][1]">
-		<img :src="robe[0][2]">
-		<img :src="robe[0][3]">
-		<img :src="robe[1][0]">
-		<img :src="robe[1][1]">
-		<img :src="robe[1][2]">
+		<template v-for="i in 2">
+			<template v-for="j in 4">
+				<img :src="robe[i-1][j-1]" v-if="i == 2 ? j < 4 : true" :key="4*(i-1)+(j-1)">
+			</template>
+		</template>
 	</Plane>
 </template>
 

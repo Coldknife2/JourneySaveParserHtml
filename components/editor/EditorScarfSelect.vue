@@ -69,14 +69,16 @@ export default defineComponent({
 	align-items: center;
 	display: flex;
 	flex-direction: column;
+	width: 100%;
 }
 
 .scarfContainer {
-	margin-top: 6vh;
-	margin-bottom: 3vh;
-	width: 60vw;
+	margin-top: 70px;
+	margin-bottom: 40px;
 	height: 94px;
+	max-width: 60%;
 	position: relative;
+	aspect-ratio: 1020/47;
 }
 
 .scarf {
@@ -137,9 +139,9 @@ input::-webkit-slider-thumb {
 .recommendation {
 	display: flex;
 	justify-content: center;
-	font-size: 4vh;
-	padding-top: 1em;
-	width: 90vw;
+	font-size: var(--font-size--heading);
+	padding: 65px 0;
+	max-width: 70%;
 	text-align: center;
 }
 </style>

@@ -60,12 +60,12 @@ export default defineComponent({
 
 <style scoped>
 div {
-	margin-top: 2vh;
+	margin-top: 30px;
 	display: flex;
 	justify-content: center;
 }
 img {
-	width: 20vh;
-	height: 40vh;
+	width: 270px;
+	height: 540px;
 }
 </style>

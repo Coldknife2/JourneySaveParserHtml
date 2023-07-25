@@ -25,18 +25,17 @@ const lvlNames = ["Level Select", "Robe Select", "Scarf Length Select", "Symbol 
 .block {
 	display: flex;
 	flex-direction: column;
-	font-size: 5vh;
-	height: 4em;
+	font-size: var(--font-size--heading);
 	justify-content: center;
-	padding: 2vh;
+	padding: 30px;
 	text-align: center;
-	width: 4em;
+	width: 260px;
 }
 
 .container {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
-	width: 100vw;
+	width: 100%;
 }
 </style>

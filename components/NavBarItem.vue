@@ -41,7 +41,7 @@ div {
 a,
 a:visited {
 	color: #ffffff;
-	font-size: 3vh;
+	font-size: var(--font-size--default);
 	text-decoration: none;
 }
 </style>

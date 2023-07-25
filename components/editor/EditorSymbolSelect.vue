@@ -62,11 +62,11 @@ export default defineComponent({
 div {
 	display: flex;
 	justify-content: center;
-	margin-bottom: 2vh;
+	margin-bottom: 30px;
 }
 
 .bigGlyph {
-  font-size: 3.5em;
+	font-size: 230px;
 }
 
 .fade {

@@ -5,7 +5,7 @@ const saves = useSaves().value;
 let companions = new Array<Companions>();
 let pastCompanions = new Array<Companions>();
 
-const companionNumber = readData(saves, "u8", offsets.companionAmount);
+const companionNumber = readData(saves, "u8", offsets.companionAmount) as number;
 for (let i = 0; i < 8; i++) {
 	const tempNameBuffer = readData(saves, "u8", offsets.companionName+offsets.companionOffset*i, 24) as Uint8Array;
 	const nameBuffer = tempNameBuffer.subarray(0, tempNameBuffer.indexOf(0x00));

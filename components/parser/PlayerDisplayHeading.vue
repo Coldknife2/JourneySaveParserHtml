@@ -18,16 +18,16 @@ withDefaults(defineProps<Props>(), {
 
 <style scoped>
 div {
-	font-size: 5vh;
+	font-size: var(--font-size--heading);
 	font-weight: normal;
 	text-align: left;
 }
 
 .cmatw {
-	padding: 0 0 6vh 10px;
+	padding: 0 0 70px 10px;
 }
 
 .cmatwPast {
-	padding: 5vh 0 2vh 10px;
+	padding: 60px 0 30px 10px;
 }
 </style>

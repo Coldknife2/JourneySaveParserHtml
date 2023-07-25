@@ -21,7 +21,7 @@ withDefaults(defineProps<Props>(), {
 		<div v-if="companions.length > 0">
 			<ParserPlayerDisplayHeading :player-type="headingName" />
 			<div class="companions">
-				<div v-for="i in [0, 1]" :key="i">
+				<div v-for="i in [0, 1]" :key="i" class="companion--wrapper">
 					<ParserPlayerDisplayItem
 						v-for="player in companions.slice([0, slicePosition][i], [slicePosition, companions.length][i])" :key="player.n"
 						:player-link="player.l" :player-name="player.n" :player-symbol="player.s" />
@@ -31,7 +31,7 @@ withDefaults(defineProps<Props>(), {
 		<div v-if="pastCompanions.length > 0">
 			<ParserPlayerDisplayHeading :player-type="headingName" :use-past-cmatw="true" />
 			<div class="companions">
-				<div v-for="i in [0, 1]" :key="i">
+				<div v-for="i in [0, 1]" :key="i" class="companion--wrapper">
 					<ParserPlayerDisplayItem
 						v-for="player in pastCompanions.slice([0, slicePosition][i], [slicePosition, pastCompanions.length][i])" :key="player.n"
 						:player-link="player.l" :player-name="player.n" :player-symbol="player.s" />
@@ -45,7 +45,7 @@ withDefaults(defineProps<Props>(), {
 .resultZone {
 	margin-bottom: 10px;
 	margin-left: 16%;
-	margin-top: 10vh;
+	margin-top: 140px;
 	max-width: 90%;
 }
 
@@ -53,8 +53,12 @@ withDefaults(defineProps<Props>(), {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	font-size: 3vh;
+	font-size: var(--font-size--default);
 	height: 100%;
 	width: 100%;
+}
+
+.companion--wrapper {
+	flex-basis: 40%;
 }
 </style>

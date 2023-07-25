@@ -45,11 +45,11 @@ export default defineComponent({
 div {
 	display: flex;
 	justify-content: center;
-	margin-bottom: 2vh;
+	margin-bottom: 40px;
 }
 
 img {
 	border: 4px dashed #ffffff;
-	width: 30vw;
+	width: 30%;
 }
 </style>

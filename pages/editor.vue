@@ -88,7 +88,7 @@ export default defineComponent({
 <style scoped>
 .consentZone {
 	left: 50%;
-	font-size: 4vh;
+	font-size: var(--font-size--section);
 	top: 50%;
 	position: absolute;
 	transform: translate(-50%, -50%);
@@ -99,7 +99,7 @@ export default defineComponent({
 }
 
 .consentButton {
-	margin-top: 4vh;
+	margin-top: 60px;
 	padding: 10px 20px 10px 20px;
 	border: 4px dashed #ffffff;
 	width: fit-content;
@@ -107,27 +107,29 @@ export default defineComponent({
 }
 
 .editZone {
-  font-size: 5vh;
-  left: 50%;
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
+	font-size: var(--font-size--heading);
+	left: 50%;
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
 }
 
 .flex-container {
-  display: flex;
-  justify-content: space-evenly;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 60%;
+	margin: 0 20%;
 }
 
 .flex-item {
-  flex-basis: 100%;
-  margin-top: 5vh;
-  max-width: 15vw;
-  width: 10vw;
-  min-width: fit-content;
-  margin: 20px 50px;
-  text-align: center;
-  padding: 5px 10px;
+	flex-basis: 100%;
+	width: fit-content;
+	min-width: fit-content;
+	margin: 20px 50px;
+	text-align: center;
+	padding: 5px 10px;
 }
 </style>

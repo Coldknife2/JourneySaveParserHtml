@@ -18,8 +18,8 @@ defineProps<{
 <style scoped>
 .item {
 	display: flex;
-	font-size: 2.7vh;
-	margin: .8vh 0 .8vh 0;
+	font-size: var(--font-size--default);
+	margin: 10px 0 10px 0;
 }
 
 .name {

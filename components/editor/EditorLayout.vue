@@ -56,15 +56,15 @@ img:hover {
 }
 
 img {
-	margin: 2vh;
+	margin: 30px;
 	transition: transform 0.2s;
-	width: 5vw;
-	height: 5vw;
+	width: 130px;
+	height: 130px;
 }
 
 div {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
 }
 </style>

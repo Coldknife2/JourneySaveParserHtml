@@ -24,8 +24,8 @@ withDefaults(defineProps<Props>(), {
 <style scoped>
 .item {
 	display: flex;
-	font-size: 2.7vh;
-	margin: .5vh 0 .5vh 0;
+	font-size: var(--font-size--default);
+	margin: 10px 0 10px 0;
 	align-items: center;
 }
 
@@ -36,6 +36,5 @@ withDefaults(defineProps<Props>(), {
 .value {
 	flex-basis: 100%;
 	text-align: right;
-	margin-right: 8vw;
 }
 </style>

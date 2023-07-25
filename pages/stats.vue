@@ -5,57 +5,39 @@ import StatsMiscDisplay from "components/stats/StatsMiscDisplay.vue";
 import StatsSymbolDisplay from "components/stats/StatsSymbolDisplay.vue";
 import StatsMuralDisplay from "components/stats/StatsMuralDisplay.vue";
 
-const headings = [["General", "Journey", "Miscellaneous"], ["Symbols", "Murals"]];
-const components = [[StatsGeneralDisplay, StatsJourneyDisplay, StatsMiscDisplay], [StatsSymbolDisplay, StatsMuralDisplay]];
+const headings = ["General", "Journey", "Miscellaneous", "Symbols", "Murals"];
+const components = [StatsGeneralDisplay, StatsJourneyDisplay, StatsMiscDisplay, StatsSymbolDisplay, StatsMuralDisplay];
 </script>
 
 <template>
 	<div class="wrapper">
-		<div class="column" v-for="i in 2" :key="i">
-			<div v-for="j in headings[i-1].length" :key="j" :class="headings[i-1][j-1].toLowerCase()">
-				<div class="content">
-					<div class="heading">{{ headings[i-1][j-1] }}</div>
-					<component :is="components[i-1][j-1]"></component>
-				</div>
+		<div v-for="i in headings.length" :key="i" :class="headings[i-1].toLowerCase()">
+			<div class="content">
+				<div class="heading">{{ headings[i-1] }}</div>
+				<component :is="components[i-1]"></component>
 			</div>
 		</div>
 	</div>
 </template>
 
 <style scoped>
-@media only screen and (max-width : 1550px)  {
-	.wrapper {
-		flex-direction: column;
-	}
-	.symbols,
-	.murals {
-		margin-left: 3vw;
-	}
-}
-
 .wrapper {
 	display: flex;
+	flex-direction: column;
 }
 
-.column {
-	flex: 50%;
-}
-
-.general,
-.symbols {
-	margin-top: 4vh;
+.murals {
+	margin-bottom: 50px;
 }
 
 .general,
 .journey,
-.miscellaneous {
-	height: 30vh;
-	margin-left: 3vw;
-}
-
+.miscellaneous,
 .symbols,
 .murals {
-	height: 45vh;
+	margin-top: 50px;
+	margin-left: 40px;
+	margin-right: 40px;
 }
 
 .content {
@@ -66,7 +48,7 @@ const components = [[StatsGeneralDisplay, StatsJourneyDisplay, StatsMiscDisplay]
 }
 
 .heading {
-	font-size: 5vh;
-	margin-bottom: 2vh;
+	font-size: var(--font-size--heading);
+	margin-bottom: 30px;
 }
 </style>
