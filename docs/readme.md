@@ -3,10 +3,10 @@
 
 ## Official Links
 <ul>
-	<li><a href="https://journey.coldknife2.ninja/">Parser</a></li>
-	<li><a href="https://journey.coldknife2.ninja/stats/">Statistics</a></li>
-	<li><a href="https://journey.coldknife2.ninja/editor/">Editor</a></li>
-	<li><a href="https://journey.coldknife2.ninja/about/">About</a></li>
+	<li><a href="https://parser.journey.arckoor.dev/">Parser</a></li>
+	<li><a href="https://parser.journey.arckoor.dev/stats/">Statistics</a></li>
+	<li><a href="https://parser.journey.arckoor.dev/editor/">Editor</a></li>
+	<li><a href="https://parser.journey.arckoor.dev/about/">About</a></li>
 </ul>
 
 ## Parser
