@@ -125,9 +125,8 @@ export default defineComponent({
 }
 
 .flex-item {
-	flex-basis: 100%;
+	flex-basis: 50%;
 	width: fit-content;
-	min-width: fit-content;
 	margin: 20px 50px;
 	text-align: center;
 	padding: 5px 10px;

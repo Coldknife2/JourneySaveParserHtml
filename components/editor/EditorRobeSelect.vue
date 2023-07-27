@@ -15,8 +15,10 @@ const lightBackground = useLightBackground();
 			>
 		</template>
 	</EditorLayout>
-	<div :class="lightBackground + ' cursorPointer'" @click="changeRobe(2)">
-		Toggle Color
+	<div class="button-container">
+		<div :class="lightBackground + ' cursorPointer button'" @click="changeRobe(2)">
+			Toggle Color
+		</div>
 	</div>
 </template>
 
@@ -64,8 +66,20 @@ div {
 	display: flex;
 	justify-content: center;
 }
+
 img {
 	width: 270px;
 	height: 540px;
 }
+
+.button-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.button {
+	padding: 5px 10px;
+}
+
 </style>

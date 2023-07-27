@@ -51,5 +51,6 @@ div {
 img {
 	border: 4px dashed #ffffff;
 	width: 30%;
+	min-width: 400px;
 }
 </style>

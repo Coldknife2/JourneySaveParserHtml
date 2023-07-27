@@ -11,8 +11,10 @@ const lightBackground = useLightBackground();
 			</div>
 		</template>
 	</EditorLayout>
-	<div :class="lightBackground + ' cursorPointer'" @click="randomSymbol">
-		Random Symbol
+	<div class="button-container">
+		<div :class="lightBackground + ' cursorPointer button'" @click="randomSymbol">
+			Random Symbol
+		</div>
 	</div>
 </template>
 
@@ -72,5 +74,15 @@ div {
 .fade {
 	animation: fade-out .3s;
 	opacity: 0;
+}
+
+.button-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.button {
+	padding: 5px 10px;
 }
 </style>
