@@ -12,5 +12,5 @@ const companions = [
 </script>
 
 <template>
-	<ParserPlayerDisplay :companions="companions" heading-name="Contributors" :slice-position="Math.ceil(companions.length/2)" />
+	<ParserDisplay :companions="companions" heading-name="Contributors" :slice-position="Math.ceil(companions.length/2)" />
 </template>

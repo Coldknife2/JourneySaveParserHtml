@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import StatsGeneralDisplay from "components/stats/StatsGeneralDisplay.vue";
-import StatsJourneyDisplay from "components/stats/StatsJourneyDisplay.vue";
-import StatsMiscDisplay from "components/stats/StatsMiscDisplay.vue";
-import StatsSymbolDisplay from "components/stats/StatsSymbolDisplay.vue";
-import StatsMuralDisplay from "components/stats/StatsMuralDisplay.vue";
+import StatsGeneralDisplay from "components/stats/GeneralDisplay.vue";
+import StatsJourneyDisplay from "components/stats/JourneyDisplay.vue";
+import StatsMiscDisplay from "components/stats/MiscDisplay.vue";
+import StatsSymbolDisplay from "components/stats/SymbolDisplay.vue";
+import StatsMuralDisplay from "components/stats/MuralDisplay.vue";
 
 const headings = ["General", "Journey", "Miscellaneous", "Symbols", "Murals"];
 const components = [StatsGeneralDisplay, StatsJourneyDisplay, StatsMiscDisplay, StatsSymbolDisplay, StatsMuralDisplay];

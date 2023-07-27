@@ -33,9 +33,7 @@ module.exports = {
 			"alignAttributesVertically": true,
 			"ignores": []
 		}],
-		"vue/multi-word-component-names": ["error", {
-			"ignores": ["index", "stats", "editor", "about", "error"]
-		}],
+		"vue/multi-word-component-names": ["off"],
 		"no-undef" : [
 			"off"
 		],

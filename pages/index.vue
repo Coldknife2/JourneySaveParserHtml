@@ -29,5 +29,5 @@ for (let i = 0; i < 8; i++) {
 </script>
 
 <template>
-	<ParserPlayerDisplay :companions="companions" :past-companions="pastCompanions" />
+	<ParserDisplay :companions="companions" :past-companions="pastCompanions" />
 </template>
