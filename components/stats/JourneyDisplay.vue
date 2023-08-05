@@ -17,9 +17,7 @@ const createData = () => {
 };
 
 createData();
-watch(saves, () => {
-	createData();
-}, { deep: true });
+watch(saves, () => createData(), { deep: true });
 </script>
 
 <template>

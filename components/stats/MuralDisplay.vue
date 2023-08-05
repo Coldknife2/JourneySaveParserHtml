@@ -1,3 +1,24 @@
+<script setup lang="ts">
+const saves = useSaves().value;
+const muralData = ref([] as boolean[][]);
+
+const createData = () => {
+	muralData.value = [];
+	const lengths = [1, 1, 2, 2, 1, 1, 2];
+	const murals = (readData(saves, "u8", offsets.muralValue) as number).toString(2).padStart(8, "0");
+	const muralsSnow = (readData(saves, "u8", offsets.muralValueSnow) as number).toString(2).padStart(2, "0");
+	const allMurals = (muralsSnow + murals).split("").map(Number).map(Boolean).reverse();
+	let index = 0;
+	for (let i=0; i<7; i++) {
+		muralData.value.push(allMurals.slice(index, index+lengths[i]));
+		index += lengths[i];
+	}
+};
+
+createData();
+watch(saves, () => createData(), { deep: true });
+</script>
+
 <template>
 	<StatsItemRow
 		v-for="lvl in muralData.length"
@@ -15,34 +36,3 @@
 		</template>
 	</StatsItemRow>
 </template>
-
-<script lang="ts">
-export default defineComponent({
-	data() {
-		return {
-			saves: useSaves().value,
-			muralData: new Array<Array<boolean>>()
-		};
-	},
-	mounted() {
-		this.$watch("saves", () => {
-			this.extractMuralData();
-		}, { deep: true });
-		this.extractMuralData();
-	},
-	methods: {
-		extractMuralData() {
-			this.muralData = [];
-			const lengths = [1, 1, 2, 2, 1, 1, 2];
-			const murals = (readData(this.saves, "u8", offsets.muralValue) as number).toString(2).padStart(8, "0");
-			const muralsSnow = (readData(this.saves, "u8", offsets.muralValueSnow) as number).toString(2).padStart(2, "0");
-			const allMurals = (muralsSnow + murals).split("").map(Number).map(Boolean).reverse();
-			let index = 0;
-			for (let i=0; i<7; i++) {
-				this.muralData.push(allMurals.slice(index, index+lengths[i]));
-				index += lengths[i];
-			}
-		}
-	}
-});
-</script>

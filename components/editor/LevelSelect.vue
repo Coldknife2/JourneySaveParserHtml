@@ -24,9 +24,7 @@ export default defineComponent({
 		};
 	},
 	mounted() {
-		this.$watch("saves", () => {
-			this.updateLevel();
-		}, { deep: true });
+		this.$watch("saves", () => this.updateLevel(), { deep: true });
 		this.updateLevel();
 	},
 	methods: {

@@ -32,9 +32,7 @@ export default defineComponent({
 		};
 	},
 	mounted() {
-		this.$watch("saves", () => {
-			this.updateRobe();
-		}, { deep: true });
+		this.$watch("saves", () => this.updateRobe(), { deep: true });
 		this.updateRobe();
 	},
 	methods: {
