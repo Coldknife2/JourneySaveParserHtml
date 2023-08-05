@@ -20,15 +20,19 @@
 export default defineComponent({
 	data() {
 		return {
-			muralData: new Array<Array<boolean>>(),
-			saves: useSaves()
+			saves: useSaves().value,
+			muralData: new Array<Array<boolean>>()
 		};
 	},
 	mounted() {
+		this.$watch("saves", () => {
+			this.extractMuralData();
+		}, { deep: true });
 		this.extractMuralData();
 	},
 	methods: {
 		extractMuralData() {
+			this.muralData = [];
 			const lengths = [1, 1, 2, 2, 1, 1, 2];
 			const murals = (readData(this.saves, "u8", offsets.muralValue) as number).toString(2).padStart(8, "0");
 			const muralsSnow = (readData(this.saves, "u8", offsets.muralValueSnow) as number).toString(2).padStart(2, "0");

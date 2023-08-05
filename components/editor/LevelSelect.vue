@@ -19,11 +19,14 @@ import { level } from "images";
 export default defineComponent({
 	data() {
 		return {
-			levelIndex: 0,
-			saves: useSaves()
+			saves: useSaves().value,
+			levelIndex: 0
 		};
 	},
 	mounted() {
+		this.$watch("saves", () => {
+			this.updateLevel();
+		}, { deep: true });
 		this.updateLevel();
 	},
 	methods: {

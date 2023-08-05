@@ -1,11 +1,21 @@
 <script setup lang="ts">
 const saves = useSaves().value;
-const journeyNumber = readData(saves, "u8", offsets.journeyAmount).toString();
-const companionNumber = readData(saves, "u8", offsets.companionAmountTotal).toString();
-const symbolNumber = readData(saves, "u8", offsets.symbolAmount).toString();
+const names = ref([] as string[]);
+const values = ref([] as string[]);
 
-const names = ["Completed Journeys", "Total Companions met", "Total Symbols collected"];
-const values = [journeyNumber, companionNumber, symbolNumber];
+const createData = () => {
+	const journeyNumber = readData(saves, "u8", offsets.journeyAmount).toString();
+	const companionNumber = readData(saves, "u8", offsets.companionAmountTotal).toString();
+	const symbolNumber = readData(saves, "u8", offsets.symbolAmount).toString();
+
+	names.value = ["Completed Journeys", "Total Companions met", "Total Symbols collected"];
+	values.value = [journeyNumber, companionNumber, symbolNumber];
+};
+
+createData();
+watch(saves, () => {
+	createData();
+}, { deep: true });
 </script>
 
 <template>

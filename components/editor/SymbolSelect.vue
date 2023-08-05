@@ -28,6 +28,9 @@ export default defineComponent({
 		};
 	},
 	mounted() {
+		this.$watch("saves", () => {
+			this.updateSymbol();
+		}, { deep: true });
 		this.updateSymbol();
 	},
 	methods: {

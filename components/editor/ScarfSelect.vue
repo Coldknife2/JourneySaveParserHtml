@@ -2,8 +2,8 @@
 	<div class="container">
 		<div>Scarf Length - {{ scarfValue }}</div>
 		<div class="scarfContainer">
-			<div ref="activeScarf" class="scarf activeScarf" />
-			<div ref="inactiveScarf" class="scarf inactiveScarf" />
+			<div ref="activeScarf" :class="'scarf activeScarf ' + scarfClass" />
+			<div ref="inactiveScarf" :class="'scarf inactiveScarf ' + scarfClass" />
 			<input
 				type="range"
 				min="0"
@@ -23,6 +23,8 @@
 export default defineComponent({
 	data() {
 		return {
+			saves: useSaves(),
+			scarfClass: "",
 			robeColor: "Red",
 			levelValue: 1,
 			scarfValue: 0,
@@ -30,25 +32,25 @@ export default defineComponent({
 			redScarfRecommendations1: [7, 12, 18, 22, 28, 30, 30, 30, 12, 30], // +1 row; values by nathanj
 			redScarfRecommendations2: [7, 11, 17, 22, 28, 30, 30, 30, 11, 30], // +2 row; +6 for white scarf
 			recommendation: 0,
-			saves: useSaves()
+			hasUpdated: false
 		};
 	},
 	mounted() {
-		this.robeColor = readData(this.saves, "u8", offsets.robeValue) as number > 3 ? "White" : "Red";
-		this.levelValue = clamp(readData(this.saves, "u8", offsets.levelValue) as number-1, 0, 11);
-		this.scarfValue = readData(this.saves, "u8", offsets.scarfValue) as number;
-		this.scarfRule = readData(this.saves, "u8", offsets.symbolAmount) as number % 2;
-		this.adjustScarfColor();
-		this.updateRecommendation();
-		this.updateScarf(this.scarfValue);
+		this.$watch("saves", () => {
+			if (!this.hasUpdated) {
+				this.initialize();
+			} else {
+				this.hasUpdated = false;
+			}
+		}, { deep: true });
+		this.initialize();
 	},
 	methods: {
 		adjustScarfColor() {
-			let toAdd = this.robeColor === "Red" ? "red" : "white";
-			(this.$refs.activeScarf as HTMLElement).classList.add(toAdd);
-			(this.$refs.inactiveScarf as HTMLElement).classList.add(toAdd);
+			this.scarfClass = this.robeColor === "Red" ? "red" : "white";
 		},
 		updateScarf(val: number) {
+			this.hasUpdated = true;
 			(this.$refs.activeScarf as HTMLElement).style.width = (val / 30 * 100) + "%";
 			this.scarfValue = val;
 			writeData(this.saves, "u8", offsets.scarfValue, val);
@@ -59,6 +61,15 @@ export default defineComponent({
 			const lvl = this.levelValue >= recommendationsToUse.length ? recommendationsToUse.length - 1 : this.levelValue;
 			const suggestedScarfLength = recommendationsToUse[lvl] + (this.robeColor === "Red" ? 0 : 6);
 			this.recommendation = clamp(suggestedScarfLength, 0, 30);
+		},
+		initialize() {
+			this.robeColor = readData(this.saves, "u8", offsets.robeValue) as number > 3 ? "White" : "Red";
+			this.levelValue = clamp(readData(this.saves, "u8", offsets.levelValue) as number-1, 0, 11);
+			this.scarfValue = readData(this.saves, "u8", offsets.scarfValue) as number;
+			this.scarfRule = readData(this.saves, "u8", offsets.symbolAmount) as number % 2;
+			this.adjustScarfColor();
+			this.updateRecommendation();
+			this.updateScarf(this.scarfValue);
 		}
 	}
 });

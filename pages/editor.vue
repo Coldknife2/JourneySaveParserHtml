@@ -36,13 +36,16 @@ const lightBackground = useLightBackground();
 export default defineComponent({
 	data() {
 		return {
+			saves: useSaves().value,
+			cookie: useEditorConsent(),
 			active: [0, 0, 0, 0],
-			saves: useSaves(),
-			consented: false,
-			cookie: useEditorConsent()
+			consented: false
 		};
 	},
 	mounted() {
+		this.$watch("saves", () => {
+			this.checkLevel();
+		}, { deep: true });
 		this.checkConsent();
 		this.checkLevel();
 	},

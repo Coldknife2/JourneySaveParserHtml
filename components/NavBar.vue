@@ -68,16 +68,19 @@ img {
 	position: fixed;
 	min-width: 100%;
 	width: 100%;
+	z-index: 9999;
 }
 
 .navbarOffsetExpanded {
-	top: 10px;
-	transition: top 0.6s;
+	padding-top: 10px;
+	top: 0px;
+	transition: top 0.6s, padding-top .6s;
 }
 
 .navbarOffsetRetracted {
+	padding-top: 0;
 	top: -50px;
-	transition: top 0.6s;
+	transition: top 0.6s, padding-top .6s;
 }
 
 .flex {
@@ -113,5 +116,4 @@ img {
 		transform: translateY(0px);
 	}
 }
-
 </style>

@@ -1,20 +1,7 @@
 <script setup lang="ts">
 const saves = useSaves().value;
-const symbolData = new Array<Array<boolean>>();
+const symbolData = ref([] as Array<Array<boolean>>);
 const randomSymbols = new Array<Array<number>>();
-
-function sectionLength(idx: number) {
-	return idx > 3 || idx == 2 ? 4 : 3;
-}
-
-for (let i=0; i<6; i++) {
-	const data = readData(saves, "u8", offsets.glyphValue+offsets.glyphOffset*i).toString(2);
-	const dataSplit = data.split("").map(Number).map(Boolean);
-	while (dataSplit.length < sectionLength(i)) {
-		dataSplit.unshift(false);
-	}
-	symbolData.push(dataSplit.reverse());
-}
 
 const symbols = shuffle([...Array(21).keys()]);
 for (let i=0; i<6; i++) {
@@ -24,6 +11,28 @@ for (let i=0; i<6; i++) {
 	}
 	randomSymbols.push(sym);
 }
+
+function sectionLength(idx: number) {
+	return idx > 3 || idx == 2 ? 4 : 3;
+}
+
+const createData = () => {
+	let tempSymbolData = new Array<Array<boolean>>();
+	for (let i=0; i<6; i++) {
+		const data = readData(saves, "u8", offsets.glyphValue+offsets.glyphOffset*i).toString(2);
+		const dataSplit = data.split("").map(Number).map(Boolean);
+		while (dataSplit.length < sectionLength(i)) {
+			dataSplit.unshift(false);
+		}
+		tempSymbolData.push(dataSplit.reverse());
+	}
+	symbolData.value = tempSymbolData;
+};
+
+createData();
+watch(saves, () => {
+	createData();
+}, { deep: true });
 </script>
 
 <template>

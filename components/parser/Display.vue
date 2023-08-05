@@ -23,8 +23,12 @@ withDefaults(defineProps<Props>(), {
 			<div class="companions">
 				<div v-for="i in [0, 1]" :key="i" class="companion--wrapper">
 					<ParserDisplayItem
-						v-for="player in companions.slice([0, slicePosition][i], [slicePosition, companions.length][i])" :key="player.n"
-						:player-link="player.l" :player-name="player.n" :player-symbol="player.s" />
+						v-for="player, j in companions.slice([0, slicePosition][i], [slicePosition, companions.length][i])"
+						:key="`companions-${j}`"
+						:player-link="player.l"
+						:player-name="player.n"
+						:player-symbol="player.s"
+					/>
 				</div>
 			</div>
 		</div>
@@ -33,8 +37,12 @@ withDefaults(defineProps<Props>(), {
 			<div class="companions">
 				<div v-for="i in [0, 1]" :key="i" class="companion--wrapper">
 					<ParserDisplayItem
-						v-for="player in pastCompanions.slice([0, slicePosition][i], [slicePosition, pastCompanions.length][i])" :key="player.n"
-						:player-link="player.l" :player-name="player.n" :player-symbol="player.s" />
+						v-for="player, j in pastCompanions.slice([0, slicePosition][i], [slicePosition, pastCompanions.length][i])"
+						:key="`pastCompanions-${j}`"
+						:player-link="player.l"
+						:player-name="player.n"
+						:player-symbol="player.s"
+					/>
 				</div>
 			</div>
 		</div>

@@ -70,7 +70,7 @@ export default defineComponent({
 			plane.visible = true;
 		},
 		textureSwap(plane: typeof Plane) {
-			if (this.ready && this.robeData !== this.currentTextureIndex) {
+			if (this.robeData !== this.currentTextureIndex && this.ready) {
 				this.currentTextureIndex = this.robeData;
 				this.activeTexture.setSource(plane.images[this.currentTextureIndex]);
 			}
