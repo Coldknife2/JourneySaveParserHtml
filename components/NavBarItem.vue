@@ -3,6 +3,7 @@ defineProps<{
 	link: string
 	displayName: string
 }>();
+defineEmits(["retract"]);
 const lightBackground = useLightBackground();
 </script>
 
@@ -11,7 +12,7 @@ const lightBackground = useLightBackground();
 		<NuxtLink
 			:to="link"
 			:class="'item ' + lightBackground"
-			@click="clear"
+			@click="$emit('retract')"
 			@dragstart.prevent
 		>
 			<template v-if="$route.fullPath == link">
@@ -23,25 +24,6 @@ const lightBackground = useLightBackground();
 		</NuxtLink>
 	</div>
 </template>
-
-<script lang="ts">
-export default defineComponent({
-	emits: ["retract"],
-	data() {
-		return {
-			displayDropZone: useDisplayDropZone()
-		};
-	},
-	methods: {
-		clear() {
-			if (this.$route.path === this.link && this.$route.path !== "/about/") {
-				this.displayDropZone = true;
-			}
-			this.$emit("retract");
-		}
-	}
-});
-</script>
 
 <style scoped>
 div {
