@@ -86,15 +86,14 @@ export default defineComponent({
 
 <style scoped>
 .consentZone {
-	left: 50%;
 	font-size: var(--font-size--section);
-	top: 50%;
-	position: absolute;
-	transform: translate(-50%, -50%);
 	text-align: center;
 	display: flex;
-	flex-direction: column;
+	justify-content: center;
 	align-items: center;
+	flex-direction: column;
+	height: 100vh;
+	margin: 0 50px;
 }
 
 .consentButton {
