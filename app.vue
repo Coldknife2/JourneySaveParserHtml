@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const lightBackground = useLightBackground();
+const navBarExpanded = useNavBarExpanded();
 
 function setBackground() {
 	if (Math.random() > (1 - squarePolynomial(new Date().getHours(), -0.00694444, 0.1666666))) {
@@ -65,13 +66,14 @@ useHead({
 			</span>
 		</div>
 	</div>
-	<div style="padding-top: 100px;" v-else>
-		<div
-			class="hidden-dropZone"
-			@drop.prevent="dropHandler($event)"
-			@dragenter.prevent
-			@dragover.prevent
-		>
+	<div
+		v-else
+		class="hidden-dropZone"
+		@drop.prevent="dropHandler($event)"
+		@dragenter.prevent
+		@dragover.prevent
+	>
+		<div :class="'navbar-top-fade ' + (navBarExpanded ? 'navbar-top-fade-expanded' : 'navbar-top-fade-retracted' )">
 			<NuxtPage />
 		</div>
 	</div>
@@ -149,15 +151,6 @@ export default defineComponent({
 	padding: 5px 10px;
 }
 
-.hidden-dropZone {
-	z-index: 999;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
-
 .toolTip {
 	font-size: var(--font-size--subscript);
 	margin-top: 20px;
@@ -184,5 +177,35 @@ a,
 a:visited {
 	color: #cf1515;
 	text-decoration: none;
+}
+.hidden-dropZone {
+	z-index: 999;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.navbar-top-fade {
+	-webkit-background-clip: text;
+    background-clip: text;
+    background-attachment: fixed;
+	background-image: linear-gradient(transparent 5%, currentColor 7%);
+	background-size: 200% 200%;
+	transition: background-position var(--navbar-time);
+	min-height: 100%;
+}
+
+.navbar-top-fade-retracted {
+	background-position: 0% 10%;
+}
+
+.navbar-top-fade-expanded {
+	background-position: 0% 0%;
+}
+
+:deep(.navbar-top-fade > *) {
+	color: transparent;
 }
 </style>

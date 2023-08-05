@@ -24,7 +24,7 @@
 export default defineComponent({
 	data() {
 		return {
-			isDisplayed: false,
+			isDisplayed: useNavBarExpanded(),
 			paths: [
 				{ p: "/editor/", n: "Editor" },
 				{ p: "/stats/",  n: "Statistics" },
@@ -74,13 +74,13 @@ img {
 .navbarOffsetExpanded {
 	padding-top: 10px;
 	top: 0px;
-	transition: top 0.6s, padding-top .6s;
+	transition: top var(--navbar-time), padding-top var(--navbar-time);
 }
 
 .navbarOffsetRetracted {
 	padding-top: 0;
 	top: -50px;
-	transition: top 0.6s, padding-top .6s;
+	transition: top var(--navbar-time), padding-top var(--navbar-time);
 }
 
 .flex {

@@ -26,7 +26,7 @@ defineProps<{
 
 <style scoped>
 a {
-	color: #ffffff;
+	color: inherit;
 	display: flex;
 	align-items: center;
 	margin-right: 40px;

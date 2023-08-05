@@ -12,9 +12,7 @@ const lightBackground = useLightBackground();
 	<CurtainsCurtainWrapper v-else>
 		<template #content="{ renderCallback }">
 			<div class="editZone">
-				<div v-if="active.every((e: number)=>e===0)">
-					<EditorOverview :enable="setActive" :callback="renderCallback" />
-				</div>
+				<EditorOverview :enable="setActive" :callback="renderCallback" v-if="active.every((e: number) => e === 0)"/>
 				<EditorLevelSelect  v-if="active[0]===1"/>
 				<EditorRobeSelect   v-if="active[1]===1"/>
 				<EditorScarfSelect  v-if="active[2]===1"/>
@@ -108,13 +106,14 @@ export default defineComponent({
 }
 
 .editZone {
-	font-size: var(--font-size--heading);
-	left: 50%;
-	margin: 0;
-	position: absolute;
-	top: 50%;
-	transform: translate(-50%, -50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 	width: 100%;
+	height: 100vh;
+	font-size: var(--font-size--heading);
+	margin: 0;
 }
 
 .flex-container {

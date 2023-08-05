@@ -51,9 +51,7 @@ withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .resultZone {
-	margin-bottom: 10px;
-	margin-left: 16%;
-	margin-top: 140px;
+	padding: 160px 0 10px 16%;
 	max-width: 90%;
 }
 
