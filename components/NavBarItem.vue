@@ -3,11 +3,24 @@ defineProps<{
 	link: string
 	displayName: string
 }>();
+const lightBackground = useLightBackground();
 </script>
 
 <template>
 	<div>
-		<NuxtLink :to="link" @click="clear" @dragstart.prevent>{{ displayName }}</NuxtLink>
+		<NuxtLink
+			:to="link"
+			:class="'item ' + lightBackground"
+			@click="clear"
+			@dragstart.prevent
+		>
+			<template v-if="$route.fullPath == link">
+				<u>{{ displayName }}</u>
+			</template>
+			<template v-else>
+				{{ displayName }}
+			</template>
+		</NuxtLink>
 	</div>
 </template>
 
@@ -43,5 +56,9 @@ a:visited {
 	color: #ffffff;
 	font-size: var(--font-size--default);
 	text-decoration: none;
+}
+
+.item {
+	padding: 0 10px;
 }
 </style>
