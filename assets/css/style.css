@@ -18,39 +18,35 @@
 }
 
 body {
-	background: url(images/cmatw_sunny.webp) no-repeat center center fixed;
+	background: #BD9973;
+	background-image: url(images/cmatw_sunny.webp);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center center;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	-webkit-background-size: cover;
 	background-size: cover;
 	color: #ffffff;
 	font-family: 'Eyeglass Condensed Bold', sans-serif;
-	margin: 0px;
+	margin: 0;
 }
 
 @media (max-aspect-ratio: 20/9) {
 	.light {
-		background: url(images/cmatw_sunny.webp) no-repeat center center fixed;
-		background-color: #000000;
-		background-size: cover;
+		background-image: url(images/cmatw_sunny.webp);
 	}
 	.dark {
-		background: url(images/cmatw_dark.webp) no-repeat center center fixed;
-		background-color: #000000;
-		background-size: cover;
+		background-image: url(images/cmatw_dark.webp);
 	}
 }
 
 @media (min-aspect-ratio: 20/9) {
 	.light {
-		background: url(images/cmatw_sunny_wide.webp) no-repeat center center fixed;
-		background-color: #000000;
-		background-size: cover;
+		background-image: url(images/cmatw_sunny_wide.webp);
 	}
 	.dark {
-		background: url(images/cmatw_dark_wide.webp) no-repeat center center fixed;
-		background-color: #000000;
-		background-size: cover;
+		background-image: url(images/cmatw_dark_wide.webp);
 	}
 }
 

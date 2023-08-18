@@ -1,0 +1,88 @@
+<div class="loader">
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="svg">
+		<g>
+			<g>
+				<polygon class="cls-1" points="18.29 54.86 27.43 54.86 27.43 64 0 64 0 36.57 9.14 36.57 9.14 45.71 18.29 45.71 18.29 54.86" />
+				<polygon class="cls-1" points="64 36.57 64 64 36.57 64 36.57 54.86 45.71 54.86 45.71 45.71 54.86 45.71 54.86 36.57 64 36.57" />
+				<polygon class="cls-1" points="27.43 18.78 27.43 9.64 27.43 0 0 0 0 9.14 18.29 9.14 18.29 18.29 0 18.29 0 27.43 27.43 27.43 27.43 18.78" />
+				<polygon class="cls-1" points="64 18.78 64 9.64 64 0 36.57 0 36.57 9.14 54.86 9.14 54.86 18.29 36.57 18.29 36.57 27.43 64 27.43 64 18.78" />
+			</g>
+		</g>
+	</svg>
+<div class="bubble" />
+</div>
+
+<style scoped>
+html {
+	background: #BD9973;
+}
+
+body {
+	margin: 0;
+}
+
+.loader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100%;
+}
+
+.bubble {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 300px;
+	height: 300px;
+	background: radial-gradient(circle at center, transparent 15%, #fff 60%, transparent 62%);
+	animation: chirp 4s ease-in-out infinite;
+}
+
+.svg {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	fill: #fff;
+	width: 70px;
+	height: 70px;
+	animation: symbol 4s ease-in-out infinite;
+}
+
+@keyframes chirp {
+	0% {
+		opacity: 0;
+		transform: scale(0.1);
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		transform: scale(1.5);
+		opacity: 0;
+	}
+}
+
+@keyframes symbol {
+	0% {
+		opacity: 0;
+		transform: translate(-50%, -50%);
+	}
+	10% {
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(.2);
+	}
+	40% {
+		opacity: 1;
+	}
+	70% {
+		transform: translate(-50%, -50%) scale(.8);
+		opacity: 1;
+	}
+	100% {
+		transform: translate(-50%, -50%) scale(.8);
+		opacity: 0;
+	}
+}
+</style>

@@ -16,6 +16,7 @@ export default defineNuxtConfig({
 		"css/style.css"
 	],
 	ssr: false,
+	spaLoadingTemplate: "loading.html",
 	app: {
 		head: {
 			link: [
