@@ -23,12 +23,19 @@ export default defineComponent({
 	emits: ["returnToOverview"],
 	data() {
 		return {
+			saves: useSaves(),
 			symbolIndex: 0,
-			saves: useSaves()
+			superseded: false
 		};
 	},
 	mounted() {
-		this.$watch("saves", () => this.updateSymbol(), { deep: true });
+		this.$watch("saves", () => {
+			if (!this.superseded) {
+				this.updateSymbol();
+			} else {
+				this.superseded = false;
+			}
+		}, { deep: true });
 		this.updateSymbol();
 	},
 	methods: {
@@ -43,6 +50,7 @@ export default defineComponent({
 			this.symbolIndex = readData(this.saves, "u8", offsets.symbolValue) as number;
 		},
 		randomSymbol() {
+			this.superseded = true;
 			const symbolData = readData(this.saves, "u8", offsets.symbolValue) as number;
 			let randomData = symbolData;
 			do {

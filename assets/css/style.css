@@ -1,4 +1,6 @@
 :root {
+	--color-text:           #ffffff;
+
 	--font-size--default:   40px;
 	--font-size--subscript: 30px;
 	--font-size--section:   50px;
@@ -19,7 +21,6 @@
 
 body {
 	background: #BD9973;
-	background-image: url(images/cmatw_sunny.webp);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center center;
@@ -27,7 +28,7 @@ body {
 	-o-background-size: cover;
 	-webkit-background-size: cover;
 	background-size: cover;
-	color: #ffffff;
+	color: var(--color-text);
 	font-family: 'Eyeglass Condensed Bold', sans-serif;
 	margin: 0;
 }

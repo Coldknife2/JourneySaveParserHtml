@@ -18,7 +18,7 @@
 
 a,
 a:visited {
-	color: #ffffff;
+	color: var(--color-text);
 	text-decoration: none;
 	padding: 5px 20px;
 }

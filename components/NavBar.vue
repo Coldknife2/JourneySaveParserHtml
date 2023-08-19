@@ -29,6 +29,7 @@ export default defineComponent({
 				{ p: "/editor/", n: "Editor" },
 				{ p: "/stats/",  n: "Statistics" },
 				{ p: "/",        n: "Parser" },
+				{ p: "/help/",   n: "Help" },
 				{ p: "/about/",  n: "About" },
 			],
 			navBarClicked: useNavBarClicked(),

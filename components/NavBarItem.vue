@@ -35,7 +35,7 @@ div {
 
 a,
 a:visited {
-	color: #ffffff;
+	color: var(--color-text);
 	font-size: var(--font-size--default);
 	text-decoration: none;
 }

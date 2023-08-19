@@ -52,18 +52,7 @@ useHead({
 				@change="inputHandler()"
 			>
 		</div>
-		<div ref="tooltip" :class="'toolTip cursorPointer ' + lightBackground" @click="tooltipEnabled = !tooltipEnabled">
-			Where can I find my Save.bin?
-			<span :class="'toolTipContent '+ (tooltipEnabled ? 'reveal' : '')">
-				<div>
-					C:/Users/*/AppData/Local/Annapurna Interactive/Journey/Steam
-					<br>and<br>
-					%steamInstallDirectory%/userdata/*/638230/remote
-					<br>
-					See <a href="https://journey.fandom.com/wiki/Guide:_PC_version_-_Companions_Met_Along_the_Way_Problems#Steam_-_SAVE.BIN" target="_blank">here.</a>
-				</div>
-			</span>
-		</div>
+		<NuxtLink to="/help/" :class="'help-link ' + lightBackground">I need help finding my Save.bin!</NuxtLink>
 	</div>
 	<div
 		v-else
@@ -131,15 +120,16 @@ export default defineComponent({
 }
 
 .dropZone {
+	display: flex;
+	justify-content: center;
 	align-items: center;
+	text-align: center;
 	border-radius: 5px;
 	border: 4px dashed #ffffff;
-	display: flex;
 	font-size: var(--font-size--section);
-	height: 33%;
-	justify-content: center;
 	margin-bottom: 10px;
 	width: 95%;
+	height: 33%;
 }
 
 .help-link {
@@ -148,33 +138,12 @@ export default defineComponent({
 	padding: 5px 10px;
 }
 
-.toolTip {
-	font-size: var(--font-size--subscript);
-	margin-top: 20px;
-	padding: 5px 10px;
-}
-
-.toolTipContent {
-	font-size: var(--font-size--subscript);
-	width: 40%;
-	display: none;
-	position: absolute;
-	overflow: hidden;
-	text-align: center;
-	padding-top: 16px;
-	margin-left: -20%;
-	left: 50%;
-}
-
-.reveal {
-	display: block;
-}
-
 a,
 a:visited {
-	color: #cf1515;
+	color: var(--color-text);
 	text-decoration: none;
 }
+
 .hidden-dropZone {
 	z-index: 999;
 	position: absolute;

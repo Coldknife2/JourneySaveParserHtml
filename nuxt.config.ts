@@ -36,7 +36,8 @@ export default defineNuxtConfig({
 			"/",
 			"/about",
 			"/stats",
-			"/editor"
+			"/editor",
+			"/help"
 		]
 	}
 });
