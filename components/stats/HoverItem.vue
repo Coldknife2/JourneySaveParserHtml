@@ -11,7 +11,7 @@ defineProps<{
 <template>
 	<div class="item">
 		<div class="imageContainer">
-			<div :style="unlocked ? 'opacity: 1' : 'color: #fff; opacity: .35'">
+			<div :style="unlocked ? 'opacity: 1' : 'opacity: .35'">
 				{{ String.fromCharCode(symbol) }}
 			</div>
 			<img class="imageDisplay"

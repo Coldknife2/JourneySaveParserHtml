@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const lightBackground = useLightBackground();
-const navBarExpanded = useNavBarExpanded();
 
 function setBackground() {
 	if (Math.random() > (1 - squarePolynomial(new Date().getHours(), -0.00694444, 0.1666666))) {
@@ -73,9 +72,7 @@ useHead({
 		@dragenter.prevent
 		@dragover.prevent
 	>
-		<div :class="'navbar-top-fade ' + (navBarExpanded ? 'navbar-top-fade-expanded' : 'navbar-top-fade-retracted' )">
-			<NuxtPage />
-		</div>
+		<NuxtPage />
 	</div>
 </template>
 
@@ -185,27 +182,5 @@ a:visited {
 	left: 0;
 	width: 100%;
 	height: 100%;
-}
-
-.navbar-top-fade {
-	-webkit-background-clip: text;
-    background-clip: text;
-    background-attachment: fixed;
-	background-image: linear-gradient(transparent 5%, currentColor 7%);
-	background-size: 200% 200%;
-	transition: background-position var(--navbar-time);
-	min-height: 100%;
-}
-
-.navbar-top-fade-retracted {
-	background-position: 0% 10%;
-}
-
-.navbar-top-fade-expanded {
-	background-position: 0% 0%;
-}
-
-:deep(.navbar-top-fade > *) {
-	color: transparent;
 }
 </style>
