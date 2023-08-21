@@ -35,6 +35,11 @@
 				Now start Journey and press "Continue" to play.
 			</details>
 			<details open>
+				<summary>How do I get back?</summary>
+				Notice the arrow at the top of the page. Click it. <br />
+				You can also use the back button of your browser.
+			</details>
+			<details open>
 				<summary>I still need help</summary>
 				Check the <a href="https://journey.fandom.com/wiki/Guide:_PC_version_-_Companions_Met_Along_the_Way_Problems#Steam_-_SAVE.BIN" target="_blank">wiki</a>. <br />
 				Come join the <a href="https://discord.gg/83QunNN" target="_blanK">Journey Discord</a> and ask your question in #tech-support. <br />
@@ -67,13 +72,12 @@ details {
 }
 
 summary {
-	font-size: var(	--font-size--section);
+	font-size: var(--font-size--section);
 }
 
 a,
 a:visited {
 	color: var(--color-text);
 	text-decoration: underline;
-	padding: 0 2px;
 }
 </style>

@@ -1,11 +1,14 @@
 <script setup lang="ts">
 const lightBackground = useLightBackground();
+const theme = useTheme();
 
 function setBackground() {
 	if (Math.random() > (1 - squarePolynomial(new Date().getHours(), -0.00694444, 0.1666666))) {
 		lightBackground.value += " hovLight";
+		theme.value.isLight = true;
 		return "light";
 	} else {
+		theme.value.isLight = false;
 		return "dark";
 	}
 }
@@ -134,6 +137,7 @@ export default defineComponent({
 
 .help-link {
 	font-size: var(--font-size--subscript);
+	text-align: center;
 	margin-top: 20px;
 	padding: 5px 10px;
 }

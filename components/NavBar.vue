@@ -1,5 +1,5 @@
 <template>
-	<div class="navbar" :class="{ navbarOffsetRetracted: !isDisplayed, navbarOffsetExpanded: isDisplayed }">
+	<div class="navbar" :class="(isDisplayed ? 'navbarOffsetExpanded' : 'navbarOffsetRetracted') + ' ' + (theme.isLight ? 'navbar-light' : 'navbar-dark')">
 		<div class="flex">
 			<NavBarItem
 				v-for="path in paths" :key="path.n"
@@ -24,7 +24,9 @@
 export default defineComponent({
 	data() {
 		return {
+			theme: useTheme(),
 			isDisplayed: useNavBarExpanded(),
+			navBarClicked: useNavBarClicked(),
 			paths: [
 				{ p: "/editor/", n: "Editor" },
 				{ p: "/stats/",  n: "Statistics" },
@@ -32,7 +34,6 @@ export default defineComponent({
 				{ p: "/help/",   n: "Help" },
 				{ p: "/about/",  n: "About" },
 			],
-			navBarClicked: useNavBarClicked(),
 			bounce: true
 		};
 	},
@@ -70,6 +71,14 @@ img {
 	min-width: 100%;
 	width: 100%;
 	z-index: 9999;
+}
+
+.navbar-light {
+	background: linear-gradient(#B69174 40%, transparent 80%);
+}
+
+.navbar-dark {
+	background: linear-gradient(#0E1322 40%, transparent 80%);
 }
 
 .navbarOffsetExpanded {
