@@ -15,7 +15,7 @@ const lightBackground = useLightBackground();
 			@click="$emit('retract')"
 			@dragstart.prevent
 		>
-			<template v-if="$route.fullPath == link">
+			<template v-if="$route.fullPath === link">
 				<u>{{ displayName }}</u>
 			</template>
 			<template v-else>

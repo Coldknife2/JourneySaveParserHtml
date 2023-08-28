@@ -26,6 +26,6 @@ watch(saves, () => createData(), { deep: true });
 		:key="i"
 		:item-name="names[i-1]"
 		:item-value="values[i-1]"
-		:use-glyph="(i==4) ? true : false"
+		:use-glyph="(i === 4) ? true : false"
 	/>
 </template>

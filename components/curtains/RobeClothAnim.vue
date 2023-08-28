@@ -19,7 +19,7 @@ defineProps<{
 	>
 		<template v-for="i in 2">
 			<template v-for="j in 4">
-				<img :src="robe[i-1][j-1]" v-if="i == 2 ? j < 4 : true" :key="4*(i-1)+(j-1)">
+				<img :src="robe[i-1][j-1]" v-if="i === 2 ? j < 4 : true" :key="4*(i-1)+(j-1)">
 			</template>
 		</template>
 	</Plane>

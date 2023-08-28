@@ -6,7 +6,7 @@ export function randomFloat(min: number, max: number) {
 	return Math.random() * (max - min) + min;
 }
 
-export function squarePolynomial(x: number, a=1, b=1, c=0) {
+export function squarePolynomial(x: number, a=1, b=0, c=0) {
 	return a*x**2+b*x+c;
 }
 

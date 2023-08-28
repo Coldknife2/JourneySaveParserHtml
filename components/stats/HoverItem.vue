@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { locations } from "images";
-
 defineProps<{
 	unlocked: boolean
-	index: [number, number, number]
+	src: string
 	symbol: number
 }>();
 </script>
@@ -15,7 +13,7 @@ defineProps<{
 				{{ String.fromCharCode(symbol) }}
 			</div>
 			<img class="imageDisplay"
-				:src="locations[index[0]][index[1]][index[2]]"
+				:src="src"
 				loading="lazy"
 				alt="In-game position of the symbol."
 			/>

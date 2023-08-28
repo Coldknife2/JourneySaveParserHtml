@@ -14,7 +14,7 @@ const lvlNames = ["Level Select", "Robe Select", "Scarf Length Select", "Symbol 
 			:class="lightBackground + ' block cursorPointer'"
 			v-for="(item, i) in lvlNames"
 			:key="i"
-			@click="() => {enable(i); if (i == 1) callback(); }"
+			@click="() => {enable(i); if (i === 1) callback(); }"
 		>
 			{{ item }}
 		</div>

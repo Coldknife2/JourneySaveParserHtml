@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { locations } from "images";
 const saves = useSaves().value;
 const muralData = ref([] as boolean[][]);
 
@@ -30,7 +31,7 @@ watch(saves, () => createData(), { deep: true });
 				v-for="mural in muralData[lvl-1].length"
 				:key="mural"
 				:unlocked="muralData[lvl-1][mural-1]"
-				:index="[1, lvl-1, mural-1]"
+				:src="locations[1][lvl-1][mural-1]"
 				:symbol="0xF116"
 			/>
 		</template>

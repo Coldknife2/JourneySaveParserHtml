@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { locations } from "images";
 const saves = useSaves().value;
 const symbolData = ref([] as Array<Array<boolean>>);
 const randomSymbols = new Array<Array<number>>();
@@ -13,7 +14,7 @@ for (let i=0; i<6; i++) {
 }
 
 function sectionLength(idx: number) {
-	return idx > 3 || idx == 2 ? 4 : 3;
+	return idx > 3 || idx === 2 ? 4 : 3;
 }
 
 const createData = () => {
@@ -44,7 +45,7 @@ watch(saves, () => createData(), { deep: true });
 				v-for="glyph in symbolData[lvl-1].length"
 				:key="glyph"
 				:unlocked="symbolData[lvl-1][glyph-1]"
-				:index="[0, lvl-1, glyph-1]"
+				:src="locations[0][lvl-1][glyph-1]"
 				:symbol="0xF101+randomSymbols[lvl-1][glyph-1]"
 			/>
 		</template>
