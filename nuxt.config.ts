@@ -22,10 +22,11 @@ export default defineNuxtConfig({
 			link: [
 				{ rel: "icon", type: "icon/ico", href: "/favicon.ico" }
 			],
-			meta: [{
-				name: "robots",
-				content: "all"
-			}],
+			meta: [
+				{ name: "robots", content: "all" },
+				{ name: "description", content: "A tool to work with Journey saves." },
+				{ name: "keywords", content: "Journey, SAVE.BIN, Companion" }
+			],
 			htmlAttrs: {
 				lang: "en"
 			}
