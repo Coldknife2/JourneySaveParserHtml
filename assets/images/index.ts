@@ -9,25 +9,13 @@ import arrow2R from "./arrows/arrow2R.svg";
 import arrow3R from "./arrows/arrow3R.svg";
 import arrow4R from "./arrows/arrow4R.svg";
 
-import red1 from "./robes/red1.webp";
-import red2 from "./robes/red2.webp";
-import red3 from "./robes/red3.webp";
-import red4 from "./robes/red4.webp";
-import white2 from "./robes/white2.webp";
-import white3 from "./robes/white3.webp";
-import white4 from "./robes/white4.webp";
-
-import level1 from "./levels/1.webp";
-import level2 from "./levels/2.webp";
-import level3 from "./levels/3.webp";
-import level4 from "./levels/4.webp";
-import level5 from "./levels/5.webp";
-import level6 from "./levels/6.webp";
-import level7 from "./levels/7.webp";
-import level8 from "./levels/8.webp";
-import level9 from "./levels/9.webp";
-import level10 from "./levels/10.webp";
-import level11 from "./levels/11.webp";
+import red1 from "./robes/red1.png";
+import red2 from "./robes/red2.png";
+import red3 from "./robes/red3.png";
+import red4 from "./robes/red4.png";
+import white2 from "./robes/white2.png";
+import white3 from "./robes/white3.png";
+import white4 from "./robes/white4.png";
 
 import CSS0 from "./locations/CS/S0.webp";
 import CSS1 from "./locations/CS/S1.webp";
@@ -68,7 +56,6 @@ import SNM0 from "./locations/SN/M0.webp";
 import SNM1 from "./locations/SN/M1.webp";
 
 export const sym = sym0;
-export const level = [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11];
 export const arrow = [
 	[arrow1L, arrow2L, arrow3L, arrow4L],
 	[arrow1R, arrow2R, arrow3R, arrow4R]

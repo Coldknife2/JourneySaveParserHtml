@@ -103,11 +103,11 @@ export default defineComponent({
 }
 
 .red {
-	background-image: url(images/scarf/red.webp);
+	background-image: url(images/scarf/red.png);
 }
 
 .white {
-	background-image: url(images/scarf/white.webp);
+	background-image: url(images/scarf/white.png);
 }
 
 .activeScarf {

@@ -1,16 +1,13 @@
-<script setup lang="ts">
-import { level } from "images";
-</script>
-
 <template>
 	<div>{{ levelIndex+1 + " - " + levelNames[levelIndex+1] }}</div>
 	<EditorLayout @left-arrow="changeLevel(0)" @right-arrow="changeLevel(1)">
 		<template #innerEditorContent>
-			<img :src="level[levelIndex]"
+			<SourcedImage
+				class="img"
+				:src="`${levelIndex+1}`"
 				alt="The currently selected Level"
 				@dragstart.prevent
-				loading="lazy"
-			>
+			/>
 		</template>
 	</EditorLayout>
 </template>
@@ -49,9 +46,13 @@ div {
 	margin-bottom: 40px;
 }
 
-img {
-	border: 4px dashed #ffffff;
-	width: 30%;
+picture {
+	width: 40%;
 	min-width: 400px;
+}
+
+:deep(picture > img) {
+	width: calc(100% - 8px);
+	border: 4px dashed #ffffff;
 }
 </style>
