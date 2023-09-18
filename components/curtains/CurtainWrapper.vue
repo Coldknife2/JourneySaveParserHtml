@@ -18,6 +18,7 @@ import { Curtains } from "vue-curtains";
 export default defineComponent({
 	data() {
 		return {
+			curtainsAvailable: useCurtainsAvailable(),
 			curtainsParams: {
 				production: !(process.env.NODE_ENV === "development"),
 				watchScroll: false,
@@ -37,7 +38,7 @@ export default defineComponent({
 			curtain.restoreContext();
 		},
 		onError() {
-			document.body.classList.add("no-curtains");
+			this.curtainsAvailable = false;
 		},
 		callback() {
 			this.drawing = !this.drawing;

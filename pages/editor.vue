@@ -18,7 +18,7 @@ const lightBackground = useLightBackground();
 				<EditorScarfSelect  v-if="active[2]===1"/>
 				<EditorSymbolSelect v-if="active[3]===1" @return-to-overview="returnToOverview" />
 				<div class="flex-container">
-					<div v-if="active.some((e: number) => e > 0)" :class="lightBackground + ' flex-item cursorPointer'" @click="if (active[1]) { renderCallback(); } returnToOverview()">
+					<div v-if="active.some((e: number) => e > 0)" :class="lightBackground + ' flex-item cursorPointer'" @click="if (active[1]) { renderCallback(); } returnToOverview();">
 						Back
 					</div>
 					<div :class="lightBackground + ' flex-item cursorPointer'" @click="download">

@@ -16,6 +16,7 @@ defineProps<{
 		:params="planeProps"
 		@render="onRender"
 		@ready="onReady"
+		@error="onError"
 	>
 		<template v-for="i in 2">
 			<template v-for="j in 4">
@@ -29,6 +30,7 @@ defineProps<{
 export default defineComponent({
 	data() {
 		return {
+			curtainsAvailable: useCurtainsAvailable(),
 			planeProps: {
 				vertexShader: vertexShader,
 				fragmentShader: fragmentShader,
@@ -68,6 +70,9 @@ export default defineComponent({
 			});
 			this.ready = true;
 			plane.visible = true;
+		},
+		onError() {
+			this.curtainsAvailable = false;
 		},
 		textureSwap(plane: typeof Plane) {
 			if (this.robeData !== this.currentTextureIndex && this.ready) {

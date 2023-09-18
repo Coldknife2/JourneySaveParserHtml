@@ -6,7 +6,7 @@ const lightBackground = useLightBackground();
 <template>
 	<EditorLayout @left-arrow="changeRobe(0)" @right-arrow="changeRobe(1)">
 		<template #innerEditorContent>
-			<CurtainsRobeClothAnim v-if="checkCurtain()" :robe-data="robeData" />
+			<CurtainsRobeClothAnim v-if="curtainsAvailable" :robe-data="robeData" />
 			<img
 				v-else
 				:src="robeDisplay"
@@ -26,9 +26,10 @@ const lightBackground = useLightBackground();
 export default defineComponent({
 	data() {
 		return {
+			saves: useSaves(),
+			curtainsAvailable: useCurtainsAvailable(),
 			robeDisplay: robe[0][0],
-			robeData: 0,
-			saves: useSaves()
+			robeData: 0
 		};
 	},
 	mounted() {
@@ -53,9 +54,6 @@ export default defineComponent({
 			const tier = robeData > 3 ? robeData - 4 : robeData;
 			this.robeDisplay = robe[color][tier];
 			this.robeData = robeData;
-		},
-		checkCurtain() {
-			return !document.body.classList.contains("no-curtains");
 		}
 	}
 });
