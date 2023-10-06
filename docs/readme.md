@@ -3,10 +3,10 @@
 
 ## Official Links
 <ul>
-	<li><a href="https://journey.coldknife2.ninja/">Parser</a></li>
-	<li><a href="https://journey.coldknife2.ninja/stats/">Statistics</a></li>
-	<li><a href="https://journey.coldknife2.ninja/editor/">Editor</a></li>
-	<li><a href="https://journey.coldknife2.ninja/about/">About</a></li>
+	<li><a href="https://parser.journey.arckoor.dev/">Parser</a></li>
+	<li><a href="https://parser.journey.arckoor.dev/stats/">Statistics</a></li>
+	<li><a href="https://parser.journey.arckoor.dev/editor/">Editor</a></li>
+	<li><a href="https://parser.journey.arckoor.dev/about/">About</a></li>
 </ul>
 
 ## Parser
@@ -34,5 +34,4 @@ The editor has drawn inspiration as well as offsets from [this](https://github.c
 The Statistics page displays all currently known information that can be extracted from a given SAVE.BIN (Companion data is not included, as it is already shown in the Parser).
 
 ## Development
-
-This project uses [unplugin-vue-components](https://www.npmjs.com/package/unplugin-vue-components) for imports. As such, you should never import any `.vue` file directly. Before committing make sure to execute `npm run build`, as the [components.d.ts](/components.d.ts) file does not update on its own.
+This project uses the [Nuxt](https://nuxt.com/) framework, so components should never have to be imported directly. Refer to the [documentation](https://nuxt.com/docs/guide/directory-structure/components) to find out which directories are automatically imported and in what way. You can use the `PLACEHOLDER.BIN` file provided in `/docs` to test your changes. Please adhere to the styling guidelines enforced with `eslint`.
