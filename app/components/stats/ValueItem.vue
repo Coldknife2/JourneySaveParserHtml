@@ -27,14 +27,25 @@ withDefaults(defineProps<Props>(), {
     font-size: var(--font-size--default);
     margin: 10px 0 10px 0;
     align-items: center;
+    @media (max-width: 560px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 .name {
     white-space: nowrap;
+    @media (max-width: 560px) {
+        max-width: 80%;
+        white-space: normal;
+    }
 }
 
 .value {
     flex-basis: 100%;
     text-align: right;
+    @media (max-width: 560px) {
+        text-align: left;
+    }
 }
 </style>

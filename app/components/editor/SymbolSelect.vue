@@ -84,7 +84,7 @@ div {
 }
 
 .bigGlyph {
-    font-size: 230px;
+    font-size: min(230px, min(45vw, 45vh));
 }
 
 .fade {

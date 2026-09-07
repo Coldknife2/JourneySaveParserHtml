@@ -46,16 +46,18 @@ img:hover {
 }
 
 img {
-    margin: 30px;
     transition: transform 0.2s;
     width: 130px;
     height: 130px;
     cursor: pointer;
+    max-width: calc(100vw / 5);
+    max-height: calc(100vh / 5);
 }
 
 div {
     align-items: center;
     display: flex;
     flex-direction: row;
+    gap: 30px;
 }
 </style>

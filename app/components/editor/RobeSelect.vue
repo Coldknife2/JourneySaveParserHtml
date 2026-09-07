@@ -57,6 +57,7 @@ div {
     margin-top: 30px;
     display: flex;
     justify-content: center;
+    margin-bottom: 10px;
 }
 
 img {
