@@ -50,7 +50,7 @@ const components = [StatsGeneralDisplay, StatsJourneyDisplay, StatsMiscDisplay, 
     justify-content: center;
     gap: 10px;
     @media (max-width: 768px) {
-        overflow: scroll;
+        overflow: auto;
     }
 }
 

@@ -20,7 +20,7 @@ const showEditor = useShowEditor();
 .container {
     padding: 20vh 0 10px 16%;
     max-width: 90%;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .companions {

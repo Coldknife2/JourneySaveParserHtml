@@ -63,7 +63,7 @@ withDefaults(defineProps<Props>(), {
 .resultZone {
     padding: 160px 0 10px 16%;
     max-width: 90%;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .companions {
@@ -77,6 +77,9 @@ withDefaults(defineProps<Props>(), {
 
 .companion-wrapper {
     flex-basis: 40%;
+    @media (max-width: 768px) {
+        flex-basis: 100%;
+    }
 }
 
 .companion-empty {
