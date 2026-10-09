@@ -40,28 +40,32 @@ const pathInclude = computed(() => {
 <template>
     <NavBar />
     <Title>{{ routeToTitle($route.path) }}</Title>
-    <div v-if="displayDropZone && pathInclude" class="dropZoneContainer">
+    <div class="scrollViewport">
+        <div v-if="displayDropZone && pathInclude" class="dropZoneContainer">
+            <div
+                :class="'dropZone' + (dragging ? ' dz-dragover' : '')"
+                @click="clickInput"
+                @dragenter.prevent="dragging = true"
+                @dragleave.prevent="dragging = false"
+                @dragover.prevent
+                @drop.prevent="dropHandler"
+            >
+                Click or Drop your Journey Save.bin here
+                <input ref="input" type="file" style="display: none" accept=".bin" @change="inputHandler()" />
+            </div>
+            <NuxtLink to="/help/" :class="'help-link ' + theme.background">I need help finding my Save.bin!</NuxtLink>
+        </div>
         <div
-            :class="'dropZone' + (dragging ? ' dz-dragover' : '')"
-            @click="clickInput"
-            @dragenter.prevent="dragging = true"
-            @dragleave.prevent="dragging = false"
+            :class="
+                (!displayDropZone || !pathInclude ? 'hidden-dropZone' : 'hidden') + (dragging ? ' hdz-dragover' : '')
+            "
+            @dragenter.prevent="dragTest($event, true)"
+            @dragleave.prevent="dragTest($event, false)"
             @dragover.prevent
             @drop.prevent="dropHandler"
         >
-            Click or Drop your Journey Save.bin here
-            <input ref="input" type="file" style="display: none" accept=".bin" @change="inputHandler()" />
+            <NuxtPage />
         </div>
-        <NuxtLink to="/help/" :class="'help-link ' + theme.background">I need help finding my Save.bin!</NuxtLink>
-    </div>
-    <div
-        :class="(!displayDropZone || !pathInclude ? 'hidden-dropZone' : 'hidden') + (dragging ? ' hdz-dragover' : '')"
-        @dragenter.prevent="dragTest($event, true)"
-        @dragleave.prevent="dragTest($event, false)"
-        @dragover.prevent
-        @drop.prevent="dropHandler"
-    >
-        <NuxtPage />
     </div>
 </template>
 
@@ -122,13 +126,33 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.scrollViewport {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent var(--nav-height, 0px),
+        black calc(var(--nav-height, 0px) + 56px)
+    );
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent var(--nav-height, 0px),
+        black calc(var(--nav-height, 0px) + 56px)
+    );
+}
+
 .dropZoneContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 70px - 50px);
+    min-height: 60vh;
 }
 
 .dropZone {
@@ -164,9 +188,7 @@ a:visited {
 
 .hidden-dropZone {
     z-index: 999;
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
     height: 100%;
     box-sizing: border-box;

@@ -20,11 +20,20 @@ defineProps<{
     display: flex;
     font-size: var(--font-size--default);
     margin: 10px 0 10px 0;
+    gap: 10px;
+    @media (max-width: 560px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 .name {
     flex-basis: 40%;
     white-space: nowrap;
+    @media (max-width: 560px) {
+        max-width: 80%;
+        white-space: normal;
+    }
 }
 
 .content {

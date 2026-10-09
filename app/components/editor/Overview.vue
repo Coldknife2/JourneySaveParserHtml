@@ -43,5 +43,9 @@ const lvlNames = ["Level Select", "Robe Select", "Scarf Length Select", "Symbol 
     flex-direction: row;
     justify-content: space-evenly;
     width: 100%;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 </style>

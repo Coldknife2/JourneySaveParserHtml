@@ -24,7 +24,9 @@ const components = [StatsGeneralDisplay, StatsJourneyDisplay, StatsMiscDisplay, 
 <style scoped>
 .wrapper {
     display: flex;
+    gap: 10px;
     flex-direction: column;
+    margin-top: 70px;
 }
 
 .murals {
@@ -46,6 +48,10 @@ const components = [StatsGeneralDisplay, StatsJourneyDisplay, StatsMiscDisplay, 
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 10px;
+    @media (max-width: 768px) {
+        overflow: scroll;
+    }
 }
 
 .heading {

@@ -84,6 +84,7 @@ input[type="checkbox"]:checked {
 .checkbox-svg {
     fill: #fff;
     overflow: visible;
+    min-width: 30px;
 }
 
 .checkbox:hover .corner {
